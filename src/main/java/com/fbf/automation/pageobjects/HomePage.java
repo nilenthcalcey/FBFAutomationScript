@@ -23,15 +23,12 @@ public class HomePage extends PageBase {
     By playnowBtn = By.xpath("//a[contains(.,'Play Now')]");
     By firebrandLabel = By.xpath("//div[@class = 'container']//h2/span");
 
-    //By loginPageTitle = By.xpath("//h1[@class='page-title logo-watermark-inner']");
-    //By registrationBtn = By.xpath("//a[contains(.,'Register')]");
 
     public HomePage(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 5);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
-        //driver.get("http://fbf.qa/orders");
     }
     boolean bValue = false;
 
@@ -69,11 +66,6 @@ public class HomePage extends PageBase {
     public String getFirebrandFreshQuizHeader(){
         return getDriver().findElement(firebrandLabel).getText();
     }
-
-
-
-
-
 //    public String getLoginPageHeader() {
 //        return getDriver().findElement(loginPageTitle).getText();
 //    }
