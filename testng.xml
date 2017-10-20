@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite" parallel="false">
+
+    <test name="HomePage">
+        <classes>
+            <class name="com.trg.automation.tests.OrderDetailsTest"></class>
+        </classes>
+    </test>
+
+   <!-- <test name="Login">
+        <classes>
+            <class name="com.trg.automation.tests.LoginTest"></class>
+        </classes>
+    </test>
+
+    <test name="GiveAGift">
+        <classes>
+            <class name="com.trg.automation.tests.GiveAGiftTest"></class>
+        </classes>
+    </test>
+
+    <test name="GiveAGiftAndRedeemAGift">
+        <classes>
+            <class name="com.trg.automation.tests.GiveAGiftAndRedeemAGift"></class>
+        </classes>
+    </test>
+
+    <test name="Redeem a gift">
+        <classes>
+            <class name="com.trg.automation.tests.RedeemAGiftTest"></class>
+        </classes>
+    </test>
+
+    <test name="Customer Service">
+        <classes>
+            <class name="com.trg.automation.tests.CustomerServiceTest"></class>
+        </classes>
+    </test>
+
+    <test name="Our Story">
+        <classes>
+            <class name="com.trg.automation.tests.OurStoryTest"></class>
+        </classes>
+    </test>
+-->
+</suite>
