@@ -22,7 +22,7 @@ public class PageBase {
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 
         String propertiesPath = getClass().getSimpleName();
-        InputStream input = Home.class.getClassLoader().getResourceAsStream(propertiesPath + ".properties");
+        InputStream input = HomePage.class.getClassLoader().getResourceAsStream(propertiesPath + ".properties");
         properties = new Properties();
         try {
             if (input.available() > 0) {
