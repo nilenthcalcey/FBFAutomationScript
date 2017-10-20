@@ -40,28 +40,10 @@ public class HomePageTest {
         Assert.assertEquals(homePage.getMenuScreenDetails(),"CREATE NEW ORDER");
     }
 
-    /*@Test(description = "Navigate to the Create New Order Page", priority = 2 )
-    public void navigateToCreateNewOrderPage(){
-        orderDetails.navigateToCreateNewOrderPage();
-        Assert.assertEquals(orderDetails.getCreateNewOrderPageHeader(),"SELECT A FAVOURITE MEAL OR CREATE NEW");
-    }
-*/
     @Test(description = "Navigate to the FireBrand Quiz Page",priority = 2)
     public void navigateToFireBrandQuizPage(){
         homePage.navigateToPlayFirebrandQuiz();
         Assert.assertEquals(homePage.getFirebrandFreshQuizHeader(),"Firebrand");
     }
-
-//    @Test(description = "Navigate to Login page", priority = 1)
-//    public void navigateToLoginPage() {
-//        orderDetails.navigateToLoginPage();
-//        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
-//    }
-//
-//    @Test(description = "Navigate to Registration page", priority = 2)
-//    public void navigateToRegistrationPage() {
-//        orderDetails.navigateToLoginPage();
-//        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
-//    }
 
 }
