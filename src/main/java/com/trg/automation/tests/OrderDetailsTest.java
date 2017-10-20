@@ -11,15 +11,13 @@ import org.testng.annotations.Test;
 
 
 /**
- * Created by lahiru.k on 10/10/2017.
+ * Created by nilenth on 10/10/2017.
  */
 
 @Listeners(value = FailureReport.class)
 public class OrderDetailsTest {
     WebDriver driver = null;
     OrderDetails orderDetails;
-
-
 
     String pageTitle = "Firebrand Fresh";
 
@@ -42,17 +40,18 @@ public class OrderDetailsTest {
         Assert.assertEquals(orderDetails.getMenuScreenDetails(),"CREATE NEW ORDER");
     }
 
-    @Test(description = "Navigate to the Create New Order Page", priority = 2 )
+    /*@Test(description = "Navigate to the Create New Order Page", priority = 2 )
     public void navigateToCreateNewOrderPage(){
         orderDetails.navigateToCreateNewOrderPage();
         Assert.assertEquals(orderDetails.getCreateNewOrderPageHeader(),"SELECT A FAVOURITE MEAL OR CREATE NEW");
     }
-
-    @Test(description = "Navigate to the FireBrand Quiz Page",priority = 3)
+*/
+    @Test(description = "Navigate to the FireBrand Quiz Page",priority = 2)
     public void navigateToFireBrandQuizPage(){
         orderDetails.navigateToPlayFirebrandQuiz();
-        Assert.assertEquals(orderDetails.getFirebrandFreshQuizHeader(),"");
+        Assert.assertEquals(orderDetails.getFirebrandFreshQuizHeader(),"Firebrand");
     }
+
 //    @Test(description = "Navigate to Login page", priority = 1)
 //    public void navigateToLoginPage() {
 //        orderDetails.navigateToLoginPage();
