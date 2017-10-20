@@ -3,6 +3,7 @@ package com.fbf.automation.pageobjects;
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.lang.*;
 
@@ -11,6 +12,7 @@ import java.lang.*;
  */
 public class HomePage extends PageBase {
     WebDriver driver = null;
+    WebDriverWait wait;
 
     By loginBtn = By.xpath("//a[contains(.,'login')]");
     By ordernowBtnText = By.xpath("//span[contains(.,'Order Now')]");
@@ -26,6 +28,7 @@ public class HomePage extends PageBase {
 
     public HomePage(WebDriver driver) {
         super(driver);
+        this.wait = new WebDriverWait(driver, 5);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
         //driver.get("http://fbf.qa/orders");
