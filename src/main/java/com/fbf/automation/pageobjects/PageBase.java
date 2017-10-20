@@ -1,6 +1,6 @@
-package com.trg.automation.pageobjects;
+package com.fbf.automation.pageobjects;
 
-import com.trg.automation.utils.CommonOperations;
+import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -22,7 +22,7 @@ public class PageBase {
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 
         String propertiesPath = getClass().getSimpleName();
-        InputStream input = OrderDetails.class.getClassLoader().getResourceAsStream(propertiesPath + ".properties");
+        InputStream input = Home.class.getClassLoader().getResourceAsStream(propertiesPath + ".properties");
         properties = new Properties();
         try {
             if (input.available() > 0) {

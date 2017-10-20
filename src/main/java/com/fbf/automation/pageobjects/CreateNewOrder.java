@@ -1,7 +1,7 @@
-package com.trg.automation.pageobjects;
+package com.fbf.automation.pageobjects;
 
 
-import com.trg.automation.utils.CommonOperations;
+import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.WebDriver;
 
 /**

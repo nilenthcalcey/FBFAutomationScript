@@ -1,4 +1,4 @@
-package com.trg.automation;
+package com.fbf.automation;
 
 public enum DriverType {
     FIREFOX,
