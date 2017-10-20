@@ -10,19 +10,19 @@ import java.lang.*;
 import java.util.Properties;
 
 /**
- * Created by lahiru.k on 10/10/2017.
+ * Created by nilenth on 10/10/2017.
  */
 public class OrderDetails extends PageBase {
+    WebDriver driver = null;
 
     By loginBtn = By.xpath("//a[contains(.,'login')]");
     By ordernowBtnText = By.xpath("//span[contains(.,'Order Now')]");
-    WebElement ordernowBtn = driver.findElement(By.xpath("//span[contains(.,'Order Now')]"));
     By menuBtn = By.xpath("//a[@class='main-nav-btn']");
     By createneworderBtn = By.xpath("//a[contains(.,'Create new Order')]");
     By selectFavouriteText = By.xpath("//div[@class='fbf-main-content']//h3");
     By playfirebrandquizBtn = By.xpath("//a[contains(.,'Play Firebrand quiz')]");
     By playnowBtn = By.xpath("//a[contains(.,'Play Now')]");
-
+    By firebrandLabel = By.xpath("//div[@class = 'container']//h2/span");
 
     //By loginPageTitle = By.xpath("//h1[@class='page-title logo-watermark-inner']");
     //By registrationBtn = By.xpath("//a[contains(.,'Register')]");
@@ -30,8 +30,8 @@ public class OrderDetails extends PageBase {
     public OrderDetails(WebDriver driver) {
         super(driver);
         this.commonOperations = new CommonOperations();
-       // driver.get("http://fbf.qa/orders");
-
+        this.driver = driver;
+        //driver.get("http://fbf.qa/orders");
     }
     boolean bValue = false;
 
@@ -43,7 +43,7 @@ public class OrderDetails extends PageBase {
 
 
     public void navigateToLoginPage() {
-        getDriver().findElement(loginBtn).click();
+        driver.findElement(loginBtn).click();
     }
 
     public void expandMenuScreen(){
@@ -67,7 +67,7 @@ public class OrderDetails extends PageBase {
     }
 
     public String getFirebrandFreshQuizHeader(){
-        return getDriver().findElement(selectFavouriteText).getText();
+        return getDriver().findElement(firebrandLabel).getText();
     }
 
 
@@ -85,3 +85,4 @@ public class OrderDetails extends PageBase {
 
 
 }
+
