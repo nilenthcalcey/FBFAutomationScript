@@ -1,7 +1,7 @@
 package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
-import com.fbf.automation.pageobjects.HomePage;
+import com.fbf.automation.pageobjects.*;
 import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -18,6 +18,10 @@ import org.testng.annotations.Test;
 public class HomePageTest {
     WebDriver driver = null;
     HomePage homePage;
+    FirebrandQuiz firebrandQuiz;
+    QuizFacts quizFacts;
+    ContactUs contactUs;
+    TermsandCond termsandCond;
 
     String pageTitle = "Firebrand Fresh";
 
@@ -25,6 +29,10 @@ public class HomePageTest {
     public void SetUp() {
         driver = DriverFactory.getDriver();
         homePage = new HomePage(driver);
+        firebrandQuiz = new FirebrandQuiz(driver);
+        contactUs = new ContactUs(driver);
+        quizFacts = new QuizFacts(driver);
+        termsandCond = new TermsandCond(driver);
     }
 
 
@@ -47,21 +55,43 @@ public class HomePageTest {
     }
     @Test(description = "Navigate to the Quiz Facts Page",priority = 3)
     public void navigateToQuizFacts(){
-        homePage.expandMenuScreen();
-        homePage.navigateToQuizFactsPage();
-        Assert.assertEquals(homePage.getQuizFactsPageHeader(),"FIREBRAND FRESH FACTS");
+        firebrandQuiz.expandMenuFQuizScreen();
+        firebrandQuiz.navigateToQuizFactsPage();
+        Assert.assertEquals(firebrandQuiz.getQuizFactsPageHeader(),"FIREBRAND FRESH FACTS");
     }
-   /* @Test(description = "Navigate to FAQ page", priority = 1)
-    public void navigateToFAQPage() {
-        homePage.navigateToLoginPage();
-        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
-    }*/
-/*
-    @Test(description = "Navigate to Registration page", priority = 2)
-    public void navigateToRegistrationPage() {
-        orderDetails.navigateToLoginPage();
-        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
-    }*/
+
+    @Test(description = "Navigate to the Contact Us Page",priority = 4)
+    public void navigateToContactUs(){
+
+        quizFacts.expandMenuScreenQuizFactsPage();
+        quizFacts.navigateToContactUsPage();
+        Assert.assertEquals(quizFacts.getContactUsPageHeader(),"CONTACT US");
+    }
+
+    @Test(description = "Navigate to the Terms & Condition Page",priority = 5)
+    public void navigateToTermsandCondition(){
+        contactUs.exapandMenuScreenContUsScreen();
+        contactUs.navigateToTermsandConditionPage();
+        Assert.assertEquals(contactUs.getTermsandConditionPageLabel(),"FIREBRAND FRESH WEBSITE TERMS AND CONDITIONS");
+    }
+
+    @Test(description = "Naviate to the Create New Order Page",priority = 6)
+    public void navigateToCreatenewOrder(){
+        termsandCond.expandTheMenuScreeninTermCondScreen();
+        termsandCond.navigateToCreateNewOrderPage();
+        Assert.assertEquals(termsandCond.getCreateNewOrderPageLabel(),"Order For Later");
+    }
+//    @Test(description = "Navigate to Login page", priority = 1)
+//    public void navigateToLoginPage() {
+//        orderDetails.navigateToLoginPage();
+//        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
+//    }
+//
+//    @Test(description = "Navigate to Registration page", priority = 2)
+//    public void navigateToRegistrationPage() {
+//        orderDetails.navigateToLoginPage();
+//        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
+//    }
 
 }
 

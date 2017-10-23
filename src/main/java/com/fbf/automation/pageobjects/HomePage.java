@@ -60,6 +60,7 @@ public class HomePage extends PageBase {
     }
 
     public void navigateToPlayFirebrandQuiz(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
         getDriver().findElement(playfirebrandquizBtn).click();
     }
 
