@@ -35,11 +35,11 @@ public class GuestCreateOwnMealTest {
         regularProtein = new RegularProtein(driver);
     }
 
-//    @Test(description = "Verify Home page loaded", priority = 0)
-//    public void verifyPageElements() {
-//        String errorMessage = "Home page title not valid.";
-//        Assert.assertEquals(homepage.getHomePageTitle(), pageTitle, errorMessage);
-//    }
+    @Test(description = "Verify Home page loaded", priority = 0)
+    public void verifyPageElements() {
+        String errorMessage = "Home page title not valid.";
+        Assert.assertEquals(homepage.getHomePageTitle(), pageTitle, errorMessage);
+    }
 
     @Test(description = "Navigate To the Crete Your Own Mela Page", priority = 1)
     public void navigateToCreateOwnMeal(){
@@ -71,7 +71,7 @@ public class GuestCreateOwnMealTest {
         Assert.assertEquals(guestCreateOwnMeal.getCarbCassavaPriceLabel(),"£1.29");
 }
 
-    @Test(description = "Select the Regular Chicken for the Meal",priority = 5)
+    @Test(description = "Select the Regular Carb for the Meal",priority = 5)
     public void selectRegularCassava(){
         guestCreateOwnMeal.selectRegularCasavaInCarbinPage();
         Assert.assertEquals(guestCreateOwnMeal.navigateToSelectedItemPage(),"£4.28");

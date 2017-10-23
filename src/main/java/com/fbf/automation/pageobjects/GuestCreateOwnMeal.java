@@ -19,14 +19,14 @@ public class GuestCreateOwnMeal extends PageBase {
     By creteyourownmealBtn =By.xpath("//div[@class ='fbf-small-container']//a[@class ='order-item-box bordered-item']/div[@class='inner']");
     By proteinLbl = By.xpath("//div[@class='inner']//span[contains(.,'Protein')]");
     By proteinBtn = By.xpath("//div[@class='inner']//span[contains(.,'Protein')]");
-    By chickenregularpriceLabel = By.xpath("//div[@class='price-tag']//span[contains(.,'£2.99')]");
+    By chickenregularpriceLabel = By.xpath("//div[@class='price-tag']//span");
     By selectchickenBtn = By.xpath("//div[contains(@class,'price-tag')]");
     By regularchickenLabel = By.xpath("//span[contains(.,'Chicken | Regular')]");
     By totalpriceLabel = By.xpath("//div[@class='details']//div[2]//span[@class='value']");
     By addthismealBtn = By.xpath("//div[@class='order-button-container item-has-selected']//button[@class='btn btn-primary btn-block']");
     By incompleteplatterLabel = By.xpath("//div[@class='modal-body']//p[contains(.,'Select a protein, carb & ten a day to create a meal. Drink is optional')]");
     By carbBtn = By.xpath("//div[@class='inner']//span[contains(.,'Carb')]");
-    By cassavaregularpriceLabel = By.xpath("//div[@class='order-item-grid select-option']/a[1]//span[contains(.,'£1.29')]");
+    By cassavaregularpriceLabel = By.xpath("//div[@class='order-item-grid select-option']/a[1]//span");
     By selectcassavaBtn = By.xpath("//div[@class='price-tag']");
 
     public GuestCreateOwnMeal(WebDriver driver) {
