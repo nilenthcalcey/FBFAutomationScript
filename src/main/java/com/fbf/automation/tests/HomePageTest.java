@@ -49,19 +49,19 @@ public class HomePageTest {
     public void navigateToQuizFacts(){
         homePage.expandMenuScreen();
         homePage.navigateToQuizFactsPage();
-        Assert.assertEquals(homePage.getQuizFactsPageHeader(),"Firebrand Fresh Facts");
+        Assert.assertEquals(homePage.getQuizFactsPageHeader(),"FIREBRAND FRESH FACTS");
     }
-//    @Test(description = "Navigate to Login page", priority = 1)
-//    public void navigateToLoginPage() {
-//        orderDetails.navigateToLoginPage();
-//        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
-//    }
-//
-//    @Test(description = "Navigate to Registration page", priority = 2)
-//    public void navigateToRegistrationPage() {
-//        orderDetails.navigateToLoginPage();
-//        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
-//    }
+   /* @Test(description = "Navigate to FAQ page", priority = 1)
+    public void navigateToFAQPage() {
+        homePage.navigateToLoginPage();
+        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
+    }*/
+/*
+    @Test(description = "Navigate to Registration page", priority = 2)
+    public void navigateToRegistrationPage() {
+        orderDetails.navigateToLoginPage();
+        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
+    }*/
 
 }
 

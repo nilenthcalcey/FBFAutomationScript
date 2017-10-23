@@ -27,25 +27,17 @@ public class HomePage extends PageBase {
     By quizfactsPageHeader = By.xpath("//h2[@class='page-title logo-watermark-inner secondary-color']/div[@class='container']");
     By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
 
-
-    //By loginPageTitle = By.xpath("//h1[@class='page-title logo-watermark-inner']");
-    //By registrationBtn = By.xpath("//a[contains(.,'Register')]");
-
     public HomePage(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 5);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
-        //driver.get("http://fbf.qa/orders");
     }
     boolean bValue = false;
 
     public String getHomePageTitle() {
         return getDriver().getTitle();
     }
-
-
-
 
     public void navigateToLoginPage() {
         driver.findElement(loginBtn).click();
@@ -71,12 +63,12 @@ public class HomePage extends PageBase {
         getDriver().findElement(playfirebrandquizBtn).click();
     }
 
+
     public String getFirebrandFreshQuizHeader(){
         return getDriver().findElement(firebrandLabel).getText();
     }
 
     public void navigateToQuizFactsPage(){
-
         wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
         driver.findElement(quizfactsMenuBtn).click();
     }
@@ -84,11 +76,6 @@ public class HomePage extends PageBase {
     public String getQuizFactsPageHeader(){
         return driver.findElement(quizfactsPageHeader).getText();
     }
-
-
-
-
-
 
 //    public String getLoginPageHeader() {
 //        return getDriver().findElement(loginPageTitle).getText();
