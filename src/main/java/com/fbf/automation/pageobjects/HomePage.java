@@ -3,6 +3,7 @@ package com.fbf.automation.pageobjects;
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.lang.*;
@@ -22,13 +23,20 @@ public class HomePage extends PageBase {
     By playfirebrandquizBtn = By.xpath("//a[contains(.,'Play Firebrand quiz')]");
     By playnowBtn = By.xpath("//a[contains(.,'Play Now')]");
     By firebrandLabel = By.xpath("//div[@class = 'container']//h2/span");
+    By quizfactsMenuBtn = By.xpath("//a[contains(.,'Quiz Facts')]");
+    By quizfactsPageHeader = By.xpath("//h2[@class='page-title logo-watermark-inner secondary-color']/div[@class='container']");
+    By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
 
+
+    //By loginPageTitle = By.xpath("//h1[@class='page-title logo-watermark-inner']");
+    //By registrationBtn = By.xpath("//a[contains(.,'Register')]");
 
     public HomePage(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 5);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
+        //driver.get("http://fbf.qa/orders");
     }
     boolean bValue = false;
 
@@ -66,6 +74,22 @@ public class HomePage extends PageBase {
     public String getFirebrandFreshQuizHeader(){
         return getDriver().findElement(firebrandLabel).getText();
     }
+
+    public void navigateToQuizFactsPage(){
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
+        driver.findElement(quizfactsMenuBtn).click();
+    }
+
+    public String getQuizFactsPageHeader(){
+        return driver.findElement(quizfactsPageHeader).getText();
+    }
+
+
+
+
+
+
 //    public String getLoginPageHeader() {
 //        return getDriver().findElement(loginPageTitle).getText();
 //    }
