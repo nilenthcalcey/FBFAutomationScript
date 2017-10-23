@@ -101,7 +101,7 @@ public class GuestCreateOwnMeal extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(cassavaregularpriceLabel));
         wait.until(ExpectedConditions.elementToBeClickable(cassavaregularpriceLabel));
         return driver.findElement(cassavaregularpriceLabel).getText();
-        
+
 
     }
 
