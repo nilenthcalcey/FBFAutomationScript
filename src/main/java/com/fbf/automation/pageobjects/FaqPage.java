@@ -15,7 +15,7 @@ public class FaqPage extends PageBase {
 
     By menuBtn = By.xpath("//a[@class='main-nav-btn']");
 
-    public FaqPage(WebDriver driver){
+    public FaqPage(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 5);
         this.commonOperations = new CommonOperations();
@@ -26,7 +26,7 @@ public class FaqPage extends PageBase {
         return getDriver().getTitle();
     }
 
-    public void expandMenuScreen(){
+    public void expandMenuScreen() {
         getDriver().findElement(menuBtn).click();
     }
 }
