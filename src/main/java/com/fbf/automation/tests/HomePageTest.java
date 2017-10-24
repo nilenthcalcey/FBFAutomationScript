@@ -54,7 +54,16 @@ public class HomePageTest {
         homePage.navigateToPlayFirebrandQuiz();
         Assert.assertEquals(homePage.getFirebrandFreshQuizHeader(),"Firebrand");
     }
+
     @Test(description = "Navigate to the Quiz Facts Page",priority = 3, dependsOnMethods = "navigateToFireBrandQuizPage")
+    public void navigateToFAQPage(){
+        firebrandQuiz.expandMenuFQuizScreen();
+        firebrandQuiz.navigateToQuizFactsPage();
+        Assert.assertEquals(firebrandQuiz.getQuizFactsPageHeader(),"FIREBRAND FRESH FACTS");
+    }
+
+
+    @Test(description = "Navigate to the Quiz Facts Page",priority = 4, dependsOnMethods = "navigateToFireBrandQuizPage")
     public void navigateToQuizFacts(){
         firebrandQuiz.expandMenuFQuizScreen();
         firebrandQuiz.navigateToQuizFactsPage();
