@@ -56,13 +56,13 @@ public class GuestCreateOwnMealTest {
     @Test(description = "Navigate To the Regular Protein Page", priority = 2, dependsOnMethods = "navigateToCreateOwnMeal")
     public void navigateToRegularProtein() {
         guestCreateOwnMeal.navigateToProteinPage();
-        Assert.assertEquals(guestCreateOwnMeal.getProteinPriceLabel(), "£2.99");
+        Assert.assertEquals(guestCreateOwnMeal.getProteinPriceLabel().substring(0,1), "£");
     }
 
     @Test(description = "Select the Regular Chicken for the Meal", priority = 3, dependsOnMethods = "navigateToRegularProtein")
     public void selectRegularProtein() {
         guestCreateOwnMeal.selectProtein();
-        Assert.assertEquals(guestCreateOwnMeal.navigateToSelectedItemPageAndCheckTotal(), "£2.99");
+        Assert.assertEquals(guestCreateOwnMeal.navigateToSelectedItemPageAndCheckTotal(), "£"+guestCreateOwnMeal.CalculatePrice());
     }
 
 //    @Test(description = "Navigate to the Incompplete Platter popup Screen",priority = 4)
@@ -74,7 +74,7 @@ public class GuestCreateOwnMealTest {
     @Test(description = "Navigate To the Regular Carb for the Meal", priority = 4, dependsOnMethods = "selectRegularProtein")
     public void navigateToRegularCarb() {
         guestCreateOwnMeal.navigateToCarbPage();
-        Assert.assertEquals(guestCreateOwnMeal.getCarbPriceLabel(), "£1.29");
+        Assert.assertEquals(guestCreateOwnMeal.getCarbPriceLabel().substring(0,1), "£");
     }
 
     @Test(description = "Select the Regular Carb for the Meal & Verify Total", priority = 5, dependsOnMethods = "navigateToRegularCarb")
