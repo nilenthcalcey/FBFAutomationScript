@@ -8,10 +8,10 @@
         </classes>
     </test>
 
-    <test name="GuestCreateOwnMeal">
+   <!-- <test name="GuestCreateOwnMeal">
         <classes>
             <class name="com.fbf.automation.tests.GuestCreateOwnMealTest"></class>
         </classes>
-    </test>
+    </test>-->
 
 </suite>

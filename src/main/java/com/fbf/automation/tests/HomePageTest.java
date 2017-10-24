@@ -22,6 +22,7 @@ public class HomePageTest {
     QuizFacts quizFacts;
     ContactUs contactUs;
     TermsandCond termsandCond;
+    CreateNewOrder createNewOrder;
 
     String pageTitle = "Firebrand Fresh";
 
@@ -33,6 +34,7 @@ public class HomePageTest {
         contactUs = new ContactUs(driver);
         quizFacts = new QuizFacts(driver);
         termsandCond = new TermsandCond(driver);
+        createNewOrder = new CreateNewOrder(driver);
     }
 
 
@@ -53,6 +55,22 @@ public class HomePageTest {
         homePage.navigateToPlayFirebrandQuiz();
         Assert.assertEquals(homePage.getFirebrandFreshQuizHeader(),"Firebrand");
     }
+
+    @Test(description = "Navigate to the About Us Page",priority = 7)
+    public void navigateToAboutUsPage(){
+        firebrandQuiz.expandMenuFQuizScreen();
+        firebrandQuiz.navigateToAboutUsPage();
+        Assert.assertEquals(firebrandQuiz.getAboutUsPageHeader(),"Firebrand Manifesto");
+    }
+
+    @Test(description = "Navigate to the FAQ Page",priority = 7)
+    public void navigateToFaqPage(){
+        firebrandQuiz.expandMenuFQuizScreen();
+        firebrandQuiz.navigateToAboutUsPage();
+        Assert.assertEquals(firebrandQuiz.getAboutUsPageHeader(),"Firebrand Manifesto");
+    }
+
+
     @Test(description = "Navigate to the Quiz Facts Page",priority = 3)
     public void navigateToQuizFacts(){
         firebrandQuiz.expandMenuFQuizScreen();
@@ -75,12 +93,14 @@ public class HomePageTest {
         Assert.assertEquals(contactUs.getTermsandConditionPageLabel(),"FIREBRAND FRESH WEBSITE TERMS AND CONDITIONS");
     }
 
-    @Test(description = "Naviate to the Create New Order Page",priority = 6)
+    @Test(description = "Navigate to the Create New Order Page",priority = 6)
     public void navigateToCreatenewOrder(){
         termsandCond.expandTheMenuScreeninTermCondScreen();
         termsandCond.navigateToCreateNewOrderPage();
         Assert.assertEquals(termsandCond.getCreateNewOrderPageLabel(),"Order For Later");
     }
+
+
 //    @Test(description = "Navigate to Login page", priority = 1)
 //    public void navigateToLoginPage() {
 //        orderDetails.navigateToLoginPage();

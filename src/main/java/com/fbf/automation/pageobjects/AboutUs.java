@@ -6,18 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * Created by lahiru.k on 10/20/2017.
- */
-public class FirebrandQuiz extends PageBase {
+public class AboutUs extends PageBase {
+
     WebDriver driver = null;
     WebDriverWait wait;
-
-   /* By menuBtn = By.xpath("//a[@class='main-nav-btn']");
-    By menuBtnActive = By.xpath("//a[@class='main-nav-btn active']");
-    By quizfactsMenuBtn = By.xpath("//div[@class = 'main-toggle-menu-container active'] //a[contains(.,'Quiz Facts')]");
-    By quizfactsPageHeader = By.xpath("//h2[@class='page-title logo-watermark-inner secondary-color']/div[@class='container']");
-    By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");*/
 
     By menuBtn = By.xpath("//a[@class='main-nav-btn']");
     By menuBtnActive = By.xpath("//a[@class='main-nav-btn active']");
@@ -25,7 +17,7 @@ public class FirebrandQuiz extends PageBase {
     By aboutUsPageHeader = By.xpath("//div[@class='manifesto-inner fbf-script']/h1");
     By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
 
-    public FirebrandQuiz(WebDriver driver) {
+    public AboutUs(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
@@ -33,27 +25,20 @@ public class FirebrandQuiz extends PageBase {
         //driver.get("http://fbf.qa/orders");
     }
 
-    public void expandMenuFQuizScreen(){
+    public void expandAboutUsMenu(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();
     }
 
-    public void navigateToAboutUsPage(){
+    public void navigateToCreateNewOrder(){
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(aboutUsBtn));
         wait.until(ExpectedConditions.elementToBeClickable(aboutUsBtn));
         driver.findElement(aboutUsBtn).click();
     }
 
-    /*public void navigateToQuizFactsPage(){
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(quizfactsMenuBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(quizfactsMenuBtn));
-        driver.findElement(quizfactsMenuBtn).click();
-    }*/
-
-    public String getAboutUsPageHeader(){
+    public String getPageHeader(){
         return driver.findElement(aboutUsPageHeader).getText();
     }
 }
