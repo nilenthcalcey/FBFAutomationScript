@@ -26,8 +26,6 @@ public class HomePage extends PageBase {
     By quizfactsMenuBtn = By.xpath("//a[contains(.,'Quiz Facts')]");
     By quizfactsPageHeader = By.xpath("//h2[@class='page-title logo-watermark-inner secondary-color']/div[@class='container']");
     By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
-    //By aboutUsBtn = By.xpath("//a[contains(.,'About us')]");
-    //By aboutUsPageHeader = By.xpath("//div[@class='manifesto-inner fbf-script']/h1");
 
 
     //By loginPageTitle = By.xpath("//h1[@class='page-title logo-watermark-inner']");

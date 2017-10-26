@@ -93,7 +93,7 @@ public class HomePageTest {
         Assert.assertEquals(contactUs.getTermsandConditionPageLabel(),"FIREBRAND FRESH WEBSITE TERMS AND CONDITIONS");
     }
 
-    @Test(description = "Navigate to the Create New Order Page",priority = 6)
+    @Test(description = "Naviate to the Create New Order Page",priority = 6)
     public void navigateToCreatenewOrder(){
         termsandCond.expandTheMenuScreeninTermCondScreen();
         termsandCond.navigateToCreateNewOrderPage();
