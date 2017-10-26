@@ -106,7 +106,6 @@ public class HomePageTest {
         Assert.assertEquals(termsandCond.getCreateNewOrderPageLabel(),"Order For Later");
     }
 
-
     @AfterSuite
     public void tearDown() {
         driver.close();
