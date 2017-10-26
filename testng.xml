@@ -4,7 +4,7 @@
 
     <test name="GuestCreateOwnMeal">
         <classes>
-            <class name="com.fbf.automation.tests.GuestCreateOwnMealTest"></class>
+            <class name="com.fbf.automation.tests.HomePageTest"></class>
         </classes>
     </test>
 

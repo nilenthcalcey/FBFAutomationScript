@@ -5,6 +5,7 @@ import com.fbf.automation.pageobjects.*;
 import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -105,6 +106,12 @@ public class HomePageTest {
         Assert.assertEquals(termsandCond.getCreateNewOrderPageLabel(),"Order For Later");
     }
 
+
+    @AfterSuite
+    public void tearDown() {
+        driver.close();
+        driver.quit();
+    }
 
 //    @Test(description = "Navigate to Login page", priority = 1)
 //    public void navigateToLoginPage() {
