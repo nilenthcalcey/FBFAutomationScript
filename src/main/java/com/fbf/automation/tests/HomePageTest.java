@@ -72,7 +72,7 @@ public class HomePageTest {
     public void navigateToFaqPage(){
         aboutUs.expandAboutUsMenu();
         aboutUs.navigateToFaq();
-        Assert.assertEquals(aboutUs.getFaqPageHeader(),"Firebrand Manifesto");
+        Assert.assertEquals(aboutUs.getFaqPageHeader(),"FIREBRAND FRESH FAQ");
     }
 
 
