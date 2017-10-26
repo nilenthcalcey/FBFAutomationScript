@@ -5,7 +5,6 @@ import com.fbf.automation.pageobjects.*;
 import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -23,6 +22,10 @@ public class HomePageTest {
     QuizFacts quizFacts;
     ContactUs contactUs;
     TermsandCond termsandCond;
+    CreateNewOrder createNewOrder;
+    AboutUs aboutUs;
+    FaqPage faqPage;
+
 
     String pageTitle = "Firebrand Fresh";
 
@@ -35,6 +38,8 @@ public class HomePageTest {
         quizFacts = new QuizFacts(driver);
         termsandCond = new TermsandCond(driver);
         createNewOrder = new CreateNewOrder(driver);
+        aboutUs = new AboutUs(driver);
+        faqPage = new FaqPage(driver);
     }
 
 
@@ -44,41 +49,41 @@ public class HomePageTest {
         Assert.assertEquals(homePage.getHomePageTitle(), pageTitle, errorMessage);
     }
 
-    @Test(description = "Expand the Menu Screen", priority = 1, dependsOnMethods = "verifyPageElements")
-    public void expandTheMenuScreen()  {
+    @Test(description = "Expand the Menu Screen", priority = 1 )
+    public void exapandTheMenuScreen()  {
         homePage.expandMenuScreen();
         Assert.assertEquals(homePage.getMenuScreenDetails(),"CREATE NEW ORDER");
     }
 
-    @Test(description = "Navigate to the FireBrand Quiz Page",priority = 2, dependsOnMethods = "expandTheMenuScreen")
+    @Test(description = "Navigate to the FireBrand Quiz Page",priority = 2)
     public void navigateToFireBrandQuizPage(){
         homePage.navigateToPlayFirebrandQuiz();
         Assert.assertEquals(homePage.getFirebrandFreshQuizHeader(),"Firebrand");
     }
 
-    @Test(description = "Navigate to the About Us Page",priority = 7)
+    @Test(description = "Navigate to the About Us Page",priority = 3)
     public void navigateToAboutUsPage(){
         firebrandQuiz.expandMenuFQuizScreen();
         firebrandQuiz.navigateToAboutUsPage();
         Assert.assertEquals(firebrandQuiz.getAboutUsPageHeader(),"Firebrand Manifesto");
     }
 
-    @Test(description = "Navigate to the FAQ Page",priority = 7)
+    @Test(description = "Navigate to the FAQ Page",priority = 4)
     public void navigateToFaqPage(){
-        firebrandQuiz.expandMenuFQuizScreen();
-        firebrandQuiz.navigateToAboutUsPage();
-        Assert.assertEquals(firebrandQuiz.getAboutUsPageHeader(),"Firebrand Manifesto");
+        aboutUs.expandAboutUsMenu();
+        aboutUs.navigateToFaq();
+        Assert.assertEquals(aboutUs.getFaqPageHeader(),"Firebrand Manifesto");
     }
 
 
-    @Test(description = "Navigate to the Quiz Facts Page",priority = 3)
+    @Test(description = "Navigate to the Quiz Facts Page",priority = 5)
     public void navigateToQuizFacts(){
-        firebrandQuiz.expandMenuFQuizScreen();
-        firebrandQuiz.navigateToQuizFactsPage();
-        Assert.assertEquals(firebrandQuiz.getQuizFactsPageHeader(),"FIREBRAND FRESH FACTS");
+        faqPage.expandFaqMenu();
+        faqPage.navigateToQuizfactsPage();
+        Assert.assertEquals(faqPage.getQuizfactsPageHeader(),"FIREBRAND FRESH FACTS");
     }
 
-    @Test(description = "Navigate to the Contact Us Page",priority = 4, dependsOnMethods = "navigateToQuizFacts")
+    @Test(description = "Navigate to the Contact Us Page",priority = 6)
     public void navigateToContactUs(){
 
         quizFacts.expandMenuScreenQuizFactsPage();
@@ -86,19 +91,21 @@ public class HomePageTest {
         Assert.assertEquals(quizFacts.getContactUsPageHeader(),"CONTACT US");
     }
 
-    @Test(description = "Navigate to the Terms & Condition Page",priority = 5, dependsOnMethods = "navigateToContactUs")
+    @Test(description = "Navigate to the Terms & Condition Page",priority = 7)
     public void navigateToTermsandCondition(){
         contactUs.exapandMenuScreenContUsScreen();
         contactUs.navigateToTermsandConditionPage();
         Assert.assertEquals(contactUs.getTermsandConditionPageLabel(),"FIREBRAND FRESH WEBSITE TERMS AND CONDITIONS");
     }
 
-    @Test(description = "Naviate to the Create New Order Page",priority = 6, dependsOnMethods = "navigateToTermsandCondition")
+    @Test(description = "Naviate to the Create New Order Page",priority = 8)
     public void navigateToCreatenewOrder(){
         termsandCond.expandTheMenuScreeninTermCondScreen();
         termsandCond.navigateToCreateNewOrderPage();
         Assert.assertEquals(termsandCond.getCreateNewOrderPageLabel(),"Order For Later");
     }
+
+
 //    @Test(description = "Navigate to Login page", priority = 1)
 //    public void navigateToLoginPage() {
 //        orderDetails.navigateToLoginPage();
@@ -110,12 +117,6 @@ public class HomePageTest {
 //        orderDetails.navigateToLoginPage();
 //        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
 //    }
-    @AfterSuite
-    public void tearDown() {
-// close the browser
-    driver.close();
-    driver.quit();
-    }
 
 }
 

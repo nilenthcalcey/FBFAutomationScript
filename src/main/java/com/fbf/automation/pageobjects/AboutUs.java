@@ -2,9 +2,12 @@ package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class AboutUs extends PageBase {
 
@@ -13,8 +16,8 @@ public class AboutUs extends PageBase {
 
     By menuBtn = By.xpath("//a[@class='main-nav-btn']");
     By menuBtnActive = By.xpath("//a[@class='main-nav-btn active']");
-    By aboutUsBtn = By.xpath("//a[contains(.,'About us')]");
-    By aboutUsPageHeader = By.xpath("//div[@class='manifesto-inner fbf-script']/h1");
+    By faqMenuBtn = By.xpath("//a[contains(.,'FAQ')]");
+    By faqPageHeader = By.xpath("//div[@class='fbf-main-content']/div/h2/div");
     By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
 
     public AboutUs(WebDriver driver) {
@@ -31,14 +34,17 @@ public class AboutUs extends PageBase {
         driver.findElement(menuBtn).click();
     }
 
-    public void navigateToCreateNewOrder(){
+    public void navigateToFaq(){
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(aboutUsBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(aboutUsBtn));
-        driver.findElement(aboutUsBtn).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(faqMenuBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(faqMenuBtn));
+        WebElement element = driver.findElement(faqMenuBtn);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()", element);
+        //driver.findElement(faqMenuBtn).click();
     }
 
-    public String getPageHeader(){
-        return driver.findElement(aboutUsPageHeader).getText();
+    public String getFaqPageHeader(){
+        return driver.findElement(faqPageHeader).getText();
     }
 }

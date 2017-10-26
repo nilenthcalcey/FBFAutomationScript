@@ -2,6 +2,7 @@ package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,7 +36,10 @@ public class QuizFacts extends PageBase {
     public void navigateToContactUsPage(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(menucontactusBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menucontactusBtn));
-        driver.findElement(menucontactusBtn).click();
+        WebElement element = driver.findElement(menucontactusBtn);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()", element);
+        //driver.findElement(menucontactusBtn).click();
     }
 
     public String getContactUsPageHeader(){

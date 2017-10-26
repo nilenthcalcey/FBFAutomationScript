@@ -1,7 +1,9 @@
 package com.fbf.automation.pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,7 +35,10 @@ public class TermsandCond extends PageBase {
     public void navigateToCreateNewOrderPage(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(createneworderMenuBtn));
         wait.until(ExpectedConditions.visibilityOfElementLocated(createneworderMenuBtn));
-        driver.findElement(createneworderMenuBtn).click();
+        WebElement element = driver.findElement(createneworderMenuBtn);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()", element);
+        //driver.findElement(createneworderMenuBtn).click();
     }
 
     public String getCreateNewOrderPageLabel(){

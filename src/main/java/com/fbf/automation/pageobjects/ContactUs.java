@@ -2,7 +2,9 @@ package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -35,7 +37,10 @@ public class ContactUs extends PageBase {
     public void navigateToTermsandConditionPage(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(termsandcondmenuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(termsandcondmenuBtn));
-        driver.findElement(termsandcondmenuBtn).click();
+        WebElement element = driver.findElement(termsandcondmenuBtn);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()", element);
+        //driver.findElement(termsandcondmenuBtn).click();
     }
 
     public String getTermsandConditionPageLabel(){

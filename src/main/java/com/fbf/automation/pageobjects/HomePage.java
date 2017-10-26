@@ -27,13 +27,18 @@ public class HomePage extends PageBase {
     By quizfactsPageHeader = By.xpath("//h2[@class='page-title logo-watermark-inner secondary-color']/div[@class='container']");
     By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
 
+    By menuBtnActive = By.xpath("//a[@class='main-nav-btn active']");
+    By firebrandQuizMenuBtn = By.xpath("//a[contains(.,'Play Firebrand quiz')]");
+    By firebrandQuizPageHeader = By.xpath("//div[@class='quiz-title']/h2/span");
+
+
 
     //By loginPageTitle = By.xpath("//h1[@class='page-title logo-watermark-inner']");
     //By registrationBtn = By.xpath("//a[contains(.,'Register')]");
 
     public HomePage(WebDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, 5);
+        this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
         //driver.get("http://fbf.qa/orders");
@@ -76,11 +81,30 @@ public class HomePage extends PageBase {
         return getDriver().findElement(firebrandLabel).getText();
     }
 
+    public void expandCreateNewOrderMenu(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
+        driver.findElement(menuBtn).click();
+    }
+
+    public void navigateToFirebrandQuiz(){
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(firebrandQuizMenuBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(firebrandQuizMenuBtn));
+        driver.findElement(firebrandQuizMenuBtn).click();
+    }
+
+    public String getFirebrandQuizPageHeader(){
+        return driver.findElement(firebrandQuizPageHeader).getText();
+    }
+
+
     public void navigateToQuizFactsPage(){
 
         wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
         driver.findElement(quizfactsMenuBtn).click();
     }
+
 
     public String getQuizFactsPageHeader(){
         return driver.findElement(quizfactsPageHeader).getText();
