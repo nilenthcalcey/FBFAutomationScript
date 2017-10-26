@@ -2,7 +2,9 @@ package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,10 +28,6 @@ public class HomePage extends PageBase {
     By quizfactsMenuBtn = By.xpath("//a[contains(.,'Quiz Facts')]");
     By quizfactsPageHeader = By.xpath("//h2[@class='page-title logo-watermark-inner secondary-color']/div[@class='container']");
     By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
-
-    By menuBtnActive = By.xpath("//a[@class='main-nav-btn active']");
-    By firebrandQuizMenuBtn = By.xpath("//a[contains(.,'Play Firebrand quiz')]");
-    By firebrandQuizPageHeader = By.xpath("//div[@class='quiz-title']/h2/span");
 
 
 
@@ -73,8 +71,13 @@ public class HomePage extends PageBase {
     }
 
     public void navigateToPlayFirebrandQuiz(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
-        getDriver().findElement(playfirebrandquizBtn).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(playfirebrandquizBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(playfirebrandquizBtn));
+        WebElement element = driver.findElement(playfirebrandquizBtn);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()", element);
+        //wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
+        //getDriver().findElement(playfirebrandquizBtn).click();
     }
 
     public String getFirebrandFreshQuizHeader(){
@@ -87,7 +90,7 @@ public class HomePage extends PageBase {
         driver.findElement(menuBtn).click();
     }
 
-    public void navigateToFirebrandQuiz(){
+   /* public void navigateToFirebrandQuiz(){
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(firebrandQuizMenuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(firebrandQuizMenuBtn));
@@ -96,7 +99,7 @@ public class HomePage extends PageBase {
 
     public String getFirebrandQuizPageHeader(){
         return driver.findElement(firebrandQuizPageHeader).getText();
-    }
+    }*/
 
 
     public void navigateToQuizFactsPage(){
