@@ -46,6 +46,24 @@ public class QuizFacts extends PageBase {
         return driver.findElement(contactuspageHeaer).getText();
     }
 
+    public String getContactUsSelectTextColor() {
+        String color = driver.findElement(menucontactusBtn).getCssValue("color");
+        return color;
+    }
 
+    public String getContactUsSelectBackColor() {
+        String css = driver.findElement(menucontactusBtn).getCssValue("background-color");
+        return css;
+    }
+
+    public String getContactUsTextColor() {
+        String color = driver.findElement(menucontactusBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getContactUsBackColor() {
+        String css = driver.findElement(menucontactusBtn).getCssValue("background-color");
+        return css;
+    }
 
 }

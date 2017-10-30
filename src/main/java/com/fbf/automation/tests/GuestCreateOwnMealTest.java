@@ -92,7 +92,6 @@ public class GuestCreateOwnMealTest {
 
     @AfterSuite
     public void tearDown() {
-// close the browser
         driver.close();
         driver.quit();
     }

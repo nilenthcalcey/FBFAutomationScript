@@ -47,4 +47,26 @@ public class AboutUs extends PageBase {
     public String getFaqPageHeader(){
         return driver.findElement(faqPageHeader).getText();
     }
+
+    public String getFaqPageSelectTextColor() {
+        String color = driver.findElement(faqMenuBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getFaqPageSelectBackColor() {
+        String css = driver.findElement(faqMenuBtn).getCssValue("background-color");
+        return css;
+    }
+
+    public String getFaqPageTextColor() {
+        String color = driver.findElement(faqMenuBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getFaqPageBackColor() {
+        String css = driver.findElement(faqMenuBtn).getCssValue("background-color");
+        return css;
+    }
+
+
 }
