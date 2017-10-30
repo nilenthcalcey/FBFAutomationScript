@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="TestSuite" parallel="false">
 
-    <test name="HomePageTest">
+    <!--<test name="HomePageTest">
         <classes>
             <class name="com.fbf.automation.tests.HomePageTest"></class>
         </classes>
@@ -11,6 +11,12 @@
     <test name="GuestCreateOwnMeal">
         <classes>
             <class name="com.fbf.automation.tests.GuestCreateOwnMealTest"></class>
+        </classes>
+    </test>-->
+
+    <test name="GuestCreateOwnMeal">
+        <classes>
+            <class name="com.fbf.automation.tests.LoginTest"></class>
         </classes>
     </test>
 
