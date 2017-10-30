@@ -2,7 +2,9 @@ package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,17 +29,26 @@ public class HomePage extends PageBase {
     By quizfactsPageHeader = By.xpath("//h2[@class='page-title logo-watermark-inner secondary-color']/div[@class='container']");
     By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
 
+
+
+    //By loginPageTitle = By.xpath("//h1[@class='page-title logo-watermark-inner']");
+    //By registrationBtn = By.xpath("//a[contains(.,'Register')]");
+
     public HomePage(WebDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, 5);
+        this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
+        //driver.get("http://fbf.qa/orders");
     }
     boolean bValue = false;
 
     public String getHomePageTitle() {
         return getDriver().getTitle();
     }
+
+
+
 
     public void navigateToLoginPage() {
         driver.findElement(loginBtn).click();
@@ -60,23 +71,57 @@ public class HomePage extends PageBase {
     }
 
     public void navigateToPlayFirebrandQuiz(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
-        getDriver().findElement(playfirebrandquizBtn).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(playfirebrandquizBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(playfirebrandquizBtn));
+        WebElement element = driver.findElement(playfirebrandquizBtn);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()", element);
+        //wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
+        //getDriver().findElement(playfirebrandquizBtn).click();
     }
-
 
     public String getFirebrandFreshQuizHeader(){
         return getDriver().findElement(firebrandLabel).getText();
     }
 
+    public void expandCreateNewOrderMenu(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
+        driver.findElement(menuBtn).click();
+    }
+
+   /* public void navigateToFirebrandQuiz(){
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(firebrandQuizMenuBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(firebrandQuizMenuBtn));
+        driver.findElement(firebrandQuizMenuBtn).click();
+    }
+
+    public String getFirebrandQuizPageHeader(){
+        return driver.findElement(firebrandQuizPageHeader).getText();
+    }*/
+
+
     public void navigateToQuizFactsPage(){
+
         wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
         driver.findElement(quizfactsMenuBtn).click();
     }
 
+
     public String getQuizFactsPageHeader(){
         return driver.findElement(quizfactsPageHeader).getText();
     }
+
+   /* public void navigateToAboutUsPage() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
+        getDriver().findElement(aboutUsBtn).click();
+    }
+
+    public String getAboutUsPageHeader() {return driver.findElement(aboutUsPageHeader).getText();}
+*/
+
+
 
 //    public String getLoginPageHeader() {
 //        return getDriver().findElement(loginPageTitle).getText();

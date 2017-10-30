@@ -7,44 +7,44 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
-/**
- * Created by lahiru.k on 10/21/2017.
- */
-public class ContactUs extends PageBase {
+
+public class AboutUs extends PageBase {
 
     WebDriver driver = null;
     WebDriverWait wait;
 
     By menuBtn = By.xpath("//a[@class='main-nav-btn']");
-    By termsandcondmenuBtn = By.xpath("//div[@class ='main-toggle-menu-container active']//a[contains(.,'Terms and conditions')]");
-    By getTermsandcondpageLabel = By.xpath("//div[@class='fbf-small-container']//h2");
+    By menuBtnActive = By.xpath("//a[@class='main-nav-btn active']");
+    By faqMenuBtn = By.xpath("//a[contains(.,'FAQ')]");
+    By faqPageHeader = By.xpath("//div[@class='fbf-main-content']/div/h2/div");
+    By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
 
-    public ContactUs(WebDriver driver) {
+    public AboutUs(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
+        //driver.get("http://fbf.qa/orders");
     }
 
-    public void exapandMenuScreenContUsScreen(){
+    public void expandAboutUsMenu(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();
     }
 
-    public void navigateToTermsandConditionPage(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(termsandcondmenuBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(termsandcondmenuBtn));
-        WebElement element = driver.findElement(termsandcondmenuBtn);
+    public void navigateToFaq(){
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(faqMenuBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(faqMenuBtn));
+        WebElement element = driver.findElement(faqMenuBtn);
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("arguments[0].click()", element);
-        //driver.findElement(termsandcondmenuBtn).click();
+        //driver.findElement(faqMenuBtn).click();
     }
 
-    public String getTermsandConditionPageLabel(){
-        return driver.findElement(getTermsandcondpageLabel).getText();
+    public String getFaqPageHeader(){
+        return driver.findElement(faqPageHeader).getText();
     }
-
 }

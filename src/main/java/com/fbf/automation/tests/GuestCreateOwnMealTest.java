@@ -65,13 +65,20 @@ public class GuestCreateOwnMealTest {
         Assert.assertEquals(guestCreateOwnMeal.navigateToSelectedItemPageAndCheckTotal(), "£2.99");
     }
 
-//    @Test(description = "Navigate to the Incompplete Platter popup Screen",priority = 4)
-//    public void navigateToIncompletePlatterscreen(){
-//        guestCreateOwnMeal.navigateToIncompletePlatterPopup();
-//        Assert.assertEquals(guestCreateOwnMeal.getIncompletePlatterPopupLabel(),"Select a protein, carb & ten a day to create a meal. Drink is optional");
-//    }
+    @Test(description = "Navigate to the Incompplete Platter popup Screen",priority = 4, dependsOnMethods = "selectRegularProtein")
+    public void navigateToIncompletePlatterscreen(){
+        guestCreateOwnMeal.navigateToIncompletePlatterPopup();
+        Assert.assertEquals(guestCreateOwnMeal.getIncompletePlatterPopupLabel(),"Select a protein, carb & ten a day to create a meal. Drink is optional");
+    }
 
-    @Test(description = "Navigate To the Regular Carb for the Meal", priority = 4, dependsOnMethods = "selectRegularProtein")
+    @Test(description = "Navigate Back to the Main Page",priority = 5, dependsOnMethods = "navigateToIncompletePlatterscreen")
+    public void navigateBackToMainPage(){
+        guestCreateOwnMeal.navigateBackToMain();
+        Assert.assertEquals(guestCreateOwnMeal.getMainPageLabel(),"CALORIES:");
+    }
+
+
+    @Test(description = "Navigate To the Regular Carb for the Meal", priority = 6, dependsOnMethods = "navigateBackToMainPage")
     public void navigateToRegularCarb() {
         guestCreateOwnMeal.navigateToCarbPage();
         Assert.assertEquals(guestCreateOwnMeal.getCarbPriceLabel(), "£1.29");

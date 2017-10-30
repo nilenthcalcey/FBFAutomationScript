@@ -1,11 +1,7 @@
 package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
-import com.gargoylesoftware.htmlunit.Page;
-import org.omg.CORBA.PUBLIC_MEMBER;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.pagefactory.ElementLocator;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -25,11 +21,13 @@ public class GuestCreateOwnMeal extends PageBase {
     By selectchickenBtn = By.xpath("//div[contains(@class,'price-tag')]");
     By regularchickenLabel = By.xpath("//span[contains(.,'Chicken | Regular')]");
     By totalpriceLabel = By.xpath("//div[@class='details']//div[2]//span[@class='value']");
-    By addthismealBtn = By.xpath("//div[@class='order-button-container item-has-selected']//button[@class='btn btn-primary btn-block']");
-    By incompleteplatterLabel = By.xpath("//div[@class='modal-body']//p[contains(.,'Select a protein, carb & ten a day to create a meal. Drink is optional')]");
-    By carbBtn = By.xpath("//div[@class='inner']//span[contains(.,'Carb')]");
+    By addthismealBtn = By.xpath("//div[@class='fbf-small-container']/div[2]/button");
+    By incompleteplatterLabel = By.xpath("//div[@class='modal fade show in']/app-info-dialog/div/div/div[2]/p");
+    By carbBtn = By.xpath("//div[@class='order-item-grid create-order']/a[2]");
     By cassavaregularpriceLabel = By.xpath("//div[@class='order-item-grid select-option']/a[1]//span");
     By selectcassavaBtn = By.xpath("//div[@class='price-tag']");
+    By okBtn = By.xpath("//div[@class='modal fade show in']/app-info-dialog/div/div/div[3]/button");
+    By mainPageLabel = By.xpath("//span[contains(.,'Calories:')]");
 
     public GuestCreateOwnMeal(WebDriver driver) {
         super(driver);
@@ -89,14 +87,45 @@ public class GuestCreateOwnMeal extends PageBase {
 
     public String getIncompletePlatterPopupLabel() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(incompleteplatterLabel));
+        wait.until(ExpectedConditions.elementToBeClickable(incompleteplatterLabel));
         return driver.findElement(incompleteplatterLabel).getText();
 
+
+
+
+        /*WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        return alert.getText();*/
     }
 
+       /* Alert alert = driver.switchTo().alert();
+        return alert.getText();
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(incompleteplatterLabel));
+        //return driver.findElement(incompleteplatterLabel).getText();
+        }*/
+
+    public void navigateBackToMain() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(okBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(okBtn));
+        driver.findElement(okBtn).click();
+    }
+
+    public String getMainPageLabel() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(mainPageLabel));
+        wait.until(ExpectedConditions.elementToBeClickable(mainPageLabel));
+        return driver.findElement(mainPageLabel).getText();
+    }
+
+
     public void navigateToCarbPage() {
+        //wait.until(ExpectedConditions.invisibilityOfElementLocated(carbBtn));
         wait.until(ExpectedConditions.visibilityOfElementLocated(carbBtn));
         wait.until(ExpectedConditions.elementToBeClickable(carbBtn));
-        driver.findElement(carbBtn).click();
+        WebElement element = driver.findElement(carbBtn);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()", element);
+        //driver.findElement(carbBtn).click();
     }
 
     public String getCarbPriceLabel() {
