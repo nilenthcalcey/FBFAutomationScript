@@ -25,7 +25,6 @@ public class FirebrandQuiz extends PageBase {
         this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
-        //driver.get("http://fbf.qa/orders");
     }
 
     public void expandMenuFQuizScreen(){
@@ -42,6 +41,7 @@ public class FirebrandQuiz extends PageBase {
     }
 
     public String getQuizFactsPageHeader(){
+
         return driver.findElement(quizfactsPageHeader).getText();
     }
 }

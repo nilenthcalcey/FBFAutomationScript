@@ -78,9 +78,6 @@ public class HomePage extends PageBase {
         return driver.findElement(quizfactsPageHeader).getText();
     }
 
-//    public String getLoginPageHeader() {
-//        return getDriver().findElement(loginPageTitle).getText();
-//    }
 
     public void navigateToRegistrationPage(){
         getDriver().findElement(loginBtn).click();
