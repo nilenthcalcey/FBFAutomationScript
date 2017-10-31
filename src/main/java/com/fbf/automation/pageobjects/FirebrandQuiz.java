@@ -2,7 +2,9 @@ package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,16 +17,16 @@ public class FirebrandQuiz extends PageBase {
 
     By menuBtn = By.xpath("//a[@class='main-nav-btn']");
     By menuBtnActive = By.xpath("//a[@class='main-nav-btn active']");
-    By quizfactsMenuBtn = By.xpath("//div[@class = 'main-toggle-menu-container active'] //a[contains(.,'Quiz Facts')]");
-    By quizfactsPageHeader = By.xpath("//h2[@class='page-title logo-watermark-inner secondary-color']/div[@class='container']");
+    By aboutUsBtn = By.xpath("//a[contains(.,'About us')]");
+    By aboutUsPageHeader = By.xpath("//div[@class='manifesto-inner fbf-script']/h1");
     By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
-
 
     public FirebrandQuiz(WebDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, 30);
+        this.wait = new WebDriverWait(driver, 5);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
+        //driver.get("http://fbf.qa/orders");
     }
 
     public void expandMenuFQuizScreen(){
@@ -33,15 +35,18 @@ public class FirebrandQuiz extends PageBase {
         driver.findElement(menuBtn).click();
     }
 
-    public void navigateToQuizFactsPage(){
+    public void navigateToAboutUsPage(){
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(quizfactsMenuBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(quizfactsMenuBtn));
-        driver.findElement(quizfactsMenuBtn).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(aboutUsBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(aboutUsBtn));
+        WebElement element = driver.findElement(aboutUsBtn);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()", element);
+        //driver.findElement(aboutUsBtn).click();
     }
 
-    public String getQuizFactsPageHeader(){
 
-        return driver.findElement(quizfactsPageHeader).getText();
+    public String getAboutUsPageHeader(){
+        return driver.findElement(aboutUsPageHeader).getText();
     }
 }
