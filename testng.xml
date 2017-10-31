@@ -6,18 +6,18 @@
         <classes>
             <class name="com.fbf.automation.tests.HomePageTest"></class>
         </classes>
-    </test>
-
-    <test name="GuestCreateOwnMeal">
-        <classes>
-            <class name="com.fbf.automation.tests.LoginTest"></class>
-        </classes>
     </test>-->
 
     <test name="GuestCreateOwnMeal">
         <classes>
-            <class name="com.fbf.automation.tests.LoginTest"></class>
+            <class name="com.fbf.automation.tests.GuestCreateOwnMealTest"></class>
         </classes>
     </test>
+
+    <!--<test name="GuestLogin">
+        <classes>
+            <class name="com.fbf.automation.tests.LoginTest"></class>
+        </classes>
+    </test>-->
 
 </suite>
