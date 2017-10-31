@@ -2,6 +2,7 @@ package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import java.io.InputStream;
@@ -14,6 +15,7 @@ public class PageBase {
     CommonOperations commonOperations;
 
     By loadingSpinner = By.id("loading-bar-spinner");
+    String URL = "http://fbf.qa/create-order";
 
     public PageBase(WebDriver driver) {
         this.driver = driver;
@@ -43,4 +45,12 @@ public class PageBase {
     boolean waitUntilLoadingSpinnerInvisible() {
         return commonOperations.waitUntilElementInvisible(getDriver(), loadingSpinner, 5);
     }
+
+//    //scroll down the page
+//    public void scrollingToBottomofAPage() {
+//        driver.navigate().to(URL);
+//        ((JavascriptExecutor) driver)
+//                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
+//    }
+
 }
