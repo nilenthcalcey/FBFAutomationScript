@@ -32,29 +32,31 @@ public class LoginTest {
 
     @Test(description = "Verify Expand the Menu", priority = 0)
     public void navigateloginpage() {
+
         login.expandMenuScreenLogin();
         login.navigateLoginPage();
+        Assert.assertEquals(login.getLoginPageTitle(), "LOG IN");
+
     }
 
+
+    @Test(description = "User login Sucessfully", priority = 2)
+    public void sucesslogin() {
+
+        login.login();
+        Assert.assertEquals(login.getusername(), "HI, IRESH");
+    }
 
     @Test(description = "User login withInvalidEmail", priority = 1)
     public void invalidloginTest() {
         login.InvalidLogin();
-        login.expandMenuScreenLogin();
-        login.navigateLoginPage();
+        Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
     }
 
+    @AfterSuite
+    public void TearDown() {
 
-    /*@Test(description = "User login Sucessfully", priority = 2)
-    public void sucesslogin(){
-
-        login.login();
-        Assert.assertEquals(login.getusername(),"HI, IRESH");
-    }*/
-
-//    @AfterSuite
-//    public void TearDown(){
-//
-//        driver.close();
-//    }
+        driver.close();
+    }
 }
+

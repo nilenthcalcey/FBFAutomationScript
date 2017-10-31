@@ -19,7 +19,7 @@ public class Login extends PageBase {
     Properties properties;
     CommonOperations commonOperations;
 
-    By menuBtn = By.xpath("//a[@class='main-nav-btn']");
+    By menuBtn = By.xpath("//div[@class='header-col user-col']/a[@class='main-nav-btn']");
     By loginbtn = By.xpath("//div[@class ='main-toggle-menu-container active']//a[contains(.,'LOG IN')]");
     By txt_useremail = By.xpath("//input[@name='email']");
     By txt_password = By.xpath("//input[@name='password']");
@@ -27,8 +27,8 @@ public class Login extends PageBase {
     By lbl_username = By.xpath("//a[@class='main-nav-user']");
     By lbl_userverify = By.xpath("//a[@class='main-nav-user' and text()='Hi, " + getProperties().getProperty("name") + "']");
     By invalidmenuBtn = By.xpath("//a[@class='main-nav-btn   Hover']");
-
-//a[@class='main-nav-user' and text()='Hi, iresh3']//*[]
+    By lbl_loginerror = By.xpath("//div[@class ='form-group']/div[contains(.,'Username or password is incorrect')]");
+    By lbl_loginPageTitle = By.xpath("//h1[@class ='page-title logo-watermark-inner']");
 
 
     public Login(WebDriver driver) {
@@ -65,11 +65,11 @@ public class Login extends PageBase {
     }
 
     public void login() {
-
-
         WebElement loginEmailElement = getDriver().findElement(txt_useremail);
+        loginEmailElement.clear();
         loginEmailElement.sendKeys(getProperties().getProperty("loginEmail"));
         WebElement loginpassword = getDriver().findElement(txt_password);
+        loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("loginPassword"));
         getDriver().findElement(btn_SignIn).click();
 
@@ -91,5 +91,20 @@ public class Login extends PageBase {
 
     }
 
+    public String getInvalidLognError() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_loginerror));
+        wait.until(ExpectedConditions.elementToBeClickable(lbl_loginerror));
+        return getDriver().findElement(lbl_loginerror).getText();
+    }
+
+    public String getLoginPageTitle() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_loginPageTitle));
+        wait.until(ExpectedConditions.elementToBeClickable(lbl_loginPageTitle));
+        return getDriver().findElement(lbl_loginPageTitle).getText();
+    }
 
 }
+
+
+
+
