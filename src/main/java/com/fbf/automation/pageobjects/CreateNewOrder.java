@@ -3,7 +3,9 @@ package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -41,6 +43,9 @@ public class CreateNewOrder extends PageBase {
     public void closeCreateNewOrderMenu(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtnActive));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtnActive));
+       /* WebElement element = driver.findElement(menuBtnActive);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()", element);*/
         driver.findElement(menuBtnActive).click();
     }
 
