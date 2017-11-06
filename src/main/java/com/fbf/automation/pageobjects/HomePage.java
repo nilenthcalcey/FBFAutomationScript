@@ -36,7 +36,7 @@ public class HomePage extends PageBase {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, 30);
+        this.wait = new WebDriverWait(driver, 5);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
         //driver.get("http://fbf.qa/orders");
@@ -99,6 +99,7 @@ public class HomePage extends PageBase {
         //getDriver().findElement(playfirebrandquizBtn).click();
     }
 
+
     public String getFirebrandFreshQuizHeader(){
         return getDriver().findElement(firebrandLabel).getText();
     }
@@ -143,7 +144,6 @@ public class HomePage extends PageBase {
 
 
     public void navigateToQuizFactsPage(){
-
         wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
         driver.findElement(quizfactsMenuBtn).click();
     }

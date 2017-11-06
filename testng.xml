@@ -8,9 +8,15 @@
         </classes>
     </test>-->
 
-    <test name="GuestCreateOwnMeal">
+    <test name="LoginTest">
         <classes>
             <class name="com.fbf.automation.tests.LoginTest"></class>
+        </classes>
+    </test>
+
+    <test name="GuestCreateOwnMeal">
+        <classes>
+            <class name="com.fbf.automation.tests.GuestCreateOwnMealTest"></class>
         </classes>
     </test>
 
