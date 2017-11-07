@@ -102,11 +102,10 @@ public class LoginTest {
         login.reLogin();
         Assert.assertEquals(login.getusername(), "HI, FBF");
     }
-/*
     @AfterSuite
     public void TearDown() {
 
         driver.close();
-    }*/
+    }
 }
 
