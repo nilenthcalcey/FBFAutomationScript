@@ -1,6 +1,7 @@
 package com.fbf.automation.pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -50,6 +51,10 @@ public class CheckoutOrder extends PageBase{
     }
 
     public void selectDefaultSelectedDate(){
+        //scroll up the page
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,-250)", "");
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(calenderButton));
         wait.until(ExpectedConditions.elementToBeClickable(calenderButton));
         driver.findElement(calenderButton).click();
