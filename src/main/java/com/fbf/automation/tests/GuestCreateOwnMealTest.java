@@ -3,6 +3,7 @@ package com.fbf.automation.tests;
 import com.fbf.automation.DriverFactory;
 import com.fbf.automation.pageobjects.*;
 import com.fbf.automation.utils.FailureReport;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -33,6 +34,10 @@ public class GuestCreateOwnMealTest {
     YourOrder yourOrder;
     String orderSubTotal;
     CheckoutOrder checkoutOrder;
+    CardPayment cardPayment;
+    OrderSummery orderSummery;
+
+
     int multiplier= 1;
 
 
@@ -47,6 +52,8 @@ public class GuestCreateOwnMealTest {
         addguestName = new AddGuestName(driver);
         yourOrder = new YourOrder(driver);
         checkoutOrder = new CheckoutOrder(driver);
+        cardPayment = new CardPayment(driver);
+        orderSummery = new OrderSummery(driver);
     }
 
     @Test(description = "Verify Home page loaded", priority = 0)
@@ -120,7 +127,7 @@ public class GuestCreateOwnMealTest {
     @Test(description = "Select all the Meals & Navigate to the Who is this Meal Page",priority = 10,dependsOnMethods = "selectRegularDrinkAndVerifyTotal")
       public void navigateToWhoIstHisMeal(){
         orderSubTotal = guestCreateOwnMeal.navigateToSelectedItemPageAndCheckTotal();
-        guestCreateOwnMeal.scrollingToBottomofAPage("http://fbf.qa/create-order");
+        guestCreateOwnMeal.scrollingToBottomofAPage("http://fbf.calcey.net/create-order");
         guestCreateOwnMeal.navigateToWhoIsThisMealForPage();
         Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(),"WHO IS THIS MEAL FOR?");
     }
@@ -148,9 +155,15 @@ public class GuestCreateOwnMealTest {
 
     @Test(description = "Check the Guest Name Label and navigate to Order Page",priority = 14,dependsOnMethods = "checkItemMultiplySubTotal")
     public void checkGuestNameAndNavigateToOrder(){
-        guestCreateOwnMeal.scrollingToBottomofAPage("http://fbf.qa/cart");
+        guestCreateOwnMeal.scrollingToBottomofAPage("http://fbf.calcey.net/cart");
+        yourOrder.TypePostalCard();
+        yourOrder.TypeStreetAddress();
+        yourOrder.getPostalCodeNotification();
+
+        //scroll down the page
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
         yourOrder.checkGuestNameSelector();
-        Assert.assertEquals(yourOrder.navigatetoCheckOrderPage(),"WHERE WOULD YOU LIKE YOUR MEAL DELIVERED");
+        Assert.assertEquals(yourOrder.navigatetoCheckOrderPage(),"Please let us know your name, email to send you an eco-friendly receipt, and mobile number, to let you know your order status");
     }
 
 
@@ -159,6 +172,31 @@ public class GuestCreateOwnMealTest {
 
         Assert.assertEquals(checkoutOrder.getCartitemCount(),"1");
     }
+
+    @Test(description = "Add the Guest Details and navigate to the Payment card Page",priority = 16,dependsOnMethods = "checkOrderCount")
+    public void addGuestDetailsNavigateToPayment(){
+        checkoutOrder.selectDefaultSelectedDate();
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        checkoutOrder.addGuestDetails();
+        Assert.assertEquals(checkoutOrder.navigateToPaymentCardPage(),"Pay with card");
+    }
+
+    @Test(description = "Add the Card Details and Proceed the Payment",priority = 17,dependsOnMethods = "addGuestDetailsNavigateToPayment")
+    public void addCardDetailsProceedPayment(){
+        cardPayment.addCardDetails();
+    }
+
+    @Test(description = "Navigate To the Order Summery Page and Check the Guest name",priority = 18,dependsOnMethods = "addCardDetailsProceedPayment")
+    public void navigateToOrderSummery(){
+        cardPayment.clickPaymentProceedButton();
+        Assert.assertTrue(cardPayment.navigateToOrderSummeryPage().equals(checkoutOrder.getUserName()));
+    }
+
+    @Test(description = "Check the SubTotal from Your Order page and OrderSummery Page",priority = 19,dependsOnMethods = "navigateToOrderSummery")
+    public void checkSubtotalValue(){
+        Assert.assertTrue(yourOrder.getTotal().equals(orderSummery.getOrderSummeryTotal()));
+    }
+
 
     @AfterSuite
     public void tearDown() {
