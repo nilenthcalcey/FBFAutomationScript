@@ -66,7 +66,13 @@ public class LoginTest {
         Assert.assertEquals(login.getForgotPasswordHeader(), "FORGOT PASSWORD");
     }
 
-    @Test(description = "Verify credentials are sent to the specific email", priority = 5, dependsOnMethods = "navigateToForgotPasswordPage")
+    @Test(description = "Insert Invalid Email", priority = 5, dependsOnMethods = "navigateToForgotPasswordPage")
+    public void invalidResetEmailTest() throws InterruptedException {
+        login.sendInvalidResetEmail();
+        Assert.assertEquals(login.getForgotPasswordHeader(), "FORGOT PASSWORD");
+    }
+
+    @Test(description = "Verify credentials are sent to the specific email", priority = 6, dependsOnMethods = "invalidResetEmailTest")
     public void visibleResetEmailValidation() throws InterruptedException {
         login.sendResetEmail();
         login.testVerifyPopup();
@@ -82,7 +88,7 @@ public class LoginTest {
         //Assert.assertEquals(login.getResetEmailValid(), "Please check your E-mail to reset your password");
     }*/
 
-    @Test(description = "Check Password reset Email Availability in Mailinator", priority = 6, dependsOnMethods ="visibleResetEmailValidation")
+    @Test(description = "Check Password reset Email Availability in Mailinator", priority = 7, dependsOnMethods ="visibleResetEmailValidation")
     public void pwResetEmaiAvailability() throws InterruptedException {
         mailClient.openNewTab();
         mailClient.navigateToMailList();
@@ -90,22 +96,22 @@ public class LoginTest {
         Assert.assertEquals(mailClient.getResetEmaiTitle(), "Reset Password");
     }
 
-    @Test(description = "User Navigate to Password Fixing Page", priority = 7, dependsOnMethods ="pwResetEmaiAvailability")
+    @Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods ="pwResetEmaiAvailability")
     public void navigatePwFixPage() {
         mailClient.navigateToPasswordFixPage();
         Assert.assertEquals(login.getPasswordFixTitle(), "PLEASE ENTER A NEW PASSWORD");
     }
 
-    @Test(description = "Submit new password", priority = 8, dependsOnMethods = "navigatePwFixPage")
+    @Test(description = "Submit new password", priority = 9, dependsOnMethods = "navigatePwFixPage")
     public void submitNewPassword() throws InterruptedException {
         login.resetNewPassword();
         login.reLogin();
         Assert.assertEquals(login.getusername(), "HI, FBF");
     }
+
     @AfterSuite
     public void TearDown() {
-
-        driver.close();
+        driver.quit();
     }
 }
 
