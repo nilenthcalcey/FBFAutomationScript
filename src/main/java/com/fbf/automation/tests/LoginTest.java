@@ -2,15 +2,18 @@ package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
 import com.fbf.automation.pageobjects.*;
+import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 /**
  * Created by iresh.n on 10/24/2017.
  */
+@Listeners(value = FailureReport.class)
 public class LoginTest {
 
 
@@ -111,6 +114,7 @@ public class LoginTest {
 
     @AfterSuite
     public void TearDown() {
+        driver.close();
         driver.quit();
     }
 }
