@@ -9,10 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>TRG Automation</name>
-    <description>TRG Test Suite</description>
+    <name>FBF Automation</name>
+    <description>FBF Test Suite</description>
     <organization>
-        <name>TRG</name>
+        <name>FBF</name>
         <url>http://52.90.72.140/#/home</url>
     </organization>
 
@@ -81,7 +81,7 @@
     </dependencies>
 
     <build>
-        <plugins>
+        <plugins><!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -90,6 +90,29 @@
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <fork>true</fork>
+                    <executable>C:\Program Files\Java\jdk1.8.0_144\bin\javac</executable>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFiles>testng.xml</suiteXmlFiles>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
 
