@@ -47,4 +47,25 @@ public class ContactUs extends PageBase {
         return driver.findElement(getTermsandcondpageLabel).getText();
     }
 
+    public String getTermsandCondSelectTextColor() {
+        String color = driver.findElement(termsandcondmenuBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getTermsandCondSelectBackColor() {
+        String css = driver.findElement(termsandcondmenuBtn).getCssValue("background-color");
+        return css;
+    }
+
+    public String getTermsandCondTextColor() {
+        String color = driver.findElement(termsandcondmenuBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getTermsandCondBackColor() {
+        String css = driver.findElement(termsandcondmenuBtn).getCssValue("background-color");
+        return css;
+    }
+
+
 }
