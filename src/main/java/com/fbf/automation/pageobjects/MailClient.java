@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by gishan.n on 10/26/2017.
@@ -44,6 +45,10 @@ public class MailClient extends PageBase {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
+        driver.switchTo().window(tabs.get(0));
+        driver.close();
+        driver.switchTo().window(tabs.get(1));
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.get("https://www.mailinator.com");
     }
 
@@ -73,7 +78,9 @@ public class MailClient extends PageBase {
         driver.switchTo().frame(driver.findElement(By.xpath("html/body/main/section/div[1]/iframe")));
         driver.findElement(resetPasswordMailBtn).click();
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(2));
+        driver.switchTo().window(tabs.get(0));
+        driver.close();
+        driver.switchTo().window(tabs.get(1));
     }
 }
 
