@@ -57,6 +57,7 @@ public class GuestCreateOwnMeal extends PageBase {
     By avacadomilshakepriceLabel = By.xpath("//div[@class='order-item-grid select-option']//a[1]//span[@class='price']");
     By avacadocalories = By.xpath("//div[@class='order-item-grid select-option']//a[1]//div[3]//li[@class='calories']");
     By whoisthismealforLabel = By.xpath("//h3[contains(.,'WHO IS THIS MEAL FOR?')]");
+    By oderlaterradioButton = By.xpath("//div[@class='fbf-ordertime-container']/div[2]//i[@class='radio-placeholder']");
 
 
     public GuestCreateOwnMeal(WebDriver driver) {
@@ -71,6 +72,9 @@ public class GuestCreateOwnMeal extends PageBase {
     public void navigateToCreateNewPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(createyourownmealBtn));
         wait.until(ExpectedConditions.elementToBeClickable(createyourownmealBtn));
+
+        //click order later radio button
+        driver.findElement(oderlaterradioButton).click();
         driver.findElement(createyourownmealBtn).click();
     }
 

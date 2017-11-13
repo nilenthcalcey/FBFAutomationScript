@@ -49,6 +49,26 @@ public class FaqPage extends PageBase {
         return driver.findElement(quizfactsPageHeader).getText();
     }
 
+    public String getQuizFactsSelectTextColor() {
+        String color = driver.findElement(quizfactsMenuBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getQuizFactsSelectBackColor() {
+        String css = driver.findElement(quizfactsMenuBtn).getCssValue("background-color");
+        return css;
+    }
+
+    public String getQuizFactsTextColor() {
+        String color = driver.findElement(quizfactsMenuBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getQuizFactsBackColor() {
+        String css = driver.findElement(quizfactsMenuBtn).getCssValue("background-color");
+        return css;
+    }
+
     /*public String getFaqPageTitle() {
         return getDriver().getTitle();
     }

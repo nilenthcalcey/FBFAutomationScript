@@ -49,4 +49,24 @@ public class FirebrandQuiz extends PageBase {
     public String getAboutUsPageHeader(){
         return driver.findElement(aboutUsPageHeader).getText();
     }
+
+    public String getAboutUsSelectTextColor() {
+        String color = driver.findElement(aboutUsBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getAboutUsSelectBackColor() {
+        String css = driver.findElement(aboutUsBtn).getCssValue("background-color");
+        return css;
+    }
+
+    public String getAboutUsTextColor() {
+        String color = driver.findElement(aboutUsBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getAboutUsBackColor() {
+        String css = driver.findElement(aboutUsBtn).getCssValue("background-color");
+        return css;
+    }
 }

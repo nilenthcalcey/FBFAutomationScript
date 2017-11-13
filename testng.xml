@@ -14,7 +14,7 @@
         </classes>
     </test>
 
-    <test name="GuestCreateOwnM">
+    <test name="GuestCreateOwnMealTest">
         <classes>
             <class name="com.fbf.automation.tests.GuestCreateOwnMealTest"></class>
         </classes>

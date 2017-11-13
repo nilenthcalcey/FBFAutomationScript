@@ -47,9 +47,6 @@ public class HomePage extends PageBase {
         return getDriver().getTitle();
     }
 
-
-
-
     public void navigateToLoginPage() {
         driver.findElement(loginBtn).click();
     }
@@ -61,6 +58,28 @@ public class HomePage extends PageBase {
     public String getMenuScreenDetails(){
         return getDriver().findElement(createneworderBtn).getText();
     }
+
+    public String getCreateNewOrderSelectTextColor() {
+        String color = driver.findElement(createneworderBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getCreateNewOrderSelectBackColor() {
+        String css = driver.findElement(createneworderBtn).getCssValue("background-color");
+        return css;
+    }
+
+    public String getCreateNewOrderTextColor() {
+        String color = driver.findElement(createneworderBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getCreateNewOrderBackColor() {
+        String css = driver.findElement(createneworderBtn).getCssValue("background-color");
+        return css;
+    }
+
+
 
     public void navigateToCreateNewOrderPage(){
         getDriver().findElement(createneworderBtn).click();
@@ -84,6 +103,27 @@ public class HomePage extends PageBase {
     public String getFirebrandFreshQuizHeader(){
         return getDriver().findElement(firebrandLabel).getText();
     }
+
+    public String getFbQuizSelectTextColor() {
+        String color = driver.findElement(playfirebrandquizBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getFbQuizSelectBackColor() {
+        String css = driver.findElement(playfirebrandquizBtn).getCssValue("background-color");
+        return css;
+    }
+
+    public String getFbQuizTextColor() {
+        String color = driver.findElement(playfirebrandquizBtn).getCssValue("color");
+        return color;
+    }
+
+    public String getFbQuizBackColor() {
+        String css = driver.findElement(playfirebrandquizBtn).getCssValue("background-color");
+        return css;
+    }
+
 
     public void expandCreateNewOrderMenu(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
