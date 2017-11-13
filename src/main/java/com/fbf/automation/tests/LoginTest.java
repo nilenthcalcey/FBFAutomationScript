@@ -1,10 +1,7 @@
 package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
-import com.fbf.automation.pageobjects.GuestCreateOwnMeal;
-import com.fbf.automation.pageobjects.HomePage;
-import com.fbf.automation.pageobjects.Login;
-import com.fbf.automation.pageobjects.RegularProtein;
+import com.fbf.automation.pageobjects.*;
 import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -46,7 +43,7 @@ import org.testng.annotations.Test;
             login.navigateLoginPage();
             Assert.assertEquals(login.getLoginPageTitle(), "LOG IN");
 
-        }
+    }
 
 
         @Test(description = "User login Sucessfully", priority = 2)
@@ -61,19 +58,6 @@ import org.testng.annotations.Test;
             login.InvalidLogin();
             Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
         }
-
-        @AfterSuite
-        public void TearDown() {
-
-            driver.close();
-        }
-
-
-    @Test(description = "User login Sucessfully", priority = 2)
-    public void sucesslogin() {
-        login.login();
-        Assert.assertEquals(login.getusername(), "HI, FBF");
-    }
 
     @Test(description = "Check User availability", priority = 3)
     public void userAvailability() {
