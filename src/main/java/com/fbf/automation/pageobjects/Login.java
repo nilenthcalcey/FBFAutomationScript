@@ -26,7 +26,7 @@ public class Login extends PageBase {
     By emailTextBoxText = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input");
     By emailSubmitBtn = By.xpath("//div[@class='fbf-main-content']/div[2]/div/form/div[2]/button");
     By resetEmailValid = By.xpath("//div[@class='alert-list']/div/nac-alert/div/span");
-    //By loginBtn = By.xpath("//div[@class='fbf-main-navogation']/div/a[2]/i");
+    By loginBtn = By.xpath("//div[@class='fbf-main-navogation']/div/a[2]/i");
 
     Properties properties;
     CommonOperations commonOperations;
