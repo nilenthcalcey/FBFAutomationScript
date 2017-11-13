@@ -1,7 +1,6 @@
 package com.fbf.automation.pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,6 +26,8 @@ public class YourOrder extends PageBase {
     By checkorderLabel = By.xpath("//label[contains(.,' Please let us know your name, email to send you an eco-friendly receipt, and mobile number, to let you know your order status')]");
     By mealaddlusButton = By.xpath("//div[@class='ordered-items']/div[1]//div[@class='increase-items']/button[2]/i");
     By multipleaddnumbersLabel = By.xpath("//div[@class='order-item-box select-item zig-zag-top summary-item']/div[3]//span");
+    By txt_PostCode = By.xpath("//div//input[@class='form-control ng-untouched ng-pristine ng-invalid'][@name='postalCode']");
+    By Txt_StreetCode = By.xpath("//div//input[@class='form-control ng-untouched ng-pristine ng-invalid'][@name='streetDetails']");
     By enterpostalcodeinputTextBox = By.xpath("//input[@name='postalCode']");
     By entersreetdetailsTextBox = By.xpath("//input[contains(@name,'streetDetails')]");
     By postalcodenotificationLabel = By.xpath("//div[@class='form-group']/div/span");

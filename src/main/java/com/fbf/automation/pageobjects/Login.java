@@ -23,9 +23,10 @@ public class Login extends PageBase {
     By resetPassword = By.xpath("//form[@class='ng-untouched ng-pristine ng-invalid']/div[3]/a/u");
     By forgotPasswordHeader = By.xpath("//div[@class='fbf-main-content']/div/h2/div");
     By emailTextBox = By.xpath("//form[@class='ng-untouched ng-pristine ng-invalid']/div/input");
+    By emailTextBoxText = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input");
     By emailSubmitBtn = By.xpath("//div[@class='fbf-main-content']/div[2]/div/form/div[2]/button");
     By resetEmailValid = By.xpath("//div[@class='alert-list']/div/nac-alert/div/span");
-    //By loginBtn = By.xpath("//div[@class='fbf-main-navogation']/div/a[2]/i");
+    By loginBtn = By.xpath("//div[@class='fbf-main-navogation']/div/a[2]/i");
 
     Properties properties;
     CommonOperations commonOperations;
@@ -42,7 +43,7 @@ public class Login extends PageBase {
     By lbl_loginerror = By.xpath("//div[@class ='form-group']/div[contains(.,'Username or password is incorrect')]");
     By lbl_loginPageTitle = By.xpath("//h1[@class ='page-title logo-watermark-inner']");
     By logoutBtn = By.xpath("//div[@class='user-details']/div[2]/a[2]");
-    By passwordFixTitle = By.xpath("//div[@class='fbf-main-content']/div[2]/div/h3");
+    By passwordFixTitle = By.xpath("//div[@class='fbf-main-content']/div[1]/h2/div");
     By newPasswordTxt = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input[@formcontrolname='password']");
     By confirmPasswordTxt = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input[@formcontrolname='confirmPassword']");
     By submitBtn = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div[3]/button");
@@ -72,17 +73,26 @@ public class Login extends PageBase {
         return driver.findElement(forgotPasswordHeader).getText();
     }
 
-    public void sendResetEmail() throws InterruptedException {
+    public void sendInvalidResetEmail() throws InterruptedException {
         Thread.sleep(2000);
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebElement emailResetElement = getDriver().findElement(emailTextBox);
+        emailResetElement.clear();
+        emailResetElement.sendKeys(getProperties().getProperty("invalidloginEmail"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(emailSubmitBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(emailSubmitBtn));
+        driver.findElement(emailSubmitBtn).click();
+        getDriver().switchTo().defaultContent();
+        //driver.findElement(emailTextBox).sendKeys("fbfauto@mailinator.com");
+    }
+
+    public void sendResetEmail() throws InterruptedException {
+        WebElement emailResetElement = getDriver().findElement(emailTextBoxText);
         emailResetElement.clear();
         emailResetElement.sendKeys(getProperties().getProperty("resetEmail"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailSubmitBtn));
         wait.until(ExpectedConditions.elementToBeClickable(emailSubmitBtn));
         driver.findElement(emailSubmitBtn).click();
-
-
         //driver.findElement(emailTextBox).sendKeys("fbfauto@mailinator.com");
     }
 

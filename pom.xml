@@ -9,10 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>FBF Automation</name>
-    <description>FBF Test Suite</description>
+    <name>TRG Automation</name>
+    <description>TRG Test Suite</description>
     <organization>
-        <name>FBF</name>
+        <name>TRG</name>
         <url>http://52.90.72.140/#/home</url>
     </organization>
 
@@ -81,8 +81,8 @@
     </dependencies>
 
     <build>
-        <plugins><!--
-            <plugin>
+        <plugins>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
@@ -99,8 +99,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <fork>true</fork>
-                    <executable>C:\Program Files\Java\jdk1.8.0_144\bin\javac</executable>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
