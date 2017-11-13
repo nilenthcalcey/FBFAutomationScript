@@ -198,11 +198,11 @@ public class GuestCreateOwnMealTest {
     }
 
 
-   /* @AfterSuite
+    @AfterSuite
     public void tearDown() {
         driver.close();
         driver.quit();
-    }*/
+    }
 
 
 }
