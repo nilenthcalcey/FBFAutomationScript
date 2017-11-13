@@ -102,7 +102,7 @@ public class LoginTest {
     @Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods ="pwResetEmaiAvailability")
     public void navigatePwFixPage() {
         mailClient.navigateToPasswordFixPage();
-        Assert.assertEquals(login.getPasswordFixTitle(), "PLEASE ENTER A NEW PASSWORD");
+        Assert.assertEquals(login.getPasswordFixTitle(), "RESET YOUR PASSWORD");
     }
 
     @Test(description = "Submit new password", priority = 9, dependsOnMethods = "navigatePwFixPage")
