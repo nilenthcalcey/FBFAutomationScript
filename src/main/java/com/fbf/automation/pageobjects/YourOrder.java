@@ -23,6 +23,8 @@ public class YourOrder extends PageBase {
     By checkorderLabel = By.xpath("//label[contains(.,'Where would you like your meal delivered')]");
     By mealaddlusButton = By.xpath("//div[@class='ordered-items']/div[1]//div[@class='increase-items']/button[2]/i");
     By multipleaddnumbersLabel = By.xpath("//div[@class='order-item-box select-item zig-zag-top summary-item']/div[3]//span");
+    By txt_PostCode = By.xpath("//div//input[@class='form-control ng-untouched ng-pristine ng-invalid'][@name='postalCode']");
+    By Txt_StreetCode = By.xpath("//div//input[@class='form-control ng-untouched ng-pristine ng-invalid'][@name='streetDetails']");
 
     public YourOrder(WebDriver driver) {
         super(driver);
