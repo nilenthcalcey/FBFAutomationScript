@@ -1,10 +1,7 @@
 package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
-import com.fbf.automation.pageobjects.GuestCreateOwnMeal;
-import com.fbf.automation.pageobjects.HomePage;
-import com.fbf.automation.pageobjects.Login;
-import com.fbf.automation.pageobjects.RegularProtein;
+import com.fbf.automation.pageobjects.*;
 import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -19,8 +16,7 @@ import org.testng.annotations.Test;
  */
 //public class FailureReport implements ITestListener {
 @Listeners(value = FailureReport.class)
-    public class LoginTest {
-
+public class LoginTest {
 
 
     WebDriver driver = null;
@@ -28,7 +24,6 @@ import org.testng.annotations.Test;
     MailClient mailClient;
     HomePage homepage;
     HomePageTest homepageTest;
-
 
 
     @BeforeSuite
@@ -39,34 +34,21 @@ import org.testng.annotations.Test;
         mailClient = new MailClient(driver);
     }
 
-        @Test(description = "Verify Expand the Menu", priority = 0)
-        public void navigateloginpage() {
+    @Test(description = "Verify Expand the Menu", priority = 0)
+    public void navigateloginpage() {
 
-            login.expandMenuScreenLogin();
-            login.navigateLoginPage();
-            Assert.assertEquals(login.getLoginPageTitle(), "LOG IN");
+        login.expandMenuScreenLogin();
+        login.navigateLoginPage();
+        Assert.assertEquals(login.getLoginPageTitle(), "LOG IN");
 
-        }
+    }
 
 
-        @Test(description = "User login Sucessfully", priority = 2)
-        public void sucesslogin() {
-
-            login.login();
-            Assert.assertEquals(login.getusername(), "HI, IRESH");
-        }
-
-        @Test(description = "User login withInvalidEmail", priority = 1)
-        public void invalidloginTest() {
-            login.InvalidLogin();
-            Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
-        }
-
-        @AfterSuite
-        public void TearDown() {
-
-            driver.close();
-        }
+    @Test(description = "User login withInvalidEmail", priority = 1)
+    public void invalidloginTest() {
+        login.InvalidLogin();
+        Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
+    }
 
 
     @Test(description = "User login Sucessfully", priority = 2)
@@ -112,7 +94,7 @@ import org.testng.annotations.Test;
         //Assert.assertEquals(login.getResetEmailValid(), "Please check your E-mail to reset your password");
     }*/
 
-    @Test(description = "Check Password reset Email Availability in Mailinator", priority = 7, dependsOnMethods ="visibleResetEmailValidation")
+    @Test(description = "Check Password reset Email Availability in Mailinator", priority = 7, dependsOnMethods = "visibleResetEmailValidation")
     public void pwResetEmaiAvailability() throws InterruptedException {
         mailClient.openNewTab();
         mailClient.navigateToMailList();
@@ -120,7 +102,7 @@ import org.testng.annotations.Test;
         Assert.assertEquals(mailClient.getResetEmaiTitle(), "Reset Password");
     }
 
-    @Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods ="pwResetEmaiAvailability")
+    @Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods = "pwResetEmaiAvailability")
     public void navigatePwFixPage() {
         mailClient.navigateToPasswordFixPage();
         Assert.assertEquals(login.getPasswordFixTitle(), "RESET YOUR PASSWORD");
