@@ -1,16 +1,16 @@
 package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
-import org.openqa.selenium.*;
-
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by iresh.n on 10/24/2017.
@@ -116,7 +116,6 @@ public class Login extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(invalidmenuBtn));
         getDriver().findElement(invalidmenuBtn).click();
     }*/
-
 
     public void navigateLoginPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginbtn));

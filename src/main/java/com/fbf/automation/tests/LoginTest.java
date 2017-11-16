@@ -50,7 +50,7 @@ import org.testng.annotations.Test;
         public void sucesslogin() {
 
             login.login();
-            Assert.assertEquals(login.getusername(), "HI, IRESH");
+            Assert.assertEquals(login.getusername(), "HI, FBF");
         }
 
         @Test(description = "User login withInvalidEmail", priority = 1)
