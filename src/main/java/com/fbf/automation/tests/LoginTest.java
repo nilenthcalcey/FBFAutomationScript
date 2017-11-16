@@ -16,7 +16,8 @@ import org.testng.annotations.Test;
  */
 //public class FailureReport implements ITestListener {
 @Listeners(value = FailureReport.class)
-public class LoginTest {
+    public class LoginTest {
+
 
 
     WebDriver driver = null;
@@ -24,6 +25,7 @@ public class LoginTest {
     MailClient mailClient;
     HomePage homepage;
     HomePageTest homepageTest;
+
 
 
     @BeforeSuite
@@ -34,28 +36,28 @@ public class LoginTest {
         mailClient = new MailClient(driver);
     }
 
-    @Test(description = "Verify Expand the Menu", priority = 0)
-    public void navigateloginpage() {
+        @Test(description = "Verify Expand the Menu", priority = 0)
+        public void navigateloginpage() {
 
-        login.expandMenuScreenLogin();
-        login.navigateLoginPage();
-        Assert.assertEquals(login.getLoginPageTitle(), "LOG IN");
+            login.expandMenuScreenLogin();
+            login.navigateLoginPage();
+            Assert.assertEquals(login.getLoginPageTitle(), "LOG IN");
 
     }
 
 
-    @Test(description = "User login withInvalidEmail", priority = 1)
-    public void invalidloginTest() {
-        login.InvalidLogin();
-        Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
-    }
+        @Test(description = "User login Sucessfully", priority = 2)
+        public void sucesslogin() {
 
+            login.login();
+            Assert.assertEquals(login.getusername(), "HI, IRESH");
+        }
 
-    @Test(description = "User login Sucessfully", priority = 2)
-    public void sucesslogin() {
-        login.login();
-        Assert.assertEquals(login.getusername(), "HI, FBF");
-    }
+        @Test(description = "User login withInvalidEmail", priority = 1)
+        public void invalidloginTest() {
+            login.InvalidLogin();
+            Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
+        }
 
     @Test(description = "Check User availability", priority = 3)
     public void userAvailability() {
@@ -94,7 +96,7 @@ public class LoginTest {
         //Assert.assertEquals(login.getResetEmailValid(), "Please check your E-mail to reset your password");
     }*/
 
-    @Test(description = "Check Password reset Email Availability in Mailinator", priority = 7, dependsOnMethods = "visibleResetEmailValidation")
+    @Test(description = "Check Password reset Email Availability in Mailinator", priority = 7, dependsOnMethods ="visibleResetEmailValidation")
     public void pwResetEmaiAvailability() throws InterruptedException {
         mailClient.openNewTab();
         mailClient.navigateToMailList();
@@ -102,7 +104,7 @@ public class LoginTest {
         Assert.assertEquals(mailClient.getResetEmaiTitle(), "Reset Password");
     }
 
-    @Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods = "pwResetEmaiAvailability")
+    @Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods ="pwResetEmaiAvailability")
     public void navigatePwFixPage() {
         mailClient.navigateToPasswordFixPage();
         Assert.assertEquals(login.getPasswordFixTitle(), "RESET YOUR PASSWORD");

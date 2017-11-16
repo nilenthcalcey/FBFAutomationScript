@@ -20,4 +20,11 @@
         </classes>
     </test>
 
+    <test name="GuestCreateLargeOwnMealTest">
+        <classes>
+            <class name="com.fbf.automation.tests.GuestCreateOwnLargeMealTest"></class>
+        </classes>
+    </test>
+
+
 </suite>
