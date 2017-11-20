@@ -5,12 +5,8 @@ import org.openqa.selenium.*;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by iresh.n on 10/24/2017.
@@ -60,16 +56,16 @@ public class Login extends PageBase {
     }
 
 
-    public void navigateToForgotPassword(){
+    public void navigateToForgotPassword() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(resetPassword));
         wait.until(ExpectedConditions.elementToBeClickable(resetPassword));
         WebElement element = driver.findElement(resetPassword);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //driver.findElement(resetPassword).click();
     }
 
-    public String getForgotPasswordHeader(){
+    public String getForgotPasswordHeader() {
         return driver.findElement(forgotPasswordHeader).getText();
     }
 
@@ -96,13 +92,6 @@ public class Login extends PageBase {
         //driver.findElement(emailTextBox).sendKeys("fbfauto@mailinator.com");
     }
 
-
-   /* public String getResetEmailValid(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(resetEmailValid));
-        wait.until(ExpectedConditions.elementToBeClickable(resetEmailValid));
-        return driver.findElement(resetEmailValid).getText();
-    }*/
-
     public void expandMenuScreenLogin() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
@@ -110,24 +99,14 @@ public class Login extends PageBase {
 
     }
 
-    /*public void InvalidExpandMenuScreenLogin() {
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(invalidmenuBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(invalidmenuBtn));
-        getDriver().findElement(invalidmenuBtn).click();
-    }*/
-
-
     public void navigateLoginPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginbtn));
         wait.until(ExpectedConditions.elementToBeClickable(loginbtn));
         WebElement element = driver.findElement(loginbtn);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //getDriver().findElement(loginbtn).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
-
-
     }
 
     public void login() {
@@ -169,35 +148,30 @@ public class Login extends PageBase {
         return getDriver().findElement(lbl_loginPageTitle).getText();
     }
 
-    public String getLoginText(){
+    public String getLoginText() {
         return driver.findElement(By.xpath("//li[@class ='user-details-container']//a")).getText();
     }
 
-   /* public String getLogoutText(){
-        return driver.findElement(logoutBtn).getText();
-    }*/
-
-
-
-    public void logoutUser(){
+    public void logoutUser() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(logoutBtn));
         wait.until(ExpectedConditions.elementToBeClickable(logoutBtn));
         WebElement element = driver.findElement(logoutBtn);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //driver.findElement(logoutBtn).click();
     }
 
-    public void testVerifyPopup() {
+    public String testVerifyPopup() {
         WebElement distxt = driver.findElement(resetEmailValid);
-        Assert.assertNull(distxt.getAttribute("testVerifyPopup"));
+        String distxtAttribute = distxt.getAttribute("testVerifyPopup");
+        return distxtAttribute;
     }
 
-    public void checkUserAvailability () {
+    public void checkUserAvailability() {
         String x = this.getLoginText();
-        if(x == "LOG IN"){
+        if (x == "LOG IN") {
             createNewOrder.closeCreateNewOrderMenu();
-        }else {
+        } else {
             logoutUser();
             expandMenuScreenLogin();
             navigateLoginPage();
@@ -225,17 +199,6 @@ public class Login extends PageBase {
         getDriver().findElement(submitBtn).click();
     }
 
-    public void checkPasswordChange () {
-        String x = this.getLoginText();
-        if(x == "LOG IN"){
-            createNewOrder.closeCreateNewOrderMenu();
-        }else {
-            logoutUser();
-            expandMenuScreenLogin();
-            navigateLoginPage();
-        }
-    }
-
     public void reLogin() {
         WebElement loginEmailElement = getDriver().findElement(txt_useremail);
         loginEmailElement.clear();
@@ -248,68 +211,3 @@ public class Login extends PageBase {
     }
 
 }
-
-
-
-
-   /*public void checkUserAvailability () {
-       //String x = "";
-       try {
-           String x = this.getLoginText();
-           navigateLoginPage();
-       } catch (Exception e) {
-           logoutUser();
-       }
-   }*/
-
-
-   /* public void checkUserAvailability () {
-        WebElement x = null;
-        x = (WebElement) loginbtn;
-        *//*WebElement y = null;
-        y = (WebElement) logoutBtn;*//*
-        *//*try {
-            x = (WebElement) loginbtn;
-        } catch (Exception e) {
-*//*
-        if (x !=null)
-        {
-            logoutUser();
-        } else {
-            navigateLoginPage();
-        }
-        }
-    }*/
-
-
-
-
-   /* public void checkUserAvailability () {
-        List<WebElement> button = driver.findElements(By.xpath("//div[@class='user-details']/div[2]/a[2]"));
-            if (!button.isEmpty()) {
-                button.get(0).click();
-            }
-                else {
-                    navigateLoginPage();
-                }
-
-            }
-    }*/
-
-   /* public void checkUserAvailability (){
-        if(driver.findElement(By.xpath("//div[@class='user-details']/div[2]/a[2]"))){
-
-            WebElement menuHoverLink = driver.findElement(By.id("reports"));
-            actions.moveToElement(menuHoverLink).perform();
-
-        }
-        else (){
-            system.out.println("element not present -- so it entered the else loop");
-
-        }
-    }
-*/
-
-
-
-
