@@ -3,6 +3,7 @@ package com.fbf.automation.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,6 +39,7 @@ public class CheckoutOrder extends PageBase{
     By baintreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
     By calenderButton = By.xpath("//div[@class='mydp']//div[@class='selectiongroup']");
     By calenderdefaultselectDate = By.xpath("//div[@class='datevalue currmonth highlight']");
+    By checkoutLabel = By.xpath("//div[@class='fbf-form fbf-location-pick']/div[1]//label");
 
 //    YourOrder yourOrder = new YourOrder(driver);
 //    String guestuserName = yourOrder.userName;
@@ -64,6 +66,7 @@ public class CheckoutOrder extends PageBase{
         //scroll up the page
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         jse.executeScript("window.scrollBy(0,-250)", "");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutLabel));
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(calenderButton));
         wait.until(ExpectedConditions.elementToBeClickable(calenderButton));

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FBF.iml" filepath="$PROJECT_DIR$/FBF.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TRG_testAutomation.iml" filepath="$PROJECT_DIR$/TRG_testAutomation.iml" />
     </modules>
   </component>
 </project>

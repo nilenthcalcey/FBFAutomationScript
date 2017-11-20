@@ -1,9 +1,12 @@
 package com.fbf.automation.pageobjects;
 
 import com.fbf.automation.utils.CommonOperations;
+import com.gargoylesoftware.htmlunit.Page;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.pagefactory.ElementLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -54,8 +57,7 @@ public class GuestCreateOwnMeal extends PageBase {
     By avacadomilshakepriceLabel = By.xpath("//div[@class='order-item-grid select-option']//a[1]//span[@class='price']");
     By avacadocalories = By.xpath("//div[@class='order-item-grid select-option']//a[1]//div[3]//li[@class='calories']");
     By whoisthismealforLabel = By.xpath("//h3[contains(.,'WHO IS THIS MEAL FOR?')]");
-    By oderlaterradioButton = By.xpath("//div[@class='fbf-ordertime-container']/div[2]//i[@class='radio-placeholder']");
-    By orderfornowradioButton = By.xpath("//div[@class='fbf-ordertime-container']/div[1]//i[@class='radio-placeholder']");
+    By orderlaterradioButton = By.xpath("//div[@class='fbf-ordertime-container']/div[2]//i[@class='radio-placeholder']");
 
 
     public GuestCreateOwnMeal(WebDriver driver) {
@@ -72,6 +74,8 @@ public class GuestCreateOwnMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(createyourownmealBtn));
 
         //click order later radio button
+        driver.findElement(orderlaterradioButton).click();
+        driver.findElement(createyourownmealBtn).click();
         bvalue = driver.findElement(orderfornowradioButton).isSelected();
         if(bvalue = true){
 
@@ -261,16 +265,17 @@ public class GuestCreateOwnMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(addthismealBtn));
         driver.findElement(addthismealBtn).click();
     }
-//scroll down the page
-    public void scrollingToBottomofAPage() {
-        //driver.navigate().to(URL);
+
+    //scroll down the page
+    public void scrollingToBottomofAPage(String URL) {
+        driver.navigate().to(URL);
         ((JavascriptExecutor) driver)
                 .executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 
     public String calculatePrice() {
         Double Total = carb + protein + tenADay + drink;
-        String finalanswer = String.format("%.2f",Total);
+        String finalanswer = String.format("%.2f", Total);
         return String.valueOf(finalanswer);
     }
 
