@@ -87,7 +87,6 @@ public class CheckoutOrder extends PageBase {
 
     public String getGuestEmail() {
         return this.guestEmail;
-
     }
 
     public String getUserName() {
