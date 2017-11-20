@@ -3,6 +3,7 @@ package com.fbf.automation.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -101,6 +102,30 @@ public class CheckoutOrder extends PageBase{
 
     public String getUserName(){
         return this.userName;
+    }
+
+    public  String getLargeUserName()
+    {
+        return getProperties().getProperty("LuserName");
+    }
+
+
+    public void EnterLargeUserDetails()
+    {
+
+
+        WebElement UserName = getDriver().findElement(nameTextBox);
+        UserName.clear();
+        UserName.sendKeys(getProperties().getProperty("LuserName"));
+        WebElement UserEmail = getDriver().findElement(emailTextBox);
+        UserEmail.clear();
+        UserEmail.sendKeys(getProperties().getProperty("LguestEmail"));
+        WebElement UserMobile = getDriver().findElement(mobilenumberTextBox);
+        UserMobile.clear();
+        UserMobile.sendKeys(getProperties().getProperty("LguestMobileNumber"));
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        driver.findElement(termsandconditionCheckBox).click();
+        getDriver().findElement(proceedpaymentButton).click();
     }
 
 }

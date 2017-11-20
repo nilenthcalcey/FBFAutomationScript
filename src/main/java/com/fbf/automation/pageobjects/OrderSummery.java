@@ -10,8 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by lahiru.k on 11/8/2017.
  */
 public class OrderSummery extends PageBase {
+
+
+    By lbl_usrname = By.xpath("//table[@class='summary-table']/tbody/tr[1]/td[@class='font-bold']");
     WebDriver driver = null;
     WebDriverWait wait;
+
+
 
     By subttotalLabel = By.xpath("//tr[1]//td[@class='font-bold align-right']");
 
@@ -25,5 +30,13 @@ public class OrderSummery extends PageBase {
     public String getOrderSummeryTotal(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(subttotalLabel));
         return driver.findElement(subttotalLabel).getText();
+    }
+
+    public String getUserName()
+    {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_usrname));
+        wait.until(ExpectedConditions.elementToBeClickable(lbl_usrname));
+        return getDriver().findElement(lbl_usrname).getText();
+
     }
 }

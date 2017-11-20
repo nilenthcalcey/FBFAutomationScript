@@ -59,14 +59,14 @@ import org.testng.annotations.Test;
             Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
         }
 
-    @Test(description = "Check User availability", priority = 3)
+    //@Test(description = "Check User availability", priority = 3)
     public void userAvailability() {
         login.expandMenuScreenLogin();
         login.checkUserAvailability();
     }
 
 
-    @Test(description = "Navigate To the Forgot Password Page", priority = 4, dependsOnMethods = "userAvailability")
+    //@Test(description = "Navigate To the Forgot Password Page", priority = 4, dependsOnMethods = "userAvailability")
     public void navigateToForgotPasswordPage() {
         //login.expandMenuScreenLogin();
         //login.navigateLoginPage();
@@ -74,13 +74,13 @@ import org.testng.annotations.Test;
         Assert.assertEquals(login.getForgotPasswordHeader(), "FORGOT PASSWORD");
     }
 
-    @Test(description = "Insert Invalid Email", priority = 5, dependsOnMethods = "navigateToForgotPasswordPage")
+   //@Test(description = "Insert Invalid Email", priority = 5, dependsOnMethods = "navigateToForgotPasswordPage")
     public void invalidResetEmailTest() throws InterruptedException {
         login.sendInvalidResetEmail();
         Assert.assertEquals(login.getForgotPasswordHeader(), "FORGOT PASSWORD");
     }
 
-    @Test(description = "Verify credentials are sent to the specific email", priority = 6, dependsOnMethods = "invalidResetEmailTest")
+    //@Test(description = "Verify credentials are sent to the specific email", priority = 6, dependsOnMethods = "invalidResetEmailTest")
     public void visibleResetEmailValidation() throws InterruptedException {
         login.sendResetEmail();
         login.testVerifyPopup();
@@ -96,7 +96,7 @@ import org.testng.annotations.Test;
         //Assert.assertEquals(login.getResetEmailValid(), "Please check your E-mail to reset your password");
     }*/
 
-    @Test(description = "Check Password reset Email Availability in Mailinator", priority = 7, dependsOnMethods ="visibleResetEmailValidation")
+    //@Test(description = "Check Password reset Email Availability in Mailinator", priority = 7, dependsOnMethods ="visibleResetEmailValidation")
     public void pwResetEmaiAvailability() throws InterruptedException {
         mailClient.openNewTab();
         mailClient.navigateToMailList();
@@ -104,20 +104,20 @@ import org.testng.annotations.Test;
         Assert.assertEquals(mailClient.getResetEmaiTitle(), "Reset Password");
     }
 
-    @Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods ="pwResetEmaiAvailability")
+    //@Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods ="pwResetEmaiAvailability")
     public void navigatePwFixPage() {
         mailClient.navigateToPasswordFixPage();
         Assert.assertEquals(login.getPasswordFixTitle(), "RESET YOUR PASSWORD");
     }
 
-    @Test(description = "Submit new password", priority = 9, dependsOnMethods = "navigatePwFixPage")
+    //@Test(description = "Submit new password", priority = 9, dependsOnMethods = "navigatePwFixPage")
     public void submitNewPassword() throws InterruptedException {
         login.resetNewPassword();
         login.reLogin();
         Assert.assertEquals(login.getusername(), "HI, FBF");
     }
 
-    @AfterSuite
+   // @AfterSuite
     public void TearDown() {
         driver.close();
         driver.quit();

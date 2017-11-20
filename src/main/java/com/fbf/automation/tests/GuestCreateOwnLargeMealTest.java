@@ -1,11 +1,9 @@
 package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
-import com.fbf.automation.pageobjects.AddGuestName;
-import com.fbf.automation.pageobjects.GuestCreateOwnLargeMeal;
-import com.fbf.automation.pageobjects.GuestCreateOwnMeal;
-import com.fbf.automation.pageobjects.HomePage;
+import com.fbf.automation.pageobjects.*;
 import com.fbf.automation.utils.FailureReport;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -25,6 +23,10 @@ public class GuestCreateOwnLargeMealTest {
     HomePage homepage;
     GuestCreateOwnMeal guestCreateOwnMeal;
     AddGuestName addGuestName;
+    YourOrder yourOrder;
+    CheckoutOrder checkoutOrder;
+    CardPayment cardPayment;
+    OrderSummery orderSummery;
 
     String pageTitle = "Firebrand Fresh";
 
@@ -37,6 +39,10 @@ public class GuestCreateOwnLargeMealTest {
         homepage = new HomePage(driver);
         guestCreateOwnMeal = new GuestCreateOwnMeal(driver);
         addGuestName = new AddGuestName(driver);
+        yourOrder = new YourOrder(driver);
+        checkoutOrder = new CheckoutOrder(driver);
+        cardPayment = new CardPayment(driver);
+        orderSummery = new OrderSummery(driver);
     }
 
     @Test(description = "Verify Home page loaded", priority = 0)
@@ -66,12 +72,9 @@ public class GuestCreateOwnLargeMealTest {
     @Test(description = "Verify add a Large Protein Item into the Platter", priority = 3)
     public  void selectLargeProtein()
     {
-
-
         guestCreateOwnLargeMeal.SelectLargeProteinItem();
         guestCreateOwnLargeMeal.getLargeProteinCalory();
         Assert.assertEquals(guestCreateOwnLargeMeal.getChickenLabel(),"CHICKEN | LARGE");
-
 
     }
 
@@ -150,7 +153,7 @@ public class GuestCreateOwnLargeMealTest {
 
     }
 
-    @Test(description = "Verify Total Calory value of platter", priority = 13)
+    @Test(description = "Verify Enter The Meal Name ", priority = 13)
     public void SaveName()
     {
 
@@ -159,7 +162,37 @@ public class GuestCreateOwnLargeMealTest {
         Assert.assertEquals(addGuestName.navigateToYourOrderPage(),"GUEST NAME");
     }
 
+    @Test(description = "Verify User enter delivery details", priority = 14)
+    public void EnterDeliveryDetails()
+    {
+        yourOrder.TypePostalCard();
+        yourOrder.TypeStreetAddress();
+        yourOrder.getPostalCodeNotification();
 
+        //scroll down the page
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        yourOrder.checkGuestNameSelector();
+        Assert.assertEquals(yourOrder.navigatetoCheckOrderPage(),"Please let us know your name, email to send you an eco-friendly receipt, and mobile number, to let you know your order status");
+    }
+
+
+
+    @Test(description = "Verify enter User details and redirect to the Card Page", priority = 15)
+    public void EnterUserDetails()
+    {
+        checkoutOrder.EnterLargeUserDetails();
+        Assert.assertEquals(checkoutOrder.navigateToPaymentCardPage(),"Pay with card");
+    }
+
+
+
+    @Test(description = "Verify enter User Card details and redirect to the Order Confirmation Page", priority = 16)
+    public void EnterCardDetails()
+    {
+        cardPayment.addCardDetails();
+        cardPayment.clickPaymentProceedButton();
+        Assert.assertEquals(orderSummery.getUserName(),checkoutOrder.getLargeUserName());
+    }
 
 
    @AfterSuite
