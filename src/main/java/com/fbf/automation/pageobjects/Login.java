@@ -60,16 +60,16 @@ public class Login extends PageBase {
     }
 
 
-    public void navigateToForgotPassword(){
+    public void navigateToForgotPassword() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(resetPassword));
         wait.until(ExpectedConditions.elementToBeClickable(resetPassword));
         WebElement element = driver.findElement(resetPassword);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //driver.findElement(resetPassword).click();
     }
 
-    public String getForgotPasswordHeader(){
+    public String getForgotPasswordHeader() {
         return driver.findElement(forgotPasswordHeader).getText();
     }
 
@@ -121,7 +121,7 @@ public class Login extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginbtn));
         wait.until(ExpectedConditions.elementToBeClickable(loginbtn));
         WebElement element = driver.findElement(loginbtn);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //getDriver().findElement(loginbtn).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
@@ -168,7 +168,7 @@ public class Login extends PageBase {
         return getDriver().findElement(lbl_loginPageTitle).getText();
     }
 
-    public String getLoginText(){
+    public String getLoginText() {
         return driver.findElement(By.xpath("//li[@class ='user-details-container']//a")).getText();
     }
 
@@ -177,12 +177,11 @@ public class Login extends PageBase {
     }*/
 
 
-
-    public void logoutUser(){
+    public void logoutUser() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(logoutBtn));
         wait.until(ExpectedConditions.elementToBeClickable(logoutBtn));
         WebElement element = driver.findElement(logoutBtn);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //driver.findElement(logoutBtn).click();
     }
@@ -192,11 +191,11 @@ public class Login extends PageBase {
         Assert.assertNull(distxt.getAttribute("testVerifyPopup"));
     }
 
-    public void checkUserAvailability () {
+    public void checkUserAvailability() {
         String x = this.getLoginText();
-        if(x == "LOG IN"){
+        if (x == "LOG IN") {
             createNewOrder.closeCreateNewOrderMenu();
-        }else {
+        } else {
             logoutUser();
             expandMenuScreenLogin();
             navigateLoginPage();
@@ -224,11 +223,11 @@ public class Login extends PageBase {
         getDriver().findElement(submitBtn).click();
     }
 
-    public void checkPasswordChange () {
+    public void checkPasswordChange() {
         String x = this.getLoginText();
-        if(x == "LOG IN"){
+        if (x == "LOG IN") {
             createNewOrder.closeCreateNewOrderMenu();
-        }else {
+        } else {
             logoutUser();
             expandMenuScreenLogin();
             navigateLoginPage();
