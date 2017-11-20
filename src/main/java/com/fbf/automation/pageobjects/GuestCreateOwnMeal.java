@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.math.*;
 
 /**
@@ -24,7 +25,7 @@ public class GuestCreateOwnMeal extends PageBase {
     int proteinCal = 0;
     int CarbCal = 0;
     int TenADayCal = 0;
-    int DrinkCal=0;
+    int DrinkCal = 0;
     String proteinPrice;
     String carbPrice;
     String proteincaloriescount;
@@ -57,7 +58,7 @@ public class GuestCreateOwnMeal extends PageBase {
     By avacadomilshakepriceLabel = By.xpath("//div[@class='order-item-grid select-option']//a[1]//span[@class='price']");
     By avacadocalories = By.xpath("//div[@class='order-item-grid select-option']//a[1]//div[3]//li[@class='calories']");
     By whoisthismealforLabel = By.xpath("//h3[contains(.,'WHO IS THIS MEAL FOR?')]");
-    By oderlaterradioButton = By.xpath("//div[@class='fbf-ordertime-container']/div[2]//i[@class='radio-placeholder']");
+    By orderlaterradioButton = By.xpath("//div[@class='fbf-ordertime-container']/div[2]//i[@class='radio-placeholder']");
 
 
     public GuestCreateOwnMeal(WebDriver driver) {
@@ -74,7 +75,7 @@ public class GuestCreateOwnMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(createyourownmealBtn));
 
         //click order later radio button
-        driver.findElement(oderlaterradioButton).click();
+        driver.findElement(orderlaterradioButton).click();
         driver.findElement(createyourownmealBtn).click();
     }
 
@@ -191,6 +192,7 @@ public class GuestCreateOwnMeal extends PageBase {
         return tenadayPrice;
 
     }
+
     //Ten a Day calorie count kiwi,Avacado&Cucumber
     public String getTenaDayCalorieCountLabel() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(tenadaycalories));
@@ -222,7 +224,7 @@ public class GuestCreateOwnMeal extends PageBase {
         return drinkprice;
     }
 
-    //Drink calorie count Avacado Milkshake
+    //Drink calorie count Avocado Milkshake
     public String getDrinkCalorieCountLabel() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(avacadocalories));
         wait.until(ExpectedConditions.elementToBeClickable(avacadocalories));
@@ -242,7 +244,8 @@ public class GuestCreateOwnMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(addthismealBtn));
         driver.findElement(addthismealBtn).click();
     }
-//scroll down the page
+
+    //scroll down the page
     public void scrollingToBottomofAPage(String URL) {
         driver.navigate().to(URL);
         ((JavascriptExecutor) driver)
@@ -251,7 +254,7 @@ public class GuestCreateOwnMeal extends PageBase {
 
     public String calculatePrice() {
         Double Total = carb + protein + tenADay + drink;
-        String finalanswer = String.format("%.2f",Total);
+        String finalanswer = String.format("%.2f", Total);
         return String.valueOf(finalanswer);
     }
 

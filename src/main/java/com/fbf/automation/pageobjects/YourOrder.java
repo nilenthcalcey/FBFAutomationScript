@@ -30,7 +30,7 @@ public class YourOrder extends PageBase {
     By txt_PostCode = By.xpath("//div//input[@class='form-control ng-untouched ng-pristine ng-invalid'][@name='postalCode']");
     By Txt_StreetCode = By.xpath("//div//input[@class='form-control ng-untouched ng-pristine ng-invalid'][@name='streetDetails']");
     By enterpostalcodeinputTextBox = By.xpath("//input[@name='postalCode']");
-    By entersreetdetailsTextBox = By.xpath("//input[contains(@name,'streetDetails')]");
+    By enterStreetDetailsTextBox = By.xpath("//input[contains(@name,'streetDetails')]");
     By postalcodenotificationLabel = By.xpath("//div[@class='form-group']/div/span");
 
     public YourOrder(WebDriver driver) {
@@ -39,30 +39,30 @@ public class YourOrder extends PageBase {
         this.driver = driver;
     }
 
-    public String getSubtotal(){
+    public String getSubtotal() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(subtotalpriceLabel));
         subtotal = driver.findElement(subtotalpriceLabel).getText();
         return subtotal;
     }
 
-    public void addtheMealsCount(){
+    public void addtheMealsCount() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(mealaddlusButton));
         wait.until(ExpectedConditions.elementToBeClickable(mealaddlusButton));
         driver.findElement(mealaddlusButton).click();
 
     }
 
-    public void checkGuestNameSelector(){
+    public void checkGuestNameSelector() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(continueguestnameradioButton));
         boolean bvalue = false;
 
         bvalue = driver.findElement(continueguestnameradioButton).isSelected();
-        if(bvalue = true){
+        if (bvalue = true) {
 
             // This will select Second radio button, if the first radio button is selected by default
             driver.findElement(continueButton).click();
 
-        }else {
+        } else {
 
             // If the first radio button is not selected by default, the first will be selected
             System.out.println("Selecting Wrong Radio button");
@@ -70,7 +70,7 @@ public class YourOrder extends PageBase {
 
     }
 
-    public String TypePostalCard(){
+    public String TypePostalCard() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(enterpostalcodeinputTextBox));
         wait.until(ExpectedConditions.elementToBeClickable(enterpostalcodeinputTextBox));
         driver.findElement(enterpostalcodeinputTextBox).sendKeys(postalCode);
@@ -78,31 +78,31 @@ public class YourOrder extends PageBase {
 
     }
 
-    public String TypeStreetAddress(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(entersreetdetailsTextBox));
-        wait.until(ExpectedConditions.elementToBeClickable(entersreetdetailsTextBox));
-        driver.findElement(entersreetdetailsTextBox).sendKeys(streetAddress);
+    public String TypeStreetAddress() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(enterStreetDetailsTextBox));
+        wait.until(ExpectedConditions.elementToBeClickable(enterStreetDetailsTextBox));
+        driver.findElement(enterStreetDetailsTextBox).sendKeys(streetAddress);
         return streetAddress;
     }
 
-    public String getPostalCodeNotification(){
+    public String getPostalCodeNotification() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(postalcodenotificationLabel));
         return driver.findElement(postalcodenotificationLabel).getText();
     }
 
-    public String navigatetoCheckOrderPage(){
+    public String navigatetoCheckOrderPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
         return driver.findElement(checkorderLabel).getText();
     }
 
-    public String getMultiplier(){
+    public String getMultiplier() {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(multipleaddnumbersLabel));
         multiplierNumber = driver.findElement(multipleaddnumbersLabel).getText();
-        return  multiplierNumber;
+        return multiplierNumber;
     }
 
-    public String getTotal(){
+    public String getTotal() {
         return this.subtotal;
     }
 

@@ -186,9 +186,10 @@ public class Login extends PageBase {
         //driver.findElement(logoutBtn).click();
     }
 
-    public void testVerifyPopup() {
+    public String testVerifyPopup() {
         WebElement distxt = driver.findElement(resetEmailValid);
-        Assert.assertNull(distxt.getAttribute("testVerifyPopup"));
+        String disTxtAttribute = distxt.getAttribute("testVerifyPopup");
+        return disTxtAttribute;
     }
 
     public void checkUserAvailability() {

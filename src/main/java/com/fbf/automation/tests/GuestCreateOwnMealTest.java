@@ -36,7 +36,6 @@ public class GuestCreateOwnMealTest {
     CheckoutOrder checkoutOrder;
     CardPayment cardPayment;
     OrderSummery orderSummery;
-    int multiplier = 1;
 
 
     String pageTitle = "Firebrand Fresh";

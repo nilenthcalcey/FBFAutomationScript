@@ -96,7 +96,6 @@ public class HomePageTest {
 
     @Test(description = "Navigate to the About Us Page", priority = 9)
     public void navigateToAboutUsPage() {
-        //firebrandQuiz.expandMenuFQuizScreen();
         firebrandQuiz.navigateToAboutUsPage();
         Assert.assertEquals(firebrandQuiz.getAboutUsPageHeader(), "Firebrand Manifesto");
     }
@@ -121,7 +120,6 @@ public class HomePageTest {
     public void testAboutUsSelectBackColor() {
         Assert.assertEquals(firebrandQuiz.getAboutUsSelectBackColor(), "rgba(239, 239, 239, 1)");
     }
-
 
     @Test(description = "Navigate to the FAQ Page", priority = 14)
     public void navigateToFaqPage() {
@@ -153,7 +151,6 @@ public class HomePageTest {
 
     @Test(description = "Navigate to the Quiz Facts Page", priority = 19)
     public void navigateToQuizFacts() {
-        //faqPage.expandFaqMenu();
         faqPage.navigateToQuizfactsPage();
         Assert.assertEquals(faqPage.getQuizfactsPageHeader(), "FIREBRAND FRESH FACTS");
     }
@@ -212,7 +209,6 @@ public class HomePageTest {
 
     @Test(description = "Navigate to the Terms & Condition Page", priority = 29)
     public void navigateToTermsandCondition() {
-        //contactUs.exapandMenuScreenContUsScreen();
         contactUs.navigateToTermsandConditionPage();
         Assert.assertEquals(contactUs.getTermsandConditionPageLabel(), "FIREBRAND FRESH WEBSITE TERMS AND CONDITIONS");
     }
