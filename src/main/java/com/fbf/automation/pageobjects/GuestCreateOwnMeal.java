@@ -10,8 +10,6 @@ import org.openqa.selenium.support.pagefactory.ElementLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.math.*;
-
 /**
  * Created by lahiru.k on 10/21/2017.
  */
@@ -25,7 +23,7 @@ public class GuestCreateOwnMeal extends PageBase {
     int proteinCal = 0;
     int CarbCal = 0;
     int TenADayCal = 0;
-    int DrinkCal = 0;
+    int DrinkCal=0;
     String proteinPrice;
     String carbPrice;
     String proteincaloriescount;
@@ -34,6 +32,7 @@ public class GuestCreateOwnMeal extends PageBase {
     String tenadaycaloriesCount;
     String drinkprice;
     String drinkcaloriecount;
+     Boolean bvalue;
 
 
     By createyourownmealBtn = By.xpath("//div[@class ='fbf-small-container']//a[@class ='order-item-box bordered-item']");
@@ -77,7 +76,30 @@ public class GuestCreateOwnMeal extends PageBase {
         //click order later radio button
         driver.findElement(orderlaterradioButton).click();
         driver.findElement(createyourownmealBtn).click();
+        bvalue = driver.findElement(orderfornowradioButton).isSelected();
+        if(bvalue = true){
+
+            String now;
+            // This will select Second radio button, if the first radio button is selected by default
+            driver.findElement(createyourownmealBtn).click();
+
+        }else {
+
+            // If the first radio button is not selected by default, the first will be selected
+            String later;
+            System.out.println("Click the  order Later Button");
+            //driver.findElement(oderlaterradioButton).click();
+            driver.findElement(createyourownmealBtn).click();
+        }
+
+//        driver.findElement(oderlaterradioButton).click();
+//        driver.findElement(createyourownmealBtn).click();
     }
+
+    public Boolean getOrderNowType(){
+        return bvalue;
+    }
+
 
     public String getCreateNewPageLabel() {
 
@@ -192,7 +214,6 @@ public class GuestCreateOwnMeal extends PageBase {
         return tenadayPrice;
 
     }
-
     //Ten a Day calorie count kiwi,Avacado&Cucumber
     public String getTenaDayCalorieCountLabel() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(tenadaycalories));
@@ -224,7 +245,7 @@ public class GuestCreateOwnMeal extends PageBase {
         return drinkprice;
     }
 
-    //Drink calorie count Avocado Milkshake
+    //Drink calorie count Avacado Milkshake
     public String getDrinkCalorieCountLabel() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(avacadocalories));
         wait.until(ExpectedConditions.elementToBeClickable(avacadocalories));

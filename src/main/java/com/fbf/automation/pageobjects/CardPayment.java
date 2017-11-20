@@ -21,6 +21,7 @@ import java.util.Properties;
 public class CardPayment extends PageBase {
     WebDriver driver = null;
     WebDriverWait wait;
+    CheckoutOrder checkoutOrder;
 
     By cardnumberTextBox = By.xpath("//div[@class='braintree-sheet__content braintree-sheet__content--form']/div[1]//div[@class='braintree-form__field']");
     By expirationdateTextBox = By.xpath("//div[@class='braintree-sheet__content braintree-sheet__content--form']/div[2]//div[@class='braintree-form__hosted-field braintree-form-expiration']");
@@ -33,6 +34,9 @@ public class CardPayment extends PageBase {
         this.commonOperations = new CommonOperations();
         this.driver = driver;
         this.wait = new WebDriverWait(driver,30);
+        //checkoutOrder = new CheckoutOrder(driver);
+        CheckoutOrder checkoutOrder = new CheckoutOrder(driver);
+        String guestuserName = checkoutOrder.userName;
     }
 
     public  void addCardDetails(){
@@ -96,5 +100,9 @@ public class CardPayment extends PageBase {
         return driver.findElement(ordersummerynameLabel).getText();
 
     }
+
+  /*  public boolean verifyUserName(){
+        navigateToOrderSummeryPage()
+    }*/
 
 }

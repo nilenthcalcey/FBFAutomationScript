@@ -25,25 +25,35 @@ public class CheckoutOrder extends PageBase{
     WebDriver driver = null;
     WebDriverWait wait;
 
+    CardPayment cardPayment;
     String userName;
+    String guestEmail = "automation" + System.currentTimeMillis()+"@mailinator.com";
+   // YourOrder yourOrder;
 
     By cartnumberLabel = By.xpath("//div[@class='mini-cart-outer']//a[@class='mini-cart']//span");
     By nameTextBox = By.xpath("//input[@id='nameFocus']");
     By emailTextBox = By.xpath("//input[@id='emailFocus']");
     By mobilenumberTextBox = By.xpath("//input[@id='mobileFocus']");
     By termsandconditionCheckBox = By.xpath("//div[@class='form-group terms']//div/label/i");
-    By proceedpaymentButton = By.xpath("//button[@class='btn btn-primary btn-block']");
+    By proceedpaymentButton = By.xpath("//div[@class='fbf-form fbf-location-pick']/div[@class='form-group']");
     By baintreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
     By calenderButton = By.xpath("//div[@class='mydp']//div[@class='selectiongroup']");
     By calenderdefaultselectDate = By.xpath("//div[@class='datevalue currmonth highlight']");
     By checkoutLabel = By.xpath("//div[@class='fbf-form fbf-location-pick']/div[1]//label");
+
+//    YourOrder yourOrder = new YourOrder(driver);
+//    String guestuserName = yourOrder.userName;
+//    int theHeight = frame.height;
 
 
     public CheckoutOrder(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.driver = driver;
-    }
+        //yourOrder = new YourOrder(driver);
+
+}
+
 
 
     public String getCartitemCount(){
@@ -64,7 +74,7 @@ public class CheckoutOrder extends PageBase{
         driver.findElement(calenderdefaultselectDate).click();
     }
 
-    public String addGuestDetails(){
+    public String addGuestDetails() {
         File file = new File("src\\main\\resources\\CheckoutOrder.properties");
 
         FileInputStream fileInput = null;
@@ -86,21 +96,21 @@ public class CheckoutOrder extends PageBase{
         driver.findElement(nameTextBox).clear();
         userName = prop.getProperty("userName");
         driver.findElement(nameTextBox).sendKeys(userName);
-        driver.findElement(emailTextBox).sendKeys(prop.getProperty("guestEmail"));
+        //guestEmail = prop.getProperty("guestEmail");
+        driver.findElement(emailTextBox).sendKeys(guestEmail);
         driver.findElement(mobilenumberTextBox).sendKeys(prop.getProperty("guestMobileNumber"));
         driver.findElement(termsandconditionCheckBox).click();
         driver.findElement(proceedpaymentButton).click();
         return userName;
-
     }
+        public String getGuestEmail(){
+            return this.guestEmail;
 
-    public String navigateToPaymentCardPage(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(baintreeLabel));
-        return driver.findElement(baintreeLabel).getText();
     }
 
     public String getUserName(){
         return this.userName;
     }
+
 
 }
