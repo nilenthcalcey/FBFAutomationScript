@@ -42,7 +42,7 @@ public class Login extends PageBase {
     By lbl_loginerror = By.xpath("//div[@class ='form-group']/div[contains(.,'Username or password is incorrect')]");
     By lbl_loginPageTitle = By.xpath("//h1[@class ='page-title logo-watermark-inner']");
     By logoutBtn = By.xpath("//div[@class='user-details']/div[2]/a[2]");
-    By passwordFixTitle = By.xpath("//div[@class='fbf-main-content']/div[2]/div/h3");
+    By passwordFixTitle = By.xpath("//div[@class='content-box-container']/h3[@class='secondary-color']");
     By newPasswordTxt = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input[@formcontrolname='password']");
     By confirmPasswordTxt = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input[@formcontrolname='confirmPassword']");
     By submitBtn = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div[3]/button");

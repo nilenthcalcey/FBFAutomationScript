@@ -102,6 +102,17 @@ public class LoginTest {
         login.reLogin();
         Assert.assertEquals(login.getusername(), "HI, FBF");
     }
+
+    @Test(description = "Check Confirmation Email Availability in Mailinator", priority = 9, dependsOnMethods ="submitNewPassword")
+    public void checkMealConfirmationMail() throws InterruptedException {
+        mailClient.openNewTab();
+        mailClient.navigateToConfirmationMailList();
+
+    }
+
+
+
+
     @AfterSuite
     public void TearDown() {
 

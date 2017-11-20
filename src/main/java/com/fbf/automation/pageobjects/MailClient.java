@@ -22,6 +22,8 @@ public class MailClient extends PageBase {
 
     Properties properties;
     CommonOperations commonOperations;
+    CheckoutOrder checkoutOrder;
+
 
     //Mailinator Tags
     By mailText = By.xpath("//div[@class=\"input-group\"]/input");
@@ -74,6 +76,15 @@ public class MailClient extends PageBase {
         driver.findElement(resetPasswordMailBtn).click();
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(2));
+    }
+
+    public void navigateToConfirmationMailList(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(mailText));
+        wait.until(ExpectedConditions.elementToBeClickable(mailText));
+        driver.findElement(mailText).sendKeys(checkoutOrder.guestEmail);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(goButton));
+        wait.until(ExpectedConditions.elementToBeClickable(goButton));
+        getDriver().findElement(goButton).click();
     }
 }
 

@@ -1,9 +1,6 @@
 package com.fbf.automation.pageobjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,7 +16,8 @@ public class YourOrder extends PageBase {
     String multiplierNumber;
     String postalCode = "NW1 5QT";
     String streetAddress = "Stewart House,32 Russell Square,London";
-
+//    GuestCreateOwnMeal guestCreateOwnMeal;
+    CheckoutOrder checkoutOrder;
 
     By subtotalpriceLabel = By.xpath("//div[@class='order-button-container item-has-selected']/div[1]//span[2]");
     By continueguestnameradioButton = By.xpath("//div[@class='cart-guest-options']//label[3]//i[@class='radio-placeholder']");
@@ -30,11 +28,15 @@ public class YourOrder extends PageBase {
     By enterpostalcodeinputTextBox = By.xpath("//input[@name='postalCode']");
     By entersreetdetailsTextBox = By.xpath("//input[contains(@name,'streetDetails')]");
     By postalcodenotificationLabel = By.xpath("//div[@class='form-group']/div/span");
+    By baintreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
 
     public YourOrder(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.driver = driver;
+        checkoutOrder = new CheckoutOrder(driver);
+//        guestCreateOwnMeal = new GuestCreateOwnMeal(driver);
+
     }
 
     public String getSubtotal(){
@@ -50,21 +52,38 @@ public class YourOrder extends PageBase {
 
     }
 
-    public void checkGuestNameSelector(){
+    public String checkGuestNameSelector(Boolean getOrderNowType){
         wait.until(ExpectedConditions.visibilityOfElementLocated(continueguestnameradioButton));
-        boolean bvalue = false;
+        boolean bgvalue;
 
-        bvalue = driver.findElement(continueguestnameradioButton).isSelected();
-        if(bvalue = true){
+        bgvalue = driver.findElement(continueguestnameradioButton).isSelected();
+        if(bgvalue = true){
 
             // This will select Second radio button, if the first radio button is selected by default
             driver.findElement(continueButton).click();
+            //wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
+           if(getOrderNowType==true){
+               wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
+               checkoutOrder.addGuestDetails();
 
-        }else {
+           }
+
+            else {
+
+               checkoutOrder.selectDefaultSelectedDate();
+               ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+               checkoutOrder.addGuestDetails();
+
+            }
+        }
+        else {
 
             // If the first radio button is not selected by default, the first will be selected
             System.out.println("Selecting Wrong Radio button");
         }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(baintreeLabel));
+        return driver.findElement(baintreeLabel).getText();
+
 
     }
 
@@ -88,10 +107,10 @@ public class YourOrder extends PageBase {
         return driver.findElement(postalcodenotificationLabel).getText();
     }
 
-    public String navigatetoCheckOrderPage(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
-        return driver.findElement(checkorderLabel).getText();
-    }
+//    public String navigatetoCheckOrderPage(){
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
+//        return driver.findElement(checkorderLabel).getText();
+//    }
 
     public String getMultiplier(){
 
@@ -100,8 +119,14 @@ public class YourOrder extends PageBase {
         return  multiplierNumber;
     }
 
+
+
+
+
     public String getTotal(){
+
         return this.subtotal;
     }
+
 
 }
