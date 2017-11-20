@@ -35,17 +35,13 @@ public class LoginTest {
 
     @Test(description = "Verify Expand the Menu", priority = 0)
     public void navigateloginpage() {
-
         login.expandMenuScreenLogin();
         login.navigateLoginPage();
         Assert.assertEquals(login.getLoginPageTitle(), "LOG IN");
-
     }
-
 
     @Test(description = "User login Sucessfully", priority = 2)
     public void sucesslogin() {
-
         login.login();
         Assert.assertEquals(login.getusername(), "HI, FBF");
     }
@@ -61,7 +57,6 @@ public class LoginTest {
         login.expandMenuScreenLogin();
         login.checkUserAvailability();
     }
-
 
     @Test(description = "Navigate To the Forgot Password Page", priority = 4, dependsOnMethods = "userAvailability")
     public void navigateToForgotPasswordPage() {
