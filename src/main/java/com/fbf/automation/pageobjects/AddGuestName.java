@@ -20,7 +20,7 @@ public class AddGuestName extends PageBase {
     By guestnameinputfield = By.xpath("//input[@class='form-control ng-untouched ng-pristine ng-valid']");
     By savenamebutton = By.xpath("//button[@class='btn btn-primary btn-block']");
     By yourheaderLabel = By.xpath("//div[@class='container']");
-    By gusetameLabel = By.xpath("//div[@class='item-info']//h3[1]");
+    By guestameLabel = By.xpath("//div[@class='item-info']//h3[1]");
 
 
     public AddGuestName(WebDriver driver) {
@@ -46,9 +46,9 @@ public class AddGuestName extends PageBase {
     }
 
     public String navigateToYourOrderPage(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(gusetameLabel));
-        wait.until(ExpectedConditions.elementToBeClickable(gusetameLabel));
-        return driver.findElement(gusetameLabel).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(guestameLabel));
+        wait.until(ExpectedConditions.elementToBeClickable(guestameLabel));
+        return driver.findElement(guestameLabel).getText();
 
     }
 //get guest user name

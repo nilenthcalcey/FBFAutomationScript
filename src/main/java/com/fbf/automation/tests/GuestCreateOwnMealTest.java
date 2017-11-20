@@ -147,7 +147,6 @@ public class GuestCreateOwnMealTest {
         //Multiply Meal count
         yourOrder.addtheMealsCount();
         Assert.assertTrue(Double.parseDouble(yourOrder.getSubtotal().substring(1)) == Double.parseDouble(guestCreateOwnMeal.calculatePrice()) * Double.parseDouble(yourOrder.getMultiplier()));
-
     }
 
     @Test(description = "Check the Order count in the Cart", priority = 14, dependsOnMethods = "checkItemMultiplySubTotal")
@@ -162,7 +161,6 @@ public class GuestCreateOwnMealTest {
         yourOrder.TypePostalCard();
         yourOrder.TypeStreetAddress();
         yourOrder.getPostalCodeNotification();
-
         //scroll down the page
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 //        yourOrder.checkGuestNameSelector(guestCreateOwnMeal.getOrderNowType());
@@ -184,9 +182,9 @@ public class GuestCreateOwnMealTest {
     }
 
     @Test(description = "Navigate To the Order Summary Page and Check the Guest name", priority = 17, dependsOnMethods = "addCardDetailsProceedPayment")
-    public void navigateToOrderSummery() {
+    public void navigateToOrderSummary() {
         cardPayment.clickPaymentProceedButton();
-        Assert.assertTrue(cardPayment.navigateToOrderSummeryPage().equals(checkoutOrder.addGuestDetails()));
+        Assert.assertTrue(cardPayment.navigateToOrderSummeryPage().equals(checkoutOrder.getUserName()));
     }
 
     @Test(description = "Check the SubTotal from Your Order page and OrderSummery Page", priority = 18, dependsOnMethods = "navigateToOrderSummery")
@@ -206,7 +204,6 @@ public class GuestCreateOwnMealTest {
         Assert.assertEquals(orderSummery.navigateToConfirmationPage(), "Congratulations! You have successfully registered. Lookout for a confirmation email");
 
     }
-
 
     @AfterSuite
     public void tearDown() {

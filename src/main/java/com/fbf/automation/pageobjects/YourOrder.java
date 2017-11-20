@@ -16,7 +16,6 @@ public class YourOrder extends PageBase {
     String multiplierNumber;
     String postalCode = "NW1 5QT";
     String streetAddress = "Stewart House,32 Russell Square,London";
-    //    GuestCreateOwnMeal guestCreateOwnMeal;
     CheckoutOrder checkoutOrder;
 
     By subtotalpriceLabel = By.xpath("//div[@class='order-button-container item-has-selected']/div[1]//span[2]");
