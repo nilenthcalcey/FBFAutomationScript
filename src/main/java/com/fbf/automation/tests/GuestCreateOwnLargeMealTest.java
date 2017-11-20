@@ -129,7 +129,7 @@ public class GuestCreateOwnLargeMealTest {
     @Test(description = "Verify Total Calory value of platter", priority = 12)
     public void NavigateToSaveName() {
 
-        guestCreateOwnMeal.scrollingToBottomofAPage("http://fbf.calcey.net/create-order");
+        guestCreateOwnMeal.scrollingToBottomofAPage();
         guestCreateOwnLargeMeal.navigateToSaveMealPage();
         Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(), "WHO IS THIS MEAL FOR?");
 

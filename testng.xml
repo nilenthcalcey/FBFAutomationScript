@@ -8,18 +8,17 @@
          </classes>
      </test>-->
 
-    <test name="LoginTest">
+    <!--<test name="LoginTest">
         <classes>
             <class name="com.fbf.automation.tests.LoginTest"></class>
         </classes>
     </test>
-
-    <!--<test name="GuestCreateOwnMealTest">
+-->
+    <test name="GuestCreateOwnMealTest">
         <classes>
             <class name="com.fbf.automation.tests.GuestCreateOwnMealTest"></class>
         </classes>
     </test>
--->
     <!-- <test name="GuestCreateLargeOwnMealTest">
          <classes>
              <class name="com.fbf.automation.tests.GuestCreateOwnLargeMealTest"></class>
