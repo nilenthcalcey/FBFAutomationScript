@@ -136,7 +136,6 @@ public class GuestCreateOwnMealTest {
         Assert.assertTrue(addguestName.navigateToYourOrderPage().equals(addguestName.getGuestName()));
     }
 
-
     @Test(description = "Check the Sub Total of the selected items", priority = 12, dependsOnMethods = "saveGuestName")
     public void checkSubTotal() {
         Assert.assertTrue(orderSubTotal.equals(yourOrder.getSubtotal()));
@@ -151,7 +150,6 @@ public class GuestCreateOwnMealTest {
 
     @Test(description = "Check the Order count in the Cart", priority = 14, dependsOnMethods = "checkItemMultiplySubTotal")
     public void checkOrderCount() {
-
         Assert.assertEquals(checkoutOrder.getCartitemCount(), "1");
     }
 
@@ -161,20 +159,9 @@ public class GuestCreateOwnMealTest {
         yourOrder.TypePostalCard();
         yourOrder.TypeStreetAddress();
         yourOrder.getPostalCodeNotification();
-        //scroll down the page
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-//        yourOrder.checkGuestNameSelector(guestCreateOwnMeal.getOrderNowType());
         Assert.assertEquals(yourOrder.checkGuestNameSelector(guestCreateOwnMeal.getOrderNowType()), "Pay with card");
     }
-
-
-//    @Test(description = "Add the Guest Details and navigate to the Payment card Page",priority = 16,dependsOnMethods = "checkOrderCount")
-//    public void addGuestDetailsNavigateToPayment(){
-//        checkoutOrder.selectDefaultSelectedDate();
-//        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-//        checkoutOrder.addGuestDetails();
-//        Assert.assertEquals(checkoutOrder.navigateToPaymentCardPage(),"Pay with card");
-//    }
 
     @Test(description = "Add the Card Details and Proceed the Payment", priority = 16, dependsOnMethods = "checkGuestNameAndNavigateToOrder")
     public void addCardDetailsProceedPayment() {
@@ -182,7 +169,7 @@ public class GuestCreateOwnMealTest {
     }
 
     @Test(description = "Navigate To the Order Summary Page and Check the Guest name", priority = 17, dependsOnMethods = "addCardDetailsProceedPayment")
-    public void navigateToOrderSummary() {
+    public void navigateToOrderSummery() {
         cardPayment.clickPaymentProceedButton();
         Assert.assertTrue(cardPayment.navigateToOrderSummeryPage().equals(checkoutOrder.getUserName()));
     }
@@ -195,14 +182,12 @@ public class GuestCreateOwnMealTest {
     @Test(description = "Check the Email address added in the check out page and OrderSummery Page", priority = 19, dependsOnMethods = "checkSubtotalValue")
     public void checkEmailAddress() {
         Assert.assertTrue(checkoutOrder.getGuestEmail().equals(orderSummery.getEmailAddress()));
-
     }
 
     @Test(description = "Add the Password & Continue the Page", priority = 20, dependsOnMethods = "checkEmailAddress")
     public void addPassword() {
         orderSummery.addPasswordDetailsContinue();
         Assert.assertEquals(orderSummery.navigateToConfirmationPage(), "Congratulations! You have successfully registered. Lookout for a confirmation email");
-
     }
 
     @AfterSuite

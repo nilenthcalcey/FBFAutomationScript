@@ -27,14 +27,13 @@ public class YourOrder extends PageBase {
     By enterpostalcodeinputTextBox = By.xpath("//input[@name='postalCode']");
     By entersreetdetailsTextBox = By.xpath("//input[contains(@name,'streetDetails')]");
     By postalcodenotificationLabel = By.xpath("//div[@class='form-group']/div/span");
-    By baintreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
+    By braintreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
 
     public YourOrder(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.driver = driver;
         checkoutOrder = new CheckoutOrder(driver);
-//        guestCreateOwnMeal = new GuestCreateOwnMeal(driver);
 
     }
 
@@ -77,10 +76,15 @@ public class YourOrder extends PageBase {
             // If the first radio button is not selected by default, the first will be selected
             System.out.println("Selecting Wrong Radio button");
         }
-        wait.until(ExpectedConditions.visibilityOfElementLocated(baintreeLabel));
-        return driver.findElement(baintreeLabel).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(braintreeLabel));
+        return driver.findElement(braintreeLabel).getText();
 
+    }
 
+    public void submitYourOrder() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(continueButton));
+        wait.until(ExpectedConditions.elementToBeClickable(continueButton));
+        driver.findElement(continueButton).click();
     }
 
     public String TypePostalCard() {
@@ -103,10 +107,10 @@ public class YourOrder extends PageBase {
         return driver.findElement(postalcodenotificationLabel).getText();
     }
 
-//    public String navigatetoCheckOrderPage(){
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
-//        return driver.findElement(checkorderLabel).getText();
-//    }
+    public String navigatetoCheckOrderPage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
+        return driver.findElement(checkorderLabel).getText();
+    }
 
     public String getMultiplier() {
 
@@ -117,7 +121,6 @@ public class YourOrder extends PageBase {
 
 
     public String getTotal() {
-
         return this.subtotal;
     }
 
