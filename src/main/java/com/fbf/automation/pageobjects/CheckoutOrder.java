@@ -27,6 +27,7 @@ public class CheckoutOrder extends PageBase{
     WebDriverWait wait;
 
     String userName;
+    String guestEmail = "automation" + System.currentTimeMillis() + "@mailinator.com";
 
     By cartnumberLabel = By.xpath("//div[@class='mini-cart-outer']//a[@class='mini-cart']//span");
     By nameTextBox = By.xpath("//input[@id='nameFocus']");
@@ -126,6 +127,10 @@ public class CheckoutOrder extends PageBase{
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
         driver.findElement(termsandconditionCheckBox).click();
         getDriver().findElement(proceedpaymentButton).click();
+    }
+    public String getGuestEmail() {
+        return this.guestEmail;
+
     }
 
 }

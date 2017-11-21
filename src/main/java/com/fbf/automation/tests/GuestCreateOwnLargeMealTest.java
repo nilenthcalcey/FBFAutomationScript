@@ -147,7 +147,7 @@ public class GuestCreateOwnLargeMealTest {
     public void NavigateToSaveName()
     {
 
-        guestCreateOwnMeal.scrollingToBottomofAPage("http://fbf.calcey.net/create-order");
+        guestCreateOwnMeal.scrollingToBottomofAPage();
         guestCreateOwnLargeMeal.navigateToSaveMealPage();
         Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(),"WHO IS THIS MEAL FOR?");
 
@@ -171,7 +171,7 @@ public class GuestCreateOwnLargeMealTest {
 
         //scroll down the page
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        yourOrder.checkGuestNameSelector();
+        yourOrder.checkLargeGuestNameSelector();
         Assert.assertEquals(yourOrder.navigatetoCheckOrderPage(),"Please let us know your name, email to send you an eco-friendly receipt, and mobile number, to let you know your order status");
     }
 

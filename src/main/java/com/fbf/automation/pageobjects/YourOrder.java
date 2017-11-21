@@ -103,10 +103,10 @@ public class YourOrder extends PageBase {
         return driver.findElement(postalcodenotificationLabel).getText();
     }
 
-//    public String navigatetoCheckOrderPage(){
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
-//        return driver.findElement(checkorderLabel).getText();
-//    }
+    public String navigatetoCheckOrderPage(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
+        return driver.findElement(checkorderLabel).getText();
+    }
 
     public String getMultiplier() {
 
@@ -119,6 +119,24 @@ public class YourOrder extends PageBase {
     public String getTotal() {
 
         return this.subtotal;
+    }
+
+    public void checkLargeGuestNameSelector(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(continueguestnameradioButton));
+        boolean bvalue = false;
+
+        bvalue = driver.findElement(continueguestnameradioButton).isSelected();
+        if(bvalue = true){
+
+            // This will select Second radio button, if the first radio button is selected by default
+            driver.findElement(continueButton).click();
+
+        }else {
+
+            // If the first radio button is not selected by default, the first will be selected
+            System.out.println("Selecting Wrong Radio button");
+        }
+
     }
 
 
