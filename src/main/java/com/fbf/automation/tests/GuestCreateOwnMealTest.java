@@ -41,7 +41,7 @@ public class GuestCreateOwnMealTest {
     String pageTitle = "Firebrand Fresh";
 
     @BeforeSuite
-    public void SetUp() {
+    public void setUp() {
         driver = DriverFactory.getDriver();
         guestCreateOwnMeal = new GuestCreateOwnMeal(driver);
         homepage = new HomePage(driver);
@@ -131,8 +131,8 @@ public class GuestCreateOwnMealTest {
 
     @Test(description = "Add the GuestName and Click Save Button", priority = 11, dependsOnMethods = "navigateToWhoIstHisMeal")
     public void saveGuestName() {
-        addguestName.TypeGuestName();
-        addguestName.ClickSaveNameButton();
+        addguestName.typeGuestName();
+        addguestName.clickSaveNameButton();
         Assert.assertTrue(addguestName.navigateToYourOrderPage().equals(addguestName.getGuestName()));
     }
 

@@ -14,8 +14,6 @@ public class AddGuestName extends PageBase {
     WebDriver driver = null;
     WebDriverWait wait;
     String guestName = "AUTOMATION" + System.currentTimeMillis();
-    //String calprice = "£" + guestCreateOwnMeal.CalculatePrice();
-
 
     By guestNameInputField = By.xpath("//input[@class='form-control ng-untouched ng-pristine ng-valid']");
     By saveNameButton = By.xpath("//button[@class='btn btn-primary btn-block']");
@@ -30,7 +28,7 @@ public class AddGuestName extends PageBase {
 
     }
 
-    public String TypeGuestName() {
+    public String typeGuestName() {
         Random rand = new Random(System.currentTimeMillis());
         wait.until(ExpectedConditions.visibilityOfElementLocated(guestNameInputField));
         wait.until(ExpectedConditions.elementToBeClickable(guestNameInputField));
@@ -39,7 +37,7 @@ public class AddGuestName extends PageBase {
         return guestName;
     }
 
-    public void ClickSaveNameButton() {
+    public void clickSaveNameButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(saveNameButton));
         wait.until(ExpectedConditions.elementToBeClickable(saveNameButton));
         driver.findElement(saveNameButton).click();
@@ -56,6 +54,5 @@ public class AddGuestName extends PageBase {
     public String getGuestName() {
         return this.guestName;
     }
-
 
 }

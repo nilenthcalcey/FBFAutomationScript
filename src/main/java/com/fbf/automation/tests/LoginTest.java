@@ -26,7 +26,7 @@ public class LoginTest {
 
 
     @BeforeSuite
-    public void SetUp() {
+    public void setUp() {
         driver = DriverFactory.getDriver();
         login = new Login(driver);
         homepage = new HomePage(driver);
@@ -41,13 +41,13 @@ public class LoginTest {
     }
 
     @Test(description = "User login Sucessfully", priority = 2)
-    public void sucesslogin() {
+    public void successLogin() {
         login.login();
         Assert.assertEquals(login.getusername(), "HI, FBF");
     }
 
     @Test(description = "User login withInvalidEmail", priority = 1)
-    public void invalidloginTest() {
+    public void invalidLoginTest() {
         login.InvalidLogin();
         Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
     }
@@ -98,7 +98,7 @@ public class LoginTest {
     }
 
     @AfterSuite
-    public void TearDown() {
+    public void tearDown() {
         driver.close();
         driver.quit();
     }
