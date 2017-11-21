@@ -28,7 +28,7 @@ public class ContactUs extends PageBase {
         this.driver = driver;
     }
 
-    public void exapandMenuScreenContUsScreen(){
+    public void expandMenuScreenContUsScreen(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();

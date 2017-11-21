@@ -87,7 +87,7 @@ public class YourOrder extends PageBase {
         driver.findElement(continueButton).click();
     }
 
-    public String TypePostalCard() {
+    public String typePostalCard() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(enterpostalcodeinputTextBox));
         wait.until(ExpectedConditions.elementToBeClickable(enterpostalcodeinputTextBox));
         driver.findElement(enterpostalcodeinputTextBox).sendKeys(postalCode);
@@ -95,7 +95,7 @@ public class YourOrder extends PageBase {
 
     }
 
-    public String TypeStreetAddress() {
+    public String typeStreetAddress() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(entersreetdetailsTextBox));
         wait.until(ExpectedConditions.elementToBeClickable(entersreetdetailsTextBox));
         driver.findElement(entersreetdetailsTextBox).sendKeys(streetAddress);

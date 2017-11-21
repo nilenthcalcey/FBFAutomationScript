@@ -186,8 +186,6 @@ public class Login extends PageBase {
     }
 
     public void resetNewPassword() throws InterruptedException {
-        /*wait.until(ExpectedConditions.visibilityOfElementLocated(newPasswordTxt));
-        wait.until(ExpectedConditions.elementToBeClickable(newPasswordTxt));*/
         WebElement resetPwElement = getDriver().findElement(newPasswordTxt);
         resetPwElement.clear();
         resetPwElement.sendKeys(getProperties().getProperty("resetPassword"));

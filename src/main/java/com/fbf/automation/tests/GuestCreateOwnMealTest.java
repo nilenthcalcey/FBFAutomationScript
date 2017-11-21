@@ -156,8 +156,8 @@ public class GuestCreateOwnMealTest {
     @Test(description = "Check the Guest Name Label and navigate to Order Page", priority = 15, dependsOnMethods = "checkOrderCount")
     public void checkGuestNameAndNavigateToOrder() {
         guestCreateOwnMeal.scrollingToBottomofAPage();
-        yourOrder.TypePostalCard();
-        yourOrder.TypeStreetAddress();
+        yourOrder.typePostalCard();
+        yourOrder.typeStreetAddress();
         yourOrder.getPostalCodeNotification();
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
         Assert.assertEquals(yourOrder.checkGuestNameSelector(guestCreateOwnMeal.getOrderNowType()), "Pay with card");

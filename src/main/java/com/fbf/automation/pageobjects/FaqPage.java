@@ -68,12 +68,4 @@ public class FaqPage extends PageBase {
         String css = driver.findElement(quizfactsMenuBtn).getCssValue("background-color");
         return css;
     }
-
-    /*public String getFaqPageTitle() {
-        return getDriver().getTitle();
-    }
-
-    public void expandMenuScreen() {
-        getDriver().findElement(menuBtn).click();
-    }*/
 }

@@ -54,20 +54,4 @@ public class CreateNewOrder extends PageBase {
     }
 
 
-
-
-
-    /*public void navigateToFirebrandQuiz(){
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(firebrandQuizMenuBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(firebrandQuizMenuBtn));
-        driver.findElement(firebrandQuizMenuBtn).click();
-    }
-
-    public String getFirebrandQuizPageHeader(){
-        return driver.findElement(firebrandQuizPageHeader).getText();
-    }
-*/
-
-
 }

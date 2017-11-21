@@ -187,7 +187,7 @@ public class HomePageTest {
 
     @Test(description = "Test Quiz Facts Text Color", priority = 25)
     public void testQuizFactsTextColor() {
-        contactUs.exapandMenuScreenContUsScreen();
+        contactUs.expandMenuScreenContUsScreen();
         Assert.assertEquals(faqPage.getQuizFactsTextColor(), "rgba(239, 65, 54, 1)");
     }
 

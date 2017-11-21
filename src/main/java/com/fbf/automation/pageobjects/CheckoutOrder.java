@@ -95,7 +95,7 @@ public class CheckoutOrder extends PageBase {
     }
 
 
-    public void EnterLargeUserDetails() {
+    public void enterLargeUserDetails() {
         WebElement UserName = getDriver().findElement(nameTextBox);
         UserName.clear();
         UserName.sendKeys(getProperties().getProperty("userName"));

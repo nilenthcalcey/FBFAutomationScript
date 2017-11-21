@@ -74,7 +74,6 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
-
     }
 
 
@@ -94,7 +93,7 @@ public class GuestCreateOwnLargeMeal extends PageBase {
     }
 
 
-    public void SelectLargeProtein() {
+    public void selectLargeProtein() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_Largelabel));
         getDriver().findElement(lbl_Largelabel).click();
 
@@ -105,25 +104,20 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_Largelabel));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_Largelabel));
         LargeLabel = driver.findElement(lbl_Largelabel).getText();
-        //Large = String.valueOf(driver.findElement(lbl_Lagellabelverify).getText());
         return LargeLabel;
     }
 
 
-    public void SelectLargeProteinItem() {
-
+    public void selectLargeProteinItem() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_Largelabel));
         this.getLargeProteinPrice();
         getDriver().findElement(lbl_Largelabel).click();
-
-
     }
 
 
     public String getChickenLabel() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeChickenLabel));
         return getDriver().findElement(lbl_LargeChickenLabel).getText();
-
     }
 
 
@@ -132,17 +126,15 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         getDriver().findElement(btn_Carb).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(btn_largebutton));
         getDriver().findElement(btn_largebutton).click();
-
     }
 
-    public void SelectLargeCarbItem() {
+    public void selectLargeCarbItem() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeCarbs));
-        this.getLargeCrabsPrice();
+        this.getLargeCarbsPrice();
         getDriver().findElement(lbl_LargeCarbs).click();
-
     }
 
-    public String getCrabsLable() {
+    public String getCarbsLable() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeCarbs));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_LargeCarbs));
         LargeLabel = driver.findElement(lbl_LargeCarbs).getText();
@@ -154,7 +146,6 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(lbl_Largecassava));
         LargeLabel = driver.findElement(lbl_Largecassava).getText();
         return LargeLabel;
-
     }
 
     public void navigateToLargeTenADay() {
@@ -162,7 +153,6 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         getDriver().findElement(btn_TenADay).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(btn_largebutton));
         getDriver().findElement(btn_largebutton).click();
-
     }
 
     public String getTenADayLabel() {
@@ -173,7 +163,7 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         return LargeLabel;
     }
 
-    public void SelectLargeTenADay() {
+    public void selectLargeTenADay() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeTenADay));
         this.getLargeTenADayPrice();
         getDriver().findElement(lbl_LargeTenADay).click();
@@ -183,25 +173,22 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeTenADaylabel));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_LargeTenADaylabel));
         LargeLabel = driver.findElement(lbl_LargeTenADaylabel).getText();
-        //Large = String.valueOf(driver.findElement(lbl_Lagellabelverify).getText());
         return LargeLabel;
     }
 
     public void navigateToLargeDrinks() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(btn_Drinks));
         getDriver().findElement(btn_Drinks).click();
-
     }
 
     public String getDrinksLabel() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeDrinks));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_LargeDrinks));
         LargeLabel = driver.findElement(lbl_LargeDrinks).getText();
-        //Large = String.valueOf(driver.findElement(lbl_Lagellabelverify).getText());
         return LargeLabel;
     }
 
-    public void SelectDrinks() {
+    public void selectDrinks() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeDrinks));
         this.getDrinksPrice();
         getDriver().findElement(lbl_LargeDrinks).click();
@@ -211,33 +198,26 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_Drinkslabel));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_Drinkslabel));
         LargeLabel = driver.findElement(lbl_Drinkslabel).getText();
-        //Large = String.valueOf(driver.findElement(lbl_Lagellabelverify).getText());
         return LargeLabel;
     }
 
-
     public double getLargeProteinPrice() {
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_Largelabel));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_Largelabel));
         LargeProtein = (driver.findElement(lbl_Largelabel).getText()).substring(1, 5);
         LargeProteinPrice = Double.parseDouble(LargeProtein);
         return LargeProteinPrice;
-
     }
 
-    public double getLargeProteinCalory() {
-
+    public double getLargeProteinCalories() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_ProtenCalory));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_ProtenCalory));
         ProteinCalory = (driver.findElement(lbl_ProtenCalory).getText()).substring(0, 4);
         LargeProteinCalory = Double.parseDouble(ProteinCalory);
         return LargeProteinCalory;
-
     }
 
-
-    public double getLargeCrabsPrice() {
+    public double getLargeCarbsPrice() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeCarbs));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_LargeCarbs));
         LargeCabs = (driver.findElement(lbl_LargeCarbs).getText()).substring(1, 5);
@@ -245,17 +225,13 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         return LargeCabsPrice;
     }
 
-
     public double getLargeCarbCalory() {
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_CabsCalory));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_CabsCalory));
         CabsCalory = (driver.findElement(lbl_CabsCalory).getText()).substring(0, 4);
         LargeCabsCalory = Double.parseDouble(CabsCalory);
         return LargeCabsCalory;
-
     }
-
 
     public double getLargeTenADayPrice() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeTenADay));
@@ -266,15 +242,12 @@ public class GuestCreateOwnLargeMeal extends PageBase {
     }
 
     public double getLargeTenADayCalory() {
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_TenADayCalory));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_TenADayCalory));
         TenADayCalory = (driver.findElement(lbl_TenADayCalory).getText()).substring(0, 4);
         LargeTenADayCalory = Double.parseDouble(TenADayCalory);
         return LargeTenADayCalory;
-
     }
-
 
     public double getDrinksPrice() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeDrinks));
@@ -284,31 +257,25 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         return LargeDrinkPrice;
     }
 
-    public double getDrinkCalory() {
-
+    public double getDrinkCalories() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_DrinksCalory));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_DrinksCalory));
         DrinkCalory = (driver.findElement(lbl_DrinksCalory).getText()).substring(0, 4);
         LargeDrinkCalory = Double.parseDouble(DrinkCalory);
         return LargeDrinkCalory;
-
     }
 
-    public String CalculateTotalprice() {
+    public String calculateTotalprice() {
         RoundUPTotal = this.LargeProteinPrice + this.LargeCabsPrice + this.LargeTenADayPrice + this.LargeDrinkPrice;
-        // TotalItemsPrice = (double)Math.round((RoundUPTotal*100)/100);
-        //  TotalItemsPrice = (double)Math.round((RoundUPTotal*100)/100);
         String finalanswer = (String.format("%.2f", RoundUPTotal)).trim();
         return finalanswer;
-
     }
 
 
-    public String CalculateTotalCalory() {
+    public String calculateTotalCalories() {
         RoundUPCalory = (this.LargeProteinCalory + this.LargeCabsCalory + this.LargeTenADayCalory + this.LargeDrinkCalory);
         String finalCalory = (String.format("%.1f", RoundUPCalory)).trim();
         return finalCalory;
-
     }
 
     public String getItemsTotal() {
@@ -316,7 +283,6 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(lbl_ItemTotal));
         TotalText = (driver.findElement(lbl_ItemTotal).getText()).substring(1, 6);
         Total = (Double.parseDouble(TotalText));
-        //Total = (double)Math.round((RoundUPTotal*1000)/1000);
         return String.valueOf(Total);
     }
 
@@ -325,7 +291,6 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(lbl_TotalCalory));
         TotalText = (driver.findElement(lbl_TotalCalory).getText());
         CaloryTotal = (Double.parseDouble(TotalText));
-        //Total = (double)Math.round((RoundUPTotal*1000)/1000);
         return String.valueOf(CaloryTotal);
     }
 
@@ -340,14 +305,4 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(btn_SaveName));
         getDriver().findElement(btn_SaveName).click();
     }
-
-    public  void EnterDeliverifyDetails()
-    {
-
-    }
-
-
 }
-
-
-//TotalText = Math.round(RoundUPTotal*100)/100;

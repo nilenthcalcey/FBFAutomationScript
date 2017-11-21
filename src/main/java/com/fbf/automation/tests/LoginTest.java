@@ -81,7 +81,7 @@ public class LoginTest {
         mailClient.openNewTab();
         mailClient.navigateToMailList();
         mailClient.latestMailAvailability();
-        Assert.assertEquals(mailClient.getResetEmaiTitle(), "Reset Password");
+        Assert.assertEquals(mailClient.getResetEmailTitle(), "Reset Password");
     }
 
     @Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods = "pwResetEmaiAvailability")

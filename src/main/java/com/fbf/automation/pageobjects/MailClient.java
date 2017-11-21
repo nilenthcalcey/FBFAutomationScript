@@ -70,7 +70,7 @@ public class MailClient extends PageBase {
         getDriver().findElement(fbfPwResetMail).click();
     }
 
-    public String getResetEmaiTitle() {
+    public String getResetEmailTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(resetEmailTitle));
         wait.until(ExpectedConditions.elementToBeClickable(resetEmailTitle));
         return getDriver().findElement(resetEmailTitle).getText();
