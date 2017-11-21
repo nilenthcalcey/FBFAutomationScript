@@ -277,7 +277,6 @@ public class GuestCreateOwnMeal extends PageBase {
     }
 
     public String calculateCalories() {
-
         int Total = CarbCal + proteinCal + TenADayCal + DrinkCal;
         return Integer.toString(Total);
     }

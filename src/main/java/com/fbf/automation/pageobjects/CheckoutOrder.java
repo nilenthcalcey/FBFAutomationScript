@@ -21,7 +21,7 @@ import java.util.Properties;
 /**
  * Created by lahiru.k on 10/30/2017.
  */
-public class CheckoutOrder extends PageBase{
+public class CheckoutOrder extends PageBase {
 
     WebDriver driver = null;
     WebDriverWait wait;
@@ -34,29 +34,34 @@ public class CheckoutOrder extends PageBase{
     By emailTextBox = By.xpath("//input[@id='emailFocus']");
     By mobilenumberTextBox = By.xpath("//input[@id='mobileFocus']");
     By termsandconditionCheckBox = By.xpath("//div[@class='form-group terms']//div/label/i");
-    By proceedpaymentButton = By.xpath("//button[@class='btn btn-primary btn-block']");
-    By baintreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
+    By proceedpaymentButton = By.xpath("//div[@class='fbf-form fbf-location-pick']/div[@class='form-group']");
+    By braintreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
     By calenderButton = By.xpath("//div[@class='mydp']//div[@class='selectiongroup']");
     By calenderdefaultselectDate = By.xpath("//div[@class='datevalue currmonth highlight']");
     By checkoutLabel = By.xpath("//div[@class='fbf-form fbf-location-pick']/div[1]//label");
+
+//    YourOrder yourOrder = new YourOrder(driver);
+//    String guestuserName = yourOrder.userName;
+//    int theHeight = frame.height;
 
 
     public CheckoutOrder(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.driver = driver;
+        //yourOrder = new YourOrder(driver);
+
     }
 
-
-    public String getCartitemCount(){
+    public String getCartitemCount() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(cartnumberLabel));
         wait.until(ExpectedConditions.elementToBeClickable(cartnumberLabel));
         return driver.findElement(cartnumberLabel).getText();
     }
 
-    public void selectDefaultSelectedDate(){
+    public void selectDefaultSelectedDate() {
         //scroll up the page
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0,-250)", "");
         wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutLabel));
 
@@ -66,39 +71,27 @@ public class CheckoutOrder extends PageBase{
         driver.findElement(calenderdefaultselectDate).click();
     }
 
-    public String addGuestDetails(){
-        File file = new File("src\\main\\resources\\CheckoutOrder.properties");
-
-        FileInputStream fileInput = null;
-        try {
-            fileInput = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Properties prop = new Properties();
-
-        //load properties file
-        try {
-            prop.load(fileInput);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String addGuestDetails() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(nameTextBox));
         wait.until(ExpectedConditions.elementToBeClickable(nameTextBox));
         driver.findElement(nameTextBox).clear();
-        userName = prop.getProperty("userName");
+      //  userName = prop.getProperty("userName");
         driver.findElement(nameTextBox).sendKeys(userName);
-        driver.findElement(emailTextBox).sendKeys(prop.getProperty("guestEmail"));
-        driver.findElement(mobilenumberTextBox).sendKeys(prop.getProperty("guestMobileNumber"));
+        //guestEmail = prop.getProperty("guestEmail");
+        driver.findElement(emailTextBox).sendKeys(guestEmail);
+        driver.findElement(mobilenumberTextBox).sendKeys(getProperties().getProperty("guestMobileNumber"));
         driver.findElement(termsandconditionCheckBox).click();
         driver.findElement(proceedpaymentButton).click();
         return userName;
 
     }
 
-    public String navigateToPaymentCardPage(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(baintreeLabel));
-        return driver.findElement(baintreeLabel).getText();
+    public String getGuestEmail() {
+        return this.guestEmail;
+    }
+    public String navigateToPaymentCardPage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(braintreeLabel));
+        return driver.findElement(braintreeLabel).getText();
     }
 
     public String getUserName(){
