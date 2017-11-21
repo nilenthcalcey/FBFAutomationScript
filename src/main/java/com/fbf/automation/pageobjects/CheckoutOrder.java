@@ -3,6 +3,7 @@ package com.fbf.automation.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,10 +26,8 @@ public class CheckoutOrder extends PageBase {
     WebDriver driver = null;
     WebDriverWait wait;
 
-    CardPayment cardPayment;
-    String userName = getProperties().getProperty("userName");
+    String userName;
     String guestEmail = "automation" + System.currentTimeMillis() + "@mailinator.com";
-
 
     By cartnumberLabel = By.xpath("//div[@class='mini-cart-outer']//a[@class='mini-cart']//span");
     By nameTextBox = By.xpath("//input[@id='nameFocus']");
@@ -76,6 +75,7 @@ public class CheckoutOrder extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(nameTextBox));
         wait.until(ExpectedConditions.elementToBeClickable(nameTextBox));
         driver.findElement(nameTextBox).clear();
+      //  userName = prop.getProperty("userName");
         driver.findElement(nameTextBox).sendKeys(userName);
         //guestEmail = prop.getProperty("guestEmail");
         driver.findElement(emailTextBox).sendKeys(guestEmail);
@@ -83,15 +83,43 @@ public class CheckoutOrder extends PageBase {
         driver.findElement(termsandconditionCheckBox).click();
         driver.findElement(proceedpaymentButton).click();
         return userName;
+
     }
 
     public String getGuestEmail() {
         return this.guestEmail;
     }
+    public String navigateToPaymentCardPage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(braintreeLabel));
+        return driver.findElement(braintreeLabel).getText();
+    }
 
-    public String getUserName() {
+    public String getUserName(){
         return this.userName;
     }
 
+    public  String getLargeUserName()
+    {
+        return getProperties().getProperty("LuserName");
+    }
+
+
+    public void EnterLargeUserDetails()
+    {
+
+
+        WebElement UserName = getDriver().findElement(nameTextBox);
+        UserName.clear();
+        UserName.sendKeys(getProperties().getProperty("LuserName"));
+        WebElement UserEmail = getDriver().findElement(emailTextBox);
+        UserEmail.clear();
+        UserEmail.sendKeys(getProperties().getProperty("LguestEmail"));
+        WebElement UserMobile = getDriver().findElement(mobilenumberTextBox);
+        UserMobile.clear();
+        UserMobile.sendKeys(getProperties().getProperty("LguestMobileNumber"));
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        driver.findElement(termsandconditionCheckBox).click();
+        getDriver().findElement(proceedpaymentButton).click();
+    }
 
 }

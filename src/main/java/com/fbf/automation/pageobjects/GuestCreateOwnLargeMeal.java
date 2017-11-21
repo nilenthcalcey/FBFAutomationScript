@@ -341,6 +341,12 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         getDriver().findElement(btn_SaveName).click();
     }
 
+    public  void EnterDeliverifyDetails()
+    {
+
+    }
+
+
 }
 
 
