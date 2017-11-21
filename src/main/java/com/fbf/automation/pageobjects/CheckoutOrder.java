@@ -27,7 +27,7 @@ public class CheckoutOrder extends PageBase {
     WebDriverWait wait;
 
     String userName = getProperties().getProperty("userName");
-    String guestEmail;
+    String guestEmail = "automation" + System.currentTimeMillis() + "@mailinator.com";
 
     By cartnumberLabel = By.xpath("//div[@class='mini-cart-outer']//a[@class='mini-cart']//span");
     By nameTextBox = By.xpath("//input[@id='nameFocus']");
@@ -69,7 +69,6 @@ public class CheckoutOrder extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(nameTextBox));
         driver.findElement(nameTextBox).clear();
         driver.findElement(nameTextBox).sendKeys(userName);
-        guestEmail = "automation" + System.currentTimeMillis() + "@mailinator.com";
         driver.findElement(emailTextBox).sendKeys(guestEmail);
         driver.findElement(mobilenumberTextBox).sendKeys(getProperties().getProperty("guestMobileNumber"));
         driver.findElement(termsandconditionCheckBox).click();
