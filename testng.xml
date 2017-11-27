@@ -22,7 +22,7 @@
              <class name="com.fbf.automation.tests.GuestCreateOwnLargeMealTest"></class>
          </classes>
      </test>-->
-    <!--<test name="VegetarianFavouriteTest">
+   <!-- <test name="VegetarianFavouriteTest">
         <classes>
             <class name="com.fbf.automation.tests.VegetarianFavouriteTest"></class>
         </classes>
