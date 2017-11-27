@@ -151,7 +151,7 @@ public class GuestCreateOwnMealTest {
 
     @Test(description = "Check the Order count in the Cart", priority = 14, dependsOnMethods = "checkItemMultiplySubTotal")
     public void checkOrderCount() {
-        Assert.assertEquals(checkoutOrder.getCartitemCount(), "1");
+        Assert.assertEquals(checkoutOrder.getCartItemCount(), "1");
     }
 
     @Test(description = "Check the Guest Name Label and navigate to Order Page", priority = 15, dependsOnMethods = "checkOrderCount")

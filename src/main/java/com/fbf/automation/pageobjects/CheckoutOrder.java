@@ -27,17 +27,17 @@ public class CheckoutOrder extends PageBase {
     WebDriverWait wait;
 
     String userName = getProperties().getProperty("userName");
-    String guestEmail = "";
+    String guestEmail = "automation" + System.currentTimeMillis() + "@mailinator.com";
 
     By cartnumberLabel = By.xpath("//div[@class='mini-cart-outer']//a[@class='mini-cart']//span");
     By nameTextBox = By.xpath("//input[@id='nameFocus']");
     By emailTextBox = By.xpath("//input[@id='emailFocus']");
-    By mobilenumberTextBox = By.xpath("//input[@id='mobileFocus']");
+    By mobileNumberTextBox = By.xpath("//input[@id='mobileFocus']");
     By termsandconditionCheckBox = By.xpath("//div[@class='form-group terms']//div/label/i");
     By proceedPaymentButton = By.xpath("//div[@class='fbf-form fbf-location-pick']/div[@class='form-group']");
     By braintreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
     By calendarButton = By.xpath("//div[@class='mydp']//div[@class='selectiongroup']");
-    By calendardefaultselectDate = By.xpath("//div[@class='datevalue currmonth highlight']");
+    By calendarDefaultSelectDate = By.xpath("//div[@class='datevalue currmonth highlight']");
     By checkoutLabel = By.xpath("//div[@class='fbf-form fbf-location-pick']/div[1]//label");
     By timeTextBox= By.xpath("//div[@class='select-outer']/select[@name='selectedTime']");
 
@@ -48,7 +48,7 @@ public class CheckoutOrder extends PageBase {
         guestEmail = "automation" + System.currentTimeMillis() + "@mailinator.com";
     }
 
-    public String getCartitemCount() {
+    public String getCartItemCount() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(cartnumberLabel));
         wait.until(ExpectedConditions.elementToBeClickable(cartnumberLabel));
         return driver.findElement(cartnumberLabel).getText();
@@ -63,7 +63,7 @@ public class CheckoutOrder extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(calendarButton));
         wait.until(ExpectedConditions.elementToBeClickable(calendarButton));
         driver.findElement(calendarButton).click();
-        driver.findElement(calendardefaultselectDate).click();
+        driver.findElement(calendarDefaultSelectDate).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(timeTextBox));
 
     }
@@ -74,7 +74,7 @@ public class CheckoutOrder extends PageBase {
         driver.findElement(nameTextBox).clear();
         driver.findElement(nameTextBox).sendKeys(userName);
         driver.findElement(emailTextBox).sendKeys(guestEmail);
-        driver.findElement(mobilenumberTextBox).sendKeys(getProperties().getProperty("guestMobileNumber"));
+        driver.findElement(mobileNumberTextBox).sendKeys(getProperties().getProperty("guestMobileNumber"));
         driver.findElement(termsandconditionCheckBox).click();
         driver.findElement(proceedPaymentButton).click();
         return guestEmail;
@@ -106,7 +106,7 @@ public class CheckoutOrder extends PageBase {
         WebElement UserEmail = getDriver().findElement(emailTextBox);
         UserEmail.clear();
         UserEmail.sendKeys(guestEmail);
-        WebElement UserMobile = getDriver().findElement(mobilenumberTextBox);
+        WebElement UserMobile = getDriver().findElement(mobileNumberTextBox);
         UserMobile.clear();
         UserMobile.sendKeys(getProperties().getProperty("guestMobileNumber"));
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");

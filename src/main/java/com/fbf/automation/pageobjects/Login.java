@@ -123,14 +123,14 @@ public class Login extends PageBase {
 
     }
 
-    public String getusername() {
+    public String getUsername() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_userverify));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_username));
         return getDriver().findElement(lbl_username).getText();
     }
 
 
-    public void InvalidLogin() {
+    public void invalidLogin() {
         WebElement loginEmaElement = getDriver().findElement(txt_useremail);
         loginEmaElement.sendKeys(getProperties().getProperty("invalidloginEmail"));
         WebElement loginpassword = getDriver().findElement(txt_password);
@@ -139,7 +139,7 @@ public class Login extends PageBase {
 
     }
 
-    public String getInvalidLognError() {
+    public String getInvalidLoginError() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_loginerror));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_loginerror));
         return getDriver().findElement(lbl_loginerror).getText();
