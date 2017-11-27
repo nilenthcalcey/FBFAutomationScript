@@ -225,7 +225,7 @@ public class Login extends PageBase {
         getDriver().findElement(submitBtn).click();
     }
 
-    public void checkPasswordChange () {
+  /*  public void checkPasswordChange () {
         String x = this.getLoginText();
         if(x == "LOG IN"){
             createNewOrder.closeCreateNewOrderMenu();
@@ -234,7 +234,7 @@ public class Login extends PageBase {
             expandMenuScreenLogin();
             navigateLoginPage();
         }
-    }
+    }*/
 
     public void reLogin() {
         WebElement loginEmailElement = getDriver().findElement(txt_useremail);

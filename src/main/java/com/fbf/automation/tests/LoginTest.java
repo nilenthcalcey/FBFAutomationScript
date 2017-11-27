@@ -36,28 +36,28 @@ import org.testng.annotations.Test;
         mailClient = new MailClient(driver);
     }
 
-        @Test(description = "Verify Expand the Menu", priority = 0)
-        public void navigateloginpage() {
+    @Test(description = "Verify Expand the Menu", priority = 0)
+    public void navigateloginpage() {
 
-            login.expandMenuScreenLogin();
-            login.navigateLoginPage();
-            Assert.assertEquals(login.getLoginPageTitle(), "LOG IN");
+        login.expandMenuScreenLogin();
+        login.navigateLoginPage();
+        Assert.assertEquals(login.getLoginPageTitle(), "LOG IN");
 
     }
 
+    @Test(description = "User login with Invalid Email", priority = 1)
+    public void invalidloginTest() {
+        login.InvalidLogin();
+        Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
+    }
 
-        @Test(description = "User login Sucessfully", priority = 2)
-        public void sucesslogin() {
+    @Test(description = "User login Sucessfully", priority = 2)
+    public void sucesslogin() {
 
-            login.login();
-            Assert.assertEquals(login.getusername(), "HI, IRESH");
-        }
+        login.login();
+        Assert.assertEquals(login.getusername(), "HI, FBF");
+    }
 
-        @Test(description = "User login withInvalidEmail", priority = 1)
-        public void invalidloginTest() {
-            login.InvalidLogin();
-            Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
-        }
 
     @Test(description = "Check User availability", priority = 3)
     public void userAvailability() {

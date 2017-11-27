@@ -98,7 +98,6 @@ public class GuestCreateOwnMeal extends PageBase {
         proteinPrice = driver.findElement(chickenregularpriceLabel).getText();
         protein = Double.valueOf(driver.findElement(chickenregularpriceLabel).getText().substring(1));
         return proteinPrice;
-
     }
 
     //get the Chicken Calories
@@ -256,7 +255,6 @@ public class GuestCreateOwnMeal extends PageBase {
     }
 
     public String calculateCalories() {
-
         int Total = CarbCal + proteinCal + TenADayCal + DrinkCal;
         return Integer.toString(Total);
     }
