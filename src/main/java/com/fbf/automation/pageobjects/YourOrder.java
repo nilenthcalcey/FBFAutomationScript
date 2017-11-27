@@ -55,10 +55,9 @@ public class YourOrder extends PageBase {
     public String checkGuestNameSelector(Boolean getOrderNowType) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(continueGuestNameRadioButton));
         boolean bgvalue;
-        String guestEmail="";
+        String guestEmail = "";
         bgvalue = driver.findElement(continueGuestNameRadioButton).isSelected();
         if (bgvalue = true) {
-
             // This will select Second radio button, if the first radio button is selected by default
             driver.findElement(continueButton).click();
             //wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
@@ -71,13 +70,11 @@ public class YourOrder extends PageBase {
                 guestEmail = checkoutOrder.addGuestDetails();
             }
         } else {
-
             // If the first radio button is not selected by default, the first will be selected
             System.out.println("Selecting Wrong Radio button");
         }
         return guestEmail;
     }
-
 
 
     public void submitYourOrder() {

@@ -28,7 +28,7 @@ public class Login extends PageBase {
     CommonOperations commonOperations;
     CreateNewOrder createNewOrder;
     OrderSummery orderSummery;
-    String guestEmailAddress ="";
+    String guestEmailAddress = "";
 
 
     By menuBtn = By.xpath("//div[@class='header-col user-col']/a[@class='main-nav-btn']");
@@ -99,7 +99,6 @@ public class Login extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         getDriver().findElement(menuBtn).click();
-
     }
 
     public void navigateLoginPage() {
@@ -120,7 +119,6 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("loginPassword"));
         getDriver().findElement(btn_SignIn).click();
-
     }
 
     public String getUsername() {
@@ -136,7 +134,6 @@ public class Login extends PageBase {
         WebElement loginpassword = getDriver().findElement(txt_password);
         loginpassword.sendKeys(getProperties().getProperty("invalidloginPassword"));
         getDriver().findElement(btn_SignIn).click();
-
     }
 
     public String getInvalidLoginError() {
@@ -181,7 +178,6 @@ public class Login extends PageBase {
         }
     }
 
-
     public String getPasswordFixTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFixTitle));
         wait.until(ExpectedConditions.elementToBeClickable(passwordFixTitle));
@@ -208,17 +204,14 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("resetPassword"));
         getDriver().findElement(btn_SignIn).click();
-
     }
 
-    public void guestUserLogin(){
+    public void guestUserLogin() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
         driver.findElement(txt_useremail).clear();
         driver.findElement(txt_useremail).sendKeys(guestEmailAddress);
         driver.findElement(txt_password).sendKeys(orderSummery.userPassword);
         driver.findElement(btn_SignIn).click();
-
-
     }
 
 }

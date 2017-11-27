@@ -25,7 +25,6 @@ public class MailClient extends PageBase {
     CommonOperations commonOperations;
     CheckoutOrder checkoutOrder;
 
-
     //Mailinator Tags
     By mailText = By.xpath("//div[@class=\"input-group\"]/input");
     By goButton = By.xpath("//div[@class=\"input-group\"]//button");
@@ -38,9 +37,7 @@ public class MailClient extends PageBase {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
-
         this.driver = driver;
-        //driver.get("http://fbf.qa/orders");
     }
 
     public void openNewTab() throws InterruptedException {
@@ -85,7 +82,7 @@ public class MailClient extends PageBase {
         driver.switchTo().window(tabs.get(1));
     }
 
-    public void navigateToConfirmationMailList(){
+    public void navigateToConfirmationMailList() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(mailText));
         wait.until(ExpectedConditions.elementToBeClickable(mailText));
         driver.findElement(mailText).sendKeys(checkoutOrder.guestEmail);
