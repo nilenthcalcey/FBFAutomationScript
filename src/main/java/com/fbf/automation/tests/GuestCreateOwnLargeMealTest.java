@@ -63,7 +63,6 @@ public class GuestCreateOwnLargeMealTest {
     @Test(description = "Verify Navigate Create New Page", priority = 2)
     public void NavigateToLargeProteinPage()
    {
-
        guestCreateOwnLargeMeal.NavigateToLargeProteinPage();
        Assert.assertEquals(guestCreateOwnLargeMeal.getProteinLabel().substring(6),"Large");
    }
@@ -97,7 +96,6 @@ public class GuestCreateOwnLargeMealTest {
     @Test(description = "Verify Navigate to Large Ten A Day Iems List", priority = 6)
     public  void navigateLargeTenADay()
     {
-
         guestCreateOwnLargeMeal.navigateToLargeTenADay();
         Assert.assertEquals(guestCreateOwnLargeMeal.getTenADayLabel().substring(6),"Large");
     }
@@ -115,7 +113,6 @@ public class GuestCreateOwnLargeMealTest {
     @Test(description = "Verify Navigate to Large Drinks Items List", priority = 8)
     public  void navigateLargeDrinks()
     {
-
         guestCreateOwnLargeMeal.navigateToLargeDrinks();
         Assert.assertEquals(guestCreateOwnLargeMeal.getDrinksLabel().substring(6),"250ml");
     }
@@ -146,7 +143,6 @@ public class GuestCreateOwnLargeMealTest {
     @Test(description = "Verify Total Calory value of platter", priority = 12)
     public void NavigateToSaveName()
     {
-
         guestCreateOwnMeal.scrollingToBottomofAPage();
         guestCreateOwnLargeMeal.navigateToSaveMealPage();
         Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(),"WHO IS THIS MEAL FOR?");
@@ -156,8 +152,6 @@ public class GuestCreateOwnLargeMealTest {
     @Test(description = "Verify Enter The Meal Name ", priority = 13)
     public void SaveName()
     {
-
-
         guestCreateOwnLargeMeal.saveName();
         Assert.assertEquals(addGuestName.navigateToYourOrderPage(),"GUEST NAME");
     }
@@ -168,7 +162,6 @@ public class GuestCreateOwnLargeMealTest {
         yourOrder.TypePostalCard();
         yourOrder.TypeStreetAddress();
         yourOrder.getPostalCodeNotification();
-
         //scroll down the page
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
         yourOrder.checkLargeGuestNameSelector();
@@ -198,8 +191,7 @@ public class GuestCreateOwnLargeMealTest {
    @AfterSuite
     public void TearDown()
    {
-
-        driver.close();
+       driver.close();
    }
 
 

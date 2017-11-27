@@ -296,8 +296,6 @@ public class GuestCreateOwnLargeMeal extends PageBase {
 
     public String CalculateTotalprice() {
         RoundUPTotal = this.LargeProteinPrice + this.LargeCabsPrice + this.LargeTenADayPrice + this.LargeDrinkPrice;
-        // TotalItemsPrice = (double)Math.round((RoundUPTotal*100)/100);
-        //  TotalItemsPrice = (double)Math.round((RoundUPTotal*100)/100);
         String finalanswer = (String.format("%.2f", RoundUPTotal)).trim();
         return finalanswer;
 
@@ -316,7 +314,6 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(lbl_ItemTotal));
         TotalText = (driver.findElement(lbl_ItemTotal).getText()).substring(1, 6);
         Total = (Double.parseDouble(TotalText));
-        //Total = (double)Math.round((RoundUPTotal*1000)/1000);
         return String.valueOf(Total);
     }
 
@@ -341,10 +338,7 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         getDriver().findElement(btn_SaveName).click();
     }
 
-    public  void EnterDeliverifyDetails()
-    {
 
-    }
 
 
 }
