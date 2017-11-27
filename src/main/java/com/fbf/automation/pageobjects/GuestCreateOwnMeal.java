@@ -63,9 +63,7 @@ public class GuestCreateOwnMeal extends PageBase {
         this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
-
     }
-
 
     public void navigateToCreateNewPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(createyourownmealBtn));
@@ -73,23 +71,17 @@ public class GuestCreateOwnMeal extends PageBase {
 
         //click order later radio button
         bvalue = driver.findElement(orderfornowradioButton).isSelected();
-        if (bvalue = true) {
-
+        if (bvalue == true) {
             String now;
             // This will select Second radio button, if the first radio button is selected by default
             driver.findElement(createyourownmealBtn).click();
 
         } else {
-
             // If the first radio button is not selected by default, the first will be selected
             String later;
             System.out.println("Click the  order Later Button");
-            //driver.findElement(oderlaterradioButton).click();
             driver.findElement(createyourownmealBtn).click();
         }
-
-//        driver.findElement(oderlaterradioButton).click();
-//        driver.findElement(createyourownmealBtn).click();
     }
 
     public Boolean getOrderNowType() {
@@ -98,11 +90,9 @@ public class GuestCreateOwnMeal extends PageBase {
 
 
     public String getCreateNewPageLabel() {
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(proteinLbl));
         wait.until(ExpectedConditions.elementToBeClickable(proteinLbl));
         return driver.findElement(proteinLbl).getText();
-
     }
 
     public void navigateToProteinPage() {
@@ -117,7 +107,6 @@ public class GuestCreateOwnMeal extends PageBase {
         proteinPrice = driver.findElement(chickenregularpriceLabel).getText();
         protein = Double.valueOf(driver.findElement(chickenregularpriceLabel).getText().substring(1));
         return proteinPrice;
-
     }
 
     //get the Chicken Calories
@@ -127,9 +116,7 @@ public class GuestCreateOwnMeal extends PageBase {
         proteincaloriescount = driver.findElement(proteincalories).getText();
         proteinCal = Integer.valueOf(driver.findElement(proteincalories).getText().substring(9));
         return proteincaloriescount;
-
     }
-
 
     public void selectProtein() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(selectchickenBtn));
@@ -141,23 +128,19 @@ public class GuestCreateOwnMeal extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(regularchickenLabel));
         wait.until(ExpectedConditions.elementToBeClickable(regularchickenLabel));
         return driver.findElement(totalpriceLabel).getText();
-
     }
 
     //Calories total count
-
     public String navigateToSelectedItemPageAndCaloriesCount() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(regularchickenLabel));
         wait.until(ExpectedConditions.elementToBeClickable(regularchickenLabel));
         return driver.findElement(caloriescountLabel).getText();
-
     }
 
     public String getWhoIsThisMealForLabel() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(whoisthismealforLabel));
         wait.until(ExpectedConditions.elementToBeClickable(whoisthismealforLabel));
         return driver.findElement(whoisthismealforLabel).getText();
-
     }
 
     public void navigateToCarbPage() {
@@ -171,9 +154,7 @@ public class GuestCreateOwnMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(cassavaregularpriceLabel));
         carbPrice = driver.findElement(cassavaregularpriceLabel).getText();
         carb = Double.valueOf(driver.findElement(cassavaregularpriceLabel).getText().substring(1));
-
         return carbPrice;
-
     }
 
     //carb calories count is cassava
@@ -183,7 +164,6 @@ public class GuestCreateOwnMeal extends PageBase {
         carbcaloriesCount = driver.findElement(carbcaloriesLabel).getText();
         CarbCal = Integer.valueOf(driver.findElement(carbcaloriesLabel).getText().substring(9));
         return carbcaloriesCount;
-
     }
 
     public void selectRegularCarb() {
@@ -193,12 +173,10 @@ public class GuestCreateOwnMeal extends PageBase {
     }
 
     //click the Ten a Day Box
-
     public void navigateToTenADayPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(tenadayLabel));
         wait.until(ExpectedConditions.elementToBeClickable(tenadayLabel));
         driver.findElement(tenadayLabel).click();
-
     }
 
     public String getTenADayPriceLabel() {
@@ -206,9 +184,7 @@ public class GuestCreateOwnMeal extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(regularkiwiavacadocucumberpriceLabel));
         tenadayPrice = driver.findElement(regularkiwiavacadocucumberpriceLabel).getText();
         tenADay = Double.valueOf(driver.findElement(regularkiwiavacadocucumberpriceLabel).getText().substring(1));
-
         return tenadayPrice;
-
     }
 
     //Ten a Day calorie count kiwi,Avacado&Cucumber
@@ -227,7 +203,6 @@ public class GuestCreateOwnMeal extends PageBase {
     }
 
     //click Drink Box
-
     public void navigateToDrinkPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(drinkLabel));
         wait.until(ExpectedConditions.elementToBeClickable(drinkLabel));

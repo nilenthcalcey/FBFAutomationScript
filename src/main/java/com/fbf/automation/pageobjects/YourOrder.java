@@ -18,125 +18,108 @@ public class YourOrder extends PageBase {
     String streetAddress = "Stewart House,32 Russell Square,London";
     CheckoutOrder checkoutOrder;
 
-    By subtotalpriceLabel = By.xpath("//div[@class='order-button-container item-has-selected']/div[1]//span[2]");
-    By continueguestnameradioButton = By.xpath("//div[@class='cart-guest-options']//label[3]//i[@class='radio-placeholder']");
+
+    By subTotalPriceLabel = By.xpath("//div[@class='order-button-container item-has-selected']/div[1]//span[2]");
+    By continueGuestNameRadioButton = By.xpath("//div[@class='cart-guest-options']//label[3]//i[@class='radio-placeholder']");
     By continueButton = By.xpath("//button[@class='btn btn-primary btn-block']");
-    By checkorderLabel = By.xpath("//label[contains(.,' Please let us know your name, email to send you an eco-friendly receipt, and mobile number, to let you know your order status')]");
-    By mealaddlusButton = By.xpath("//div[@class='ordered-items']/div[1]//div[@class='increase-items']/button[2]/i");
-    By multipleaddnumbersLabel = By.xpath("//div[@class='order-item-box select-item zig-zag-top summary-item']/div[3]//span");
-    By enterpostalcodeinputTextBox = By.xpath("//input[@name='postalCode']");
-    By entersreetdetailsTextBox = By.xpath("//input[contains(@name,'streetDetails')]");
-    By postalcodenotificationLabel = By.xpath("//div[@class='form-group']/div/span");
-    By baintreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
+    By checkOrderLabel = By.xpath("//label[contains(.,' Please let us know your name, email to send you an eco-friendly receipt, and mobile number, to let you know your order status')]");
+    By mealAddButton = By.xpath("//div[@class='ordered-items']/div[1]//div[@class='increase-items']/button[2]/i");
+    By multipleAddNumbersLabel = By.xpath("//div[@class='order-item-box select-item zig-zag-top summary-item']/div[3]//span");
+    By enterPostalCodeInputTextBox = By.xpath("//input[@name='postalCode']");
+    By enterStreetDetailsTextBox = By.xpath("//input[contains(@name,'streetDetails')]");
+    By postalCodeNotificationLabel = By.xpath("//div[@class='form-group']/div/span");
+    By brainTreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
+
+    //String guestEmail="";
 
     public YourOrder(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.driver = driver;
         checkoutOrder = new CheckoutOrder(driver);
-//        guestCreateOwnMeal = new GuestCreateOwnMeal(driver);
 
     }
 
     public String getSubtotal() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(subtotalpriceLabel));
-        subtotal = driver.findElement(subtotalpriceLabel).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(subTotalPriceLabel));
+        subtotal = driver.findElement(subTotalPriceLabel).getText();
         return subtotal;
     }
 
     public void addtheMealsCount() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(mealaddlusButton));
-        wait.until(ExpectedConditions.elementToBeClickable(mealaddlusButton));
-        driver.findElement(mealaddlusButton).click();
-
+        wait.until(ExpectedConditions.visibilityOfElementLocated(mealAddButton));
+        wait.until(ExpectedConditions.elementToBeClickable(mealAddButton));
+        driver.findElement(mealAddButton).click();
     }
 
     public String checkGuestNameSelector(Boolean getOrderNowType) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(continueguestnameradioButton));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(continueGuestNameRadioButton));
         boolean bgvalue;
-
-        bgvalue = driver.findElement(continueguestnameradioButton).isSelected();
+        String guestEmail = "";
+        bgvalue = driver.findElement(continueGuestNameRadioButton).isSelected();
         if (bgvalue = true) {
-
             // This will select Second radio button, if the first radio button is selected by default
             driver.findElement(continueButton).click();
             //wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
             if (getOrderNowType == true) {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
-                checkoutOrder.addGuestDetails();
-
+                wait.until(ExpectedConditions.visibilityOfElementLocated(checkOrderLabel));
+                guestEmail = checkoutOrder.addGuestDetails();
             } else {
-
                 checkoutOrder.selectDefaultSelectedDate();
                 ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-                checkoutOrder.addGuestDetails();
-
+                guestEmail = checkoutOrder.addGuestDetails();
             }
         } else {
-
             // If the first radio button is not selected by default, the first will be selected
             System.out.println("Selecting Wrong Radio button");
         }
-        wait.until(ExpectedConditions.visibilityOfElementLocated(baintreeLabel));
-        return driver.findElement(baintreeLabel).getText();
-
-
+        return guestEmail;
     }
 
-    public String TypePostalCard() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(enterpostalcodeinputTextBox));
-        wait.until(ExpectedConditions.elementToBeClickable(enterpostalcodeinputTextBox));
-        driver.findElement(enterpostalcodeinputTextBox).sendKeys(postalCode);
+
+    public void submitYourOrder() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(continueButton));
+        wait.until(ExpectedConditions.elementToBeClickable(continueButton));
+        driver.findElement(continueButton).click();
+    }
+
+    public String getBrainTreeLabel() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(brainTreeLabel));
+        return driver.findElement(brainTreeLabel).getText();
+    }
+
+    public String typePostalCard() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(enterPostalCodeInputTextBox));
+        wait.until(ExpectedConditions.elementToBeClickable(enterPostalCodeInputTextBox));
+        driver.findElement(enterPostalCodeInputTextBox).sendKeys(postalCode);
         return postalCode;
-
     }
 
-    public String TypeStreetAddress() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(entersreetdetailsTextBox));
-        wait.until(ExpectedConditions.elementToBeClickable(entersreetdetailsTextBox));
-        driver.findElement(entersreetdetailsTextBox).sendKeys(streetAddress);
+    public String typeStreetAddress() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(enterStreetDetailsTextBox));
+        wait.until(ExpectedConditions.elementToBeClickable(enterStreetDetailsTextBox));
+        driver.findElement(enterStreetDetailsTextBox).sendKeys(streetAddress);
         return streetAddress;
     }
 
     public String getPostalCodeNotification() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(postalcodenotificationLabel));
-        return driver.findElement(postalcodenotificationLabel).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(postalCodeNotificationLabel));
+        return driver.findElement(postalCodeNotificationLabel).getText();
     }
 
-    public String navigatetoCheckOrderPage(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
-        return driver.findElement(checkorderLabel).getText();
+    public String navigatetoCheckOrderPage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(checkOrderLabel));
+        return driver.findElement(checkOrderLabel).getText();
     }
 
     public String getMultiplier() {
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(multipleaddnumbersLabel));
-        multiplierNumber = driver.findElement(multipleaddnumbersLabel).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(multipleAddNumbersLabel));
+        multiplierNumber = driver.findElement(multipleAddNumbersLabel).getText();
         return multiplierNumber;
     }
 
-
     public String getTotal() {
-
         return this.subtotal;
-    }
-
-    public void checkLargeGuestNameSelector(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(continueguestnameradioButton));
-        boolean bvalue = false;
-
-        bvalue = driver.findElement(continueguestnameradioButton).isSelected();
-        if(bvalue = true){
-
-            // This will select Second radio button, if the first radio button is selected by default
-            driver.findElement(continueButton).click();
-
-        }else {
-
-            // If the first radio button is not selected by default, the first will be selected
-            System.out.println("Selecting Wrong Radio button");
-        }
-
     }
 
 

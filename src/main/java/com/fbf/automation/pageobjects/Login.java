@@ -27,6 +27,9 @@ public class Login extends PageBase {
     Properties properties;
     CommonOperations commonOperations;
     CreateNewOrder createNewOrder;
+    OrderSummery orderSummery;
+    String guestEmailAddress = "";
+
 
     By menuBtn = By.xpath("//div[@class='header-col user-col']/a[@class='main-nav-btn']");
     By loginbtn = By.xpath("//div[@class ='main-toggle-menu-container active']//a[contains(.,'LOG IN')]");
@@ -96,7 +99,6 @@ public class Login extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         getDriver().findElement(menuBtn).click();
-
     }
 
     public void navigateLoginPage() {
@@ -117,26 +119,24 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("loginPassword"));
         getDriver().findElement(btn_SignIn).click();
-
     }
 
-    public String getusername() {
+    public String getUsername() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_userverify));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_username));
         return getDriver().findElement(lbl_username).getText();
     }
 
 
-    public void InvalidLogin() {
+    public void invalidLogin() {
         WebElement loginEmaElement = getDriver().findElement(txt_useremail);
         loginEmaElement.sendKeys(getProperties().getProperty("invalidloginEmail"));
         WebElement loginpassword = getDriver().findElement(txt_password);
         loginpassword.sendKeys(getProperties().getProperty("invalidloginPassword"));
         getDriver().findElement(btn_SignIn).click();
-
     }
 
-    public String getInvalidLognError() {
+    public String getInvalidLoginError() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_loginerror));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_loginerror));
         return getDriver().findElement(lbl_loginerror).getText();
@@ -178,7 +178,6 @@ public class Login extends PageBase {
         }
     }
 
-
     public String getPasswordFixTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFixTitle));
         wait.until(ExpectedConditions.elementToBeClickable(passwordFixTitle));
@@ -186,8 +185,6 @@ public class Login extends PageBase {
     }
 
     public void resetNewPassword() throws InterruptedException {
-        /*wait.until(ExpectedConditions.visibilityOfElementLocated(newPasswordTxt));
-        wait.until(ExpectedConditions.elementToBeClickable(newPasswordTxt));*/
         WebElement resetPwElement = getDriver().findElement(newPasswordTxt);
         resetPwElement.clear();
         resetPwElement.sendKeys(getProperties().getProperty("resetPassword"));
@@ -207,7 +204,14 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("resetPassword"));
         getDriver().findElement(btn_SignIn).click();
+    }
 
+    public void guestUserLogin() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
+        driver.findElement(txt_useremail).clear();
+        driver.findElement(txt_useremail).sendKeys(guestEmailAddress);
+        driver.findElement(txt_password).sendKeys(orderSummery.userPassword);
+        driver.findElement(btn_SignIn).click();
     }
 
 }

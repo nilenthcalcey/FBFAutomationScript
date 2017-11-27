@@ -31,8 +31,7 @@ public class GuestCreateOwnLargeMealTest {
     String pageTitle = "Firebrand Fresh";
 
     @BeforeSuite
-    public void SetUp()
-    {
+    public void setUp() {
 
         driver = DriverFactory.getDriver();
         guestCreateOwnLargeMeal = new GuestCreateOwnLargeMeal(driver);
@@ -46,153 +45,135 @@ public class GuestCreateOwnLargeMealTest {
     }
 
     @Test(description = "Verify Home page loaded", priority = 0)
-    public void verifyPageElements()
-    {
+    public void verifyPageElements() {
         String errorMessage = "Home page title not valid.";
         Assert.assertEquals(homepage.getHomePageTitle(), pageTitle, errorMessage);
     }
 
     @Test(description = "Verify Navigate Create New Page", priority = 1)
-    public void NavigateToCreateOrderPage()
-    {
+    public void navigateToCreateOrderPage() {
         guestCreateOwnLargeMeal.navigateToCreateNewPage();
         Assert.assertEquals(guestCreateOwnMeal.getCreateNewPageLabel(), "PROTEIN");
     }
 
 
     @Test(description = "Verify Navigate Create New Page", priority = 2)
-    public void NavigateToLargeProteinPage()
-   {
-       guestCreateOwnLargeMeal.NavigateToLargeProteinPage();
-       Assert.assertEquals(guestCreateOwnLargeMeal.getProteinLabel().substring(6),"Large");
-   }
+    public void navigateToLargeProteinPage() {
+        guestCreateOwnLargeMeal.NavigateToLargeProteinPage();
+        Assert.assertEquals(guestCreateOwnLargeMeal.getProteinLabel().substring(6), "Large");
+    }
 
 
     @Test(description = "Verify add a Large Protein Item into the Platter", priority = 3)
-    public  void selectLargeProtein()
-    {
-        guestCreateOwnLargeMeal.SelectLargeProteinItem();
-        guestCreateOwnLargeMeal.getLargeProteinCalory();
-        Assert.assertEquals(guestCreateOwnLargeMeal.getChickenLabel(),"CHICKEN | LARGE");
+    public void selectLargeProtein() {
+        guestCreateOwnLargeMeal.selectLargeProteinItem();
+        guestCreateOwnLargeMeal.getLargeProteinCalories();
+        Assert.assertEquals(guestCreateOwnLargeMeal.getChickenLabel(), "CHICKEN | LARGE");
 
     }
 
     @Test(description = "Verify Navigate to Large Carbs Page", priority = 4)
-    public void NavigateToLargeCarbPage()
-    {
+    public void navigateToLargeCarbPage() {
         guestCreateOwnLargeMeal.navigateToLargeCarb();
-        Assert.assertEquals(guestCreateOwnLargeMeal.getCrabsLable().substring(6),"Large");
+        Assert.assertEquals(guestCreateOwnLargeMeal.getCarbsLable().substring(6), "Large");
     }
 
 
     @Test(description = "Verify add to Large Carbs item for platter", priority = 5)
-    public void selectLargeCarbItem()
-    {
-        guestCreateOwnLargeMeal.SelectLargeCarbItem();
+    public void selectLargeCarbItem() {
+        guestCreateOwnLargeMeal.selectLargeCarbItem();
         guestCreateOwnLargeMeal.getLargeCarbCalory();
-        Assert.assertEquals(guestCreateOwnLargeMeal.getCarbText(),"CASSAVA | LARGE");
+        Assert.assertEquals(guestCreateOwnLargeMeal.getCarbText(), "CASSAVA | LARGE");
     }
 
     @Test(description = "Verify Navigate to Large Ten A Day Iems List", priority = 6)
-    public  void navigateLargeTenADay()
-    {
+    public void navigateLargeTenADay() {
+
         guestCreateOwnLargeMeal.navigateToLargeTenADay();
-        Assert.assertEquals(guestCreateOwnLargeMeal.getTenADayLabel().substring(6),"Large");
+        Assert.assertEquals(guestCreateOwnLargeMeal.getTenADayLabel().substring(6), "Large");
     }
 
     @Test(description = "Verify add to Large Ten A Day item for platter", priority = 7)
-    public void selectLargeTenADay()
-    {
-        guestCreateOwnLargeMeal.SelectLargeTenADay();
+    public void selectLargeTenADay() {
+        guestCreateOwnLargeMeal.selectLargeTenADay();
         guestCreateOwnLargeMeal.getLargeTenADayCalory();
-        Assert.assertEquals(guestCreateOwnLargeMeal.getTenADayText(),"KIWI, AVOCADO & CUCUMBER | LARGE");
+        Assert.assertEquals(guestCreateOwnLargeMeal.getTenADayText(), "KIWI, AVOCADO & CUCUMBER | LARGE");
     }
-
 
 
     @Test(description = "Verify Navigate to Large Drinks Items List", priority = 8)
-    public  void navigateLargeDrinks()
-    {
+    public void navigateLargeDrinks() {
+
         guestCreateOwnLargeMeal.navigateToLargeDrinks();
-        Assert.assertEquals(guestCreateOwnLargeMeal.getDrinksLabel().substring(6),"250ml");
+        Assert.assertEquals(guestCreateOwnLargeMeal.getDrinksLabel().substring(6), "250ml");
     }
 
-    @Test(description = "Verify add to Large Drink ittem for platter", priority = 9)
-    public void selectLargeDrinks()
-    {
-        guestCreateOwnLargeMeal.SelectDrinks();
-        guestCreateOwnLargeMeal.getDrinkCalory();
-        Assert.assertEquals(guestCreateOwnLargeMeal.getDrinksText(),"AVOCADO MILKSHAKE | 250ML");
+    @Test(description = "Verify add to Large Drink item for platter", priority = 9)
+    public void selectLargeDrinks() {
+        guestCreateOwnLargeMeal.selectDrinks();
+        guestCreateOwnLargeMeal.getDrinkCalories();
+        Assert.assertEquals(guestCreateOwnLargeMeal.getDrinksText(), "AVOCADO MILKSHAKE | 250ML");
     }
 
     @Test(description = "Verify Total price value of platter", priority = 10)
-    public void CalculateTotalPrice()
-    {
-        guestCreateOwnLargeMeal.CalculateTotalprice();
-        Assert.assertEquals(guestCreateOwnLargeMeal.CalculateTotalprice(),guestCreateOwnLargeMeal.getItemsTotal());
+    public void calculateTotalPrice() {
+        guestCreateOwnLargeMeal.calculateTotalprice();
+        Assert.assertEquals(guestCreateOwnLargeMeal.calculateTotalprice(), guestCreateOwnLargeMeal.getItemsTotal());
 
     }
-    @Test(description = "Verify Total Calory value of platter", priority = 11)
-    public void CalculateTotalCalory()
-    {
 
-        guestCreateOwnLargeMeal.CalculateTotalCalory();
-        Assert.assertEquals(guestCreateOwnLargeMeal.CalculateTotalCalory(),guestCreateOwnLargeMeal.getItemsCaloryTotal());
+    @Test(description = "Verify Total Calory value of platter", priority = 11)
+    public void calculateTotalCalories() {
+        guestCreateOwnLargeMeal.calculateTotalCalories();
+        Assert.assertEquals(guestCreateOwnLargeMeal.calculateTotalCalories(), guestCreateOwnLargeMeal.getItemsCaloryTotal());
     }
 
     @Test(description = "Verify Total Calory value of platter", priority = 12)
-    public void NavigateToSaveName()
-    {
+    public void navigateToSaveName() {
         guestCreateOwnMeal.scrollingToBottomofAPage();
         guestCreateOwnLargeMeal.navigateToSaveMealPage();
-        Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(),"WHO IS THIS MEAL FOR?");
-
+        Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(), "WHO IS THIS MEAL FOR?");
     }
 
     @Test(description = "Verify Enter The Meal Name ", priority = 13)
-    public void SaveName()
-    {
+    public void saveName() {
         guestCreateOwnLargeMeal.saveName();
-        Assert.assertEquals(addGuestName.navigateToYourOrderPage(),"GUEST NAME");
+        Assert.assertEquals(addGuestName.navigateToYourOrderPage(), "GUEST NAME");
     }
 
     @Test(description = "Verify User enter delivery details", priority = 14)
-    public void EnterDeliveryDetails()
-    {
-        yourOrder.TypePostalCard();
-        yourOrder.TypeStreetAddress();
+    public void enterDeliveryDetails() {
+        yourOrder.typePostalCard();
+        yourOrder.typeStreetAddress();
         yourOrder.getPostalCodeNotification();
         //scroll down the page
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        yourOrder.checkLargeGuestNameSelector();
-        Assert.assertEquals(yourOrder.navigatetoCheckOrderPage(),"Please let us know your name, email to send you an eco-friendly receipt, and mobile number, to let you know your order status");
+        yourOrder.submitYourOrder();
+        Assert.assertEquals(yourOrder.navigatetoCheckOrderPage(), "Please let us know your name, email to send you an eco-friendly receipt, and mobile number, to let you know your order status");
     }
-
 
 
     @Test(description = "Verify enter User details and redirect to the Card Page", priority = 15)
-    public void EnterUserDetails()
-    {
-        checkoutOrder.EnterLargeUserDetails();
-        Assert.assertEquals(checkoutOrder.navigateToPaymentCardPage(),"Pay with card");
-    }
+    public void enterUserDetails() {
 
+        checkoutOrder.selectDefaultSelectedDate();
+        checkoutOrder.enterLargeUserDetails();
+        Assert.assertEquals(checkoutOrder.navigateToPaymentCardPage(), "Pay with card");
+    }
 
 
     @Test(description = "Verify enter User Card details and redirect to the Order Confirmation Page", priority = 16)
-    public void EnterCardDetails()
-    {
+    public void enterCardDetails() {
         cardPayment.addCardDetails();
         cardPayment.clickPaymentProceedButton();
-        Assert.assertEquals(orderSummery.getUserName(),checkoutOrder.getLargeUserName());
+        Assert.assertEquals(orderSummery.getUserName(), checkoutOrder.getLargeUserName());
     }
 
+    @AfterSuite
+    public void tearDown() {
 
-   @AfterSuite
-    public void TearDown()
-   {
-       driver.close();
-   }
+        driver.close();
+    }
 
 
 }

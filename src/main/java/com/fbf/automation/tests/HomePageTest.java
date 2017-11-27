@@ -31,7 +31,7 @@ public class HomePageTest {
     String pageTitle = "Firebrand Fresh";
 
     @BeforeSuite
-    public void SetUp() {
+    public void setUp() {
         driver = DriverFactory.getDriver();
         homePage = new HomePage(driver);
         firebrandQuiz = new FirebrandQuiz(driver);
@@ -51,7 +51,7 @@ public class HomePageTest {
     }
 
     @Test(description = "Expand the Menu Screen", priority = 1)
-    public void exapandTheMenuScreen() {
+    public void expandTheMenuScreen() {
         homePage.expandMenuScreen();
         Assert.assertEquals(homePage.getMenuScreenDetails(), "CREATE NEW ORDER");
     }
@@ -187,7 +187,7 @@ public class HomePageTest {
 
     @Test(description = "Test Quiz Facts Text Color", priority = 25)
     public void testQuizFactsTextColor() {
-        contactUs.exapandMenuScreenContUsScreen();
+        contactUs.expandMenuScreenContUsScreen();
         Assert.assertEquals(faqPage.getQuizFactsTextColor(), "rgba(239, 65, 54, 1)");
     }
 
@@ -264,18 +264,6 @@ public class HomePageTest {
         driver.close();
         driver.quit();
     }
-
-//    @Test(description = "Navigate to Login page", priority = 1)
-//    public void navigateToLoginPage() {
-//        orderDetails.navigateToLoginPage();
-//        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
-//    }
-//
-//    @Test(description = "Navigate to Registration page", priority = 2)
-//    public void navigateToRegistrationPage() {
-//        orderDetails.navigateToLoginPage();
-//        Assert.assertEquals(orderDetails.getLoginPageHeader(),"LOG IN");
-//    }
 
 }
 

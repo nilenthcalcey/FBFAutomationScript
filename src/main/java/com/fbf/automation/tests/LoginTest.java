@@ -26,7 +26,7 @@ public class LoginTest {
 
 
     @BeforeSuite
-    public void SetUp() {
+    public void setUp() {
         driver = DriverFactory.getDriver();
         login = new Login(driver);
         homepage = new HomePage(driver);
@@ -41,15 +41,15 @@ public class LoginTest {
     }
 
     @Test(description = "User login Sucessfully", priority = 2)
-    public void sucesslogin() {
+    public void successLogin() {
         login.login();
-        Assert.assertEquals(login.getusername(), "HI, FBF");
+        Assert.assertEquals(login.getUsername(), "HI, FBF");
     }
 
     @Test(description = "User login withInvalidEmail", priority = 1)
-    public void invalidloginTest() {
-        login.InvalidLogin();
-        Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
+    public void invalidLoginTest() {
+        login.invalidLogin();
+        Assert.assertEquals(login.getInvalidLoginError(), "Username or password is incorrect");
     }
 
     @Test(description = "Check User availability", priority = 3)
@@ -81,7 +81,7 @@ public class LoginTest {
         mailClient.openNewTab();
         mailClient.navigateToMailList();
         mailClient.latestMailAvailability();
-        Assert.assertEquals(mailClient.getResetEmaiTitle(), "Reset Password");
+        Assert.assertEquals(mailClient.getResetEmailTitle(), "Reset Password");
     }
 
     @Test(description = "User Navigate to Password Fixing Page", priority = 8, dependsOnMethods = "pwResetEmaiAvailability")
@@ -94,11 +94,11 @@ public class LoginTest {
     public void submitNewPassword() throws InterruptedException {
         login.resetNewPassword();
         login.reLogin();
-        Assert.assertEquals(login.getusername(), "HI, FBF");
+        Assert.assertEquals(login.getUsername(), "HI, FBF");
     }
 
     @AfterSuite
-    public void TearDown() {
+    public void tearDown() {
         driver.close();
         driver.quit();
     }

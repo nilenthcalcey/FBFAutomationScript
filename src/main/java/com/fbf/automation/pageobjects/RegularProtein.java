@@ -26,17 +26,4 @@ public class RegularProtein extends PageBase {
         this.driver = driver;
     }
 
-//    public void selectRegularChickenInProteinPage(){
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(selectchickenBtn));
-//        wait.until(ExpectedConditions.elementToBeClickable(selectchickenBtn));
-//        driver.findElement(selectchickenBtn);
-//    }
-
-//    public String navigateToSelectedItemPage(){
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(regularchickenLabel));
-//        wait.until(ExpectedConditions.elementToBeClickable(regularchickenLabel));
-//        //now only check the Price check the calorie count also
-//        return driver.findElement(totalpriceLabel).getText();
-//
-//    }
 }

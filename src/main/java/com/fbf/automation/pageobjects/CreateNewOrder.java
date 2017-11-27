@@ -34,13 +34,13 @@ public class CreateNewOrder extends PageBase {
         this.driver = driver;
     }
 
-    public void expandCreateNewOrderMenu(){
+    public void expandCreateNewOrderMenu() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();
     }
 
-    public void closeCreateNewOrderMenu(){
+    public void closeCreateNewOrderMenu() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtnActive));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtnActive));
        /* WebElement element = driver.findElement(menuBtnActive);
@@ -49,25 +49,9 @@ public class CreateNewOrder extends PageBase {
         driver.findElement(menuBtnActive).click();
     }
 
-    public String getCreateNewOrderLabel(){
+    public String getCreateNewOrderLabel() {
         return driver.findElement(createNewOrderLabel).getText();
     }
-
-
-
-
-
-    /*public void navigateToFirebrandQuiz(){
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(firebrandQuizMenuBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(firebrandQuizMenuBtn));
-        driver.findElement(firebrandQuizMenuBtn).click();
-    }
-
-    public String getFirebrandQuizPageHeader(){
-        return driver.findElement(firebrandQuizPageHeader).getText();
-    }
-*/
 
 
 }

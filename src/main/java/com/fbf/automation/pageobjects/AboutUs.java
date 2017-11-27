@@ -28,23 +28,22 @@ public class AboutUs extends PageBase {
         //driver.get("http://fbf.qa/orders");
     }
 
-    public void expandAboutUsMenu(){
+    public void expandAboutUsMenu() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();
     }
 
-    public void navigateToFaq(){
+    public void navigateToFaq() {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(faqMenuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(faqMenuBtn));
         WebElement element = driver.findElement(faqMenuBtn);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
-        //driver.findElement(faqMenuBtn).click();
     }
 
-    public String getFaqPageHeader(){
+    public String getFaqPageHeader() {
         return driver.findElement(faqPageHeader).getText();
     }
 
