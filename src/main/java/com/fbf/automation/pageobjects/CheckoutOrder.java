@@ -27,7 +27,7 @@ public class CheckoutOrder extends PageBase {
     WebDriverWait wait;
 
     String userName = getProperties().getProperty("userName");
-    String guestEmail = "automation" + System.currentTimeMillis() + "@mailinator.com";
+    String guestEmail = "";
 
     By cartnumberLabel = By.xpath("//div[@class='mini-cart-outer']//a[@class='mini-cart']//span");
     By nameTextBox = By.xpath("//input[@id='nameFocus']");
@@ -39,11 +39,13 @@ public class CheckoutOrder extends PageBase {
     By calendarButton = By.xpath("//div[@class='mydp']//div[@class='selectiongroup']");
     By calendardefaultselectDate = By.xpath("//div[@class='datevalue currmonth highlight']");
     By checkoutLabel = By.xpath("//div[@class='fbf-form fbf-location-pick']/div[1]//label");
+    By timeTextBox= By.xpath("//div[@class='select-outer']/select[@name='selectedTime']");
 
     public CheckoutOrder(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.driver = driver;
+        guestEmail = "automation" + System.currentTimeMillis() + "@mailinator.com";
     }
 
     public String getCartitemCount() {
@@ -62,6 +64,8 @@ public class CheckoutOrder extends PageBase {
         wait.until(ExpectedConditions.elementToBeClickable(calendarButton));
         driver.findElement(calendarButton).click();
         driver.findElement(calendardefaultselectDate).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(timeTextBox));
+
     }
 
     public String addGuestDetails() {

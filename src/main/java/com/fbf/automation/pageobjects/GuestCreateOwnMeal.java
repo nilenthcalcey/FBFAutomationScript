@@ -73,7 +73,7 @@ public class GuestCreateOwnMeal extends PageBase {
 
         //click order later radio button
         bvalue = driver.findElement(orderfornowradioButton).isSelected();
-        if (bvalue = true) {
+        if (bvalue == true) {
 
             String now;
             // This will select Second radio button, if the first radio button is selected by default

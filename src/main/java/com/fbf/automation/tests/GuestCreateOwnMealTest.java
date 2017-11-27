@@ -39,6 +39,7 @@ public class GuestCreateOwnMealTest {
 
 
     String pageTitle = "Firebrand Fresh";
+    String guestEmailAddress ="";
 
     @BeforeSuite
     public void setUp() {
@@ -160,7 +161,8 @@ public class GuestCreateOwnMealTest {
         yourOrder.typeStreetAddress();
         yourOrder.getPostalCodeNotification();
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        Assert.assertEquals(yourOrder.checkGuestNameSelector(guestCreateOwnMeal.getOrderNowType()), "Pay with card");
+        guestEmailAddress = yourOrder.checkGuestNameSelector(guestCreateOwnMeal.getOrderNowType());
+        Assert.assertEquals(yourOrder.getBrainTreeLabel(), "Pay with card");
     }
 
     @Test(description = "Add the Card Details and Proceed the Payment", priority = 16, dependsOnMethods = "checkGuestNameAndNavigateToOrder")
@@ -181,7 +183,7 @@ public class GuestCreateOwnMealTest {
 
     @Test(description = "Check the Email address added in the check out page and OrderSummery Page", priority = 19, dependsOnMethods = "checkSubtotalValue")
     public void checkEmailAddress() {
-        Assert.assertTrue(checkoutOrder.getGuestEmail().equals(orderSummery.getEmailAddress()));
+        Assert.assertEquals(guestEmailAddress,orderSummery.getEmailAddress());
     }
 
     @Test(description = "Add the Password & Continue the Page", priority = 20, dependsOnMethods = "checkEmailAddress")

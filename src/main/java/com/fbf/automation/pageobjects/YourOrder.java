@@ -18,6 +18,7 @@ public class YourOrder extends PageBase {
     String streetAddress = "Stewart House,32 Russell Square,London";
     CheckoutOrder checkoutOrder;
 
+
     By subTotalPriceLabel = By.xpath("//div[@class='order-button-container item-has-selected']/div[1]//span[2]");
     By continueGuestNameRadioButton = By.xpath("//div[@class='cart-guest-options']//label[3]//i[@class='radio-placeholder']");
     By continueButton = By.xpath("//button[@class='btn btn-primary btn-block']");
@@ -29,11 +30,14 @@ public class YourOrder extends PageBase {
     By postalCodeNotificationLabel = By.xpath("//div[@class='form-group']/div/span");
     By brainTreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
 
+    //String guestEmail="";
+
     public YourOrder(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.driver = driver;
         checkoutOrder = new CheckoutOrder(driver);
+
     }
 
     public String getSubtotal() {
@@ -51,7 +55,7 @@ public class YourOrder extends PageBase {
     public String checkGuestNameSelector(Boolean getOrderNowType) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(continueGuestNameRadioButton));
         boolean bgvalue;
-
+        String guestEmail="";
         bgvalue = driver.findElement(continueGuestNameRadioButton).isSelected();
         if (bgvalue = true) {
 
@@ -60,28 +64,31 @@ public class YourOrder extends PageBase {
             //wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
             if (getOrderNowType == true) {
                 wait.until(ExpectedConditions.visibilityOfElementLocated(checkOrderLabel));
-                checkoutOrder.addGuestDetails();
-
+                guestEmail = checkoutOrder.addGuestDetails();
             } else {
-
                 checkoutOrder.selectDefaultSelectedDate();
                 ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-                checkoutOrder.addGuestDetails();
-
+                guestEmail = checkoutOrder.addGuestDetails();
             }
         } else {
 
             // If the first radio button is not selected by default, the first will be selected
             System.out.println("Selecting Wrong Radio button");
         }
-        wait.until(ExpectedConditions.visibilityOfElementLocated(brainTreeLabel));
-        return driver.findElement(brainTreeLabel).getText();
+        return guestEmail;
     }
+
+
 
     public void submitYourOrder() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(continueButton));
         wait.until(ExpectedConditions.elementToBeClickable(continueButton));
         driver.findElement(continueButton).click();
+    }
+
+    public String getBrainTreeLabel() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(brainTreeLabel));
+        return driver.findElement(brainTreeLabel).getText();
     }
 
     public String typePostalCard() {

@@ -23,6 +23,8 @@ public class OrderSummery extends PageBase {
     By successfulPageLabel = By.xpath("//div[@class='align-center padding-15']");
     By lbl_username = By.xpath("//table[@class='summary-table']/tbody/tr[1]/td[@class='font-bold']");
 
+    String userPassword = getProperties().getProperty("userPassword");
+
 
     public OrderSummery(WebDriver driver) {
         super(driver);
@@ -44,14 +46,15 @@ public class OrderSummery extends PageBase {
         return driver.findElement(emailAddressTextBox).getAttribute("value");
     }
 
-    public void addPasswordDetailsContinue() {
+    public String addPasswordDetailsContinue() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordTextBox));
         wait.until(ExpectedConditions.elementToBeClickable(passwordTextBox));
         driver.findElement(passwordTextBox).clear();
-        driver.findElement(passwordTextBox).sendKeys(getProperties().getProperty("userPassword"));
+        driver.findElement(passwordTextBox).sendKeys(userPassword);
         driver.findElement(confirmPasswordTextBox).clear();
         driver.findElement(confirmPasswordTextBox).sendKeys(getProperties().getProperty("userConfirmPassword"));
         driver.findElement(confirmPasswordTextBox).sendKeys(Keys.ENTER);
+        return userPassword;
 
     }
 
