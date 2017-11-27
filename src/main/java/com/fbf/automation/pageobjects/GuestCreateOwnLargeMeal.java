@@ -96,7 +96,6 @@ public class GuestCreateOwnLargeMeal extends PageBase {
     public void selectLargeProtein() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_Largelabel));
         getDriver().findElement(lbl_Largelabel).click();
-
     }
 
 
@@ -159,7 +158,6 @@ public class GuestCreateOwnLargeMeal extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_LargeTenADay));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_LargeTenADay));
         LargeLabel = driver.findElement(lbl_LargeTenADay).getText();
-        //Large = String.valueOf(driver.findElement(lbl_Lagellabelverify).getText());
         return LargeLabel;
     }
 
