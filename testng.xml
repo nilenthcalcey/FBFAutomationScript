@@ -7,19 +7,24 @@
              <class name="com.fbf.automation.tests.HomePageTest"></class>
          </classes>
      </test>-->
-    <test name="LoginTest">
+   <!-- <test name="LoginTest">
         <classes>
             <class name="com.fbf.automation.tests.LoginTest"></class>
         </classes>
-    </test>
+    </test>-->
     <!--<test name="GuestCreateOwnMealTest">
         <classes>
             <class name="com.fbf.automation.tests.GuestCreateOwnMealTest"></class>
         </classes>
     </test>-->
-    <test name="GuestCreateLargeOwnMealTest">
+   <!-- <test name="GuestCreateLargeOwnMealTest">
         <classes>
             <class name="com.fbf.automation.tests.GuestCreateOwnLargeMealTest"></class>
+        </classes>
+    </test>-->
+    <test name="VegetarianFavouriteTest">
+        <classes>
+            <class name="com.fbf.automation.tests.VegetarianFavouriteTest"></class>
         </classes>
     </test>
 </suite>

@@ -43,13 +43,13 @@ public class LoginTest {
     @Test(description = "User login Sucessfully", priority = 2)
     public void successLogin() {
         login.login();
-        Assert.assertEquals(login.getusername(), "HI, FBF");
+        Assert.assertEquals(login.getUsername(), "HI, FBF");
     }
 
     @Test(description = "User login withInvalidEmail", priority = 1)
     public void invalidLoginTest() {
-        login.InvalidLogin();
-        Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
+        login.invalidLogin();
+        Assert.assertEquals(login.getInvalidLoginError(), "Username or password is incorrect");
     }
 
     @Test(description = "Check User availability", priority = 3)
@@ -94,7 +94,7 @@ public class LoginTest {
     public void submitNewPassword() throws InterruptedException {
         login.resetNewPassword();
         login.reLogin();
-        Assert.assertEquals(login.getusername(), "HI, FBF");
+        Assert.assertEquals(login.getUsername(), "HI, FBF");
     }
 
     @AfterSuite
