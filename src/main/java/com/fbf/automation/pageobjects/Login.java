@@ -27,6 +27,9 @@ public class Login extends PageBase {
     Properties properties;
     CommonOperations commonOperations;
     CreateNewOrder createNewOrder;
+    OrderSummery orderSummery;
+    String guestEmailAddress ="";
+
 
     By menuBtn = By.xpath("//div[@class='header-col user-col']/a[@class='main-nav-btn']");
     By loginbtn = By.xpath("//div[@class ='main-toggle-menu-container active']//a[contains(.,'LOG IN')]");
@@ -205,6 +208,16 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("resetPassword"));
         getDriver().findElement(btn_SignIn).click();
+
+    }
+
+    public void guestUserLogin(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
+        driver.findElement(txt_useremail).clear();
+        driver.findElement(txt_useremail).sendKeys(guestEmailAddress);
+        driver.findElement(txt_password).sendKeys(orderSummery.userPassword);
+        driver.findElement(btn_SignIn).click();
+
 
     }
 
