@@ -55,6 +55,7 @@ public class OrderSummery extends PageBase {
         return userPassword;
     }
 
+
     public String getUserName() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_username));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_username));
@@ -65,4 +66,14 @@ public class OrderSummery extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(successfulPageLabel));
         return driver.findElement(successfulPageLabel).getText();
     }
+
+    public void loginGuestUser (){
+        getEmailAddress();
+
+    }
+
+    public String getUserPassword(){
+        return this.userPassword;
+    }
+
 }

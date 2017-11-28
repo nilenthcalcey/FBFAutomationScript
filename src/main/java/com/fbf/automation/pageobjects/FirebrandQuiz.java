@@ -26,24 +26,27 @@ public class FirebrandQuiz extends PageBase {
         this.wait = new WebDriverWait(driver, 5);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
+        //driver.get("http://fbf.qa/orders");
     }
 
-    public void expandMenuFQuizScreen() {
+    public void expandMenuFQuizScreen(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();
     }
 
-    public void navigateToAboutUsPage() {
+    public void navigateToAboutUsPage(){
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(aboutUsBtn));
         wait.until(ExpectedConditions.elementToBeClickable(aboutUsBtn));
         WebElement element = driver.findElement(aboutUsBtn);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("arguments[0].click()", element);
+        //driver.findElement(aboutUsBtn).click();
     }
 
 
-    public String getAboutUsPageHeader() {
+    public String getAboutUsPageHeader(){
         return driver.findElement(aboutUsPageHeader).getText();
     }
 
