@@ -29,22 +29,23 @@ public class FaqPage extends PageBase {
         this.driver = driver;
     }
 
-    public void expandFaqMenu() {
+    public void expandFaqMenu(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();
     }
 
-    public void navigateToQuizfactsPage() {
+    public void navigateToQuizfactsPage(){
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(quizfactsMenuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(quizfactsMenuBtn));
         WebElement element = driver.findElement(quizfactsMenuBtn);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("arguments[0].click()", element);
         //driver.findElement(quizfactsMenuBtn).click();
     }
 
-    public String getQuizfactsPageHeader() {
+    public String getQuizfactsPageHeader(){
         return driver.findElement(quizfactsPageHeader).getText();
     }
 

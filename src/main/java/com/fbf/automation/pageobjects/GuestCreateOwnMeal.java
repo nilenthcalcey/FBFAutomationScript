@@ -65,6 +65,7 @@ public class GuestCreateOwnMeal extends PageBase {
         this.driver = driver;
     }
 
+
     public void navigateToCreateNewPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(createyourownmealBtn));
         wait.until(ExpectedConditions.elementToBeClickable(createyourownmealBtn));
@@ -72,11 +73,13 @@ public class GuestCreateOwnMeal extends PageBase {
         //click order later radio button
         bvalue = driver.findElement(orderfornowradioButton).isSelected();
         if (bvalue == true) {
+
             String now;
             // This will select Second radio button, if the first radio button is selected by default
             driver.findElement(createyourownmealBtn).click();
 
         } else {
+
             // If the first radio button is not selected by default, the first will be selected
             String later;
             System.out.println("Click the  order Later Button");

@@ -28,7 +28,10 @@ public class Login extends PageBase {
     CommonOperations commonOperations;
     CreateNewOrder createNewOrder;
     OrderSummery orderSummery;
+    CheckoutOrder checkoutOrder;
+
     String guestEmailAddress = "";
+    String guestUserEmail = "";
 
 
     By menuBtn = By.xpath("//div[@class='header-col user-col']/a[@class='main-nav-btn']");
@@ -46,15 +49,18 @@ public class Login extends PageBase {
     By newPasswordTxt = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input[@formcontrolname='password']");
     By confirmPasswordTxt = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input[@formcontrolname='confirmPassword']");
     By submitBtn = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div[3]/button");
+    String emailadded;
 
 
-    public Login(WebDriver driver) {
+    public Login(WebDriver driver, String email) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
-
+        this.emailadded = email;
         this.driver = driver;
         createNewOrder = new CreateNewOrder(driver);
+        orderSummery = new OrderSummery(driver);
+        checkoutOrder = new CheckoutOrder(driver);
         //driver.get("http://fbf.qa/orders");
     }
 
@@ -119,6 +125,7 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("loginPassword"));
         getDriver().findElement(btn_SignIn).click();
+
     }
 
     public String getUsername() {
@@ -134,6 +141,7 @@ public class Login extends PageBase {
         WebElement loginpassword = getDriver().findElement(txt_password);
         loginpassword.sendKeys(getProperties().getProperty("invalidloginPassword"));
         getDriver().findElement(btn_SignIn).click();
+
     }
 
     public String getInvalidLoginError() {
@@ -207,11 +215,17 @@ public class Login extends PageBase {
     }
 
     public void guestUserLogin() {
+        String userEmail = "";
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
         driver.findElement(txt_useremail).clear();
-        driver.findElement(txt_useremail).sendKeys(guestEmailAddress);
-        driver.findElement(txt_password).sendKeys(orderSummery.userPassword);
+        guestUserEmail = emailadded.substring(0, 23);
+     //   driver.findElement(txt_useremail).sendKeys(guestUserEmail+"@mailinator.com");
+        WebElement emailField = driver.findElement(txt_useremail);
+        JavascriptExecutor jse = ((JavascriptExecutor) driver);
+        jse.executeScript("document.getElementByXpath('//input[@name='email']').value='jasdjahdhsdjhsd'");
+       driver.findElement(txt_password).sendKeys(orderSummery.getUserPassword());
         driver.findElement(btn_SignIn).click();
     }
+
 
 }

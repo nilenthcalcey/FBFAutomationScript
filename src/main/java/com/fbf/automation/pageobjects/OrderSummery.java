@@ -23,7 +23,7 @@ public class OrderSummery extends PageBase {
     By successfulPageLabel = By.xpath("//div[@class='align-center padding-15']");
     By lbl_username = By.xpath("//table[@class='summary-table']/tbody/tr[1]/td[@class='font-bold']");
     String userPassword = getProperties().getProperty("userPassword");
-
+    String email;
 
     public OrderSummery(WebDriver driver) {
         super(driver);
@@ -41,10 +41,11 @@ public class OrderSummery extends PageBase {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailAddressTextBox));
-        return driver.findElement(emailAddressTextBox).getAttribute("value");
+         email = driver.findElement(emailAddressTextBox).getAttribute("value");
+        return email;
     }
 
-    public String addPasswordDetailsContinue() {
+    public Login addPasswordDetailsContinue() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordTextBox));
         wait.until(ExpectedConditions.elementToBeClickable(passwordTextBox));
         driver.findElement(passwordTextBox).clear();
@@ -52,8 +53,9 @@ public class OrderSummery extends PageBase {
         driver.findElement(confirmPasswordTextBox).clear();
         driver.findElement(confirmPasswordTextBox).sendKeys(getProperties().getProperty("userConfirmPassword"));
         driver.findElement(confirmPasswordTextBox).sendKeys(Keys.ENTER);
-        return userPassword;
+        return new Login(driver,email);
     }
+
 
     public String getUserName() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_username));
@@ -65,4 +67,14 @@ public class OrderSummery extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(successfulPageLabel));
         return driver.findElement(successfulPageLabel).getText();
     }
+
+    public void loginGuestUser (){
+        getEmailAddress();
+
+    }
+
+    public String getUserPassword(){
+        return this.userPassword;
+    }
+
 }
