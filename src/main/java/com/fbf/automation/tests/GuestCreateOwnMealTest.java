@@ -36,10 +36,12 @@ public class GuestCreateOwnMealTest {
     CheckoutOrder checkoutOrder;
     CardPayment cardPayment;
     OrderSummery orderSummery;
+    Login login;
 
 
     String pageTitle = "Firebrand Fresh";
     String guestEmailAddress ="";
+    String userEmailAddress = "";
 
     @BeforeSuite
     public void setUp() {
@@ -52,6 +54,7 @@ public class GuestCreateOwnMealTest {
         checkoutOrder = new CheckoutOrder(driver);
         cardPayment = new CardPayment(driver);
         orderSummery = new OrderSummery(driver);
+        login = new Login(driver);
     }
 
     @Test(description = "Verify Home page loaded", priority = 0)
@@ -151,7 +154,7 @@ public class GuestCreateOwnMealTest {
 
     @Test(description = "Check the Order count in the Cart", priority = 14, dependsOnMethods = "checkItemMultiplySubTotal")
     public void checkOrderCount() {
-        Assert.assertEquals(checkoutOrder.getCartItemCount(), "1");
+        Assert.assertEquals(checkoutOrder.getCartitemCount(), "1");
     }
 
     @Test(description = "Check the Guest Name Label and navigate to Order Page", priority = 15, dependsOnMethods = "checkOrderCount")
@@ -191,6 +194,16 @@ public class GuestCreateOwnMealTest {
         orderSummery.addPasswordDetailsContinue();
         Assert.assertEquals(orderSummery.navigateToConfirmationPage(), "Congratulations! You have successfully registered. Lookout for a confirmation email");
     }
+
+    @Test(description = "Guest User Login to the system", priority = 21, dependsOnMethods = "addPassword")
+    public void guestUserLogin(){
+        login.expandMenuScreenLogin();
+        login.navigateLoginPage();
+        login.guestUserLogin();
+        Assert.assertEquals(login.getusername(),checkoutOrder.getUserName());
+    }
+
+
 
     @AfterSuite
     public void tearDown() {
