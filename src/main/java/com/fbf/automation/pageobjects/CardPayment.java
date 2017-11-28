@@ -70,7 +70,7 @@ public class CardPayment extends PageBase {
         actions.sendKeys(prop.getProperty("expireDate"));
         actions.build().perform();
         //Add CVV Number
-        actions.moveToElement(CvvnumberTextBox);
+        actions.moveToElement(cvvnumberTextBox1);
         actions.click();
         actions.sendKeys(prop.getProperty("cvvNumber"));
         actions.build().perform();
