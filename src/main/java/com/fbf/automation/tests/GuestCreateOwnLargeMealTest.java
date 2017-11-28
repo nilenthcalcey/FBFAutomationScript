@@ -155,6 +155,8 @@ public class GuestCreateOwnLargeMealTest {
 
     @Test(description = "Verify enter User details and redirect to the Card Page", priority = 15)
     public void enterUserDetails() {
+
+        checkoutOrder.selectDefaultSelectedDate();
         checkoutOrder.enterLargeUserDetails();
         Assert.assertEquals(checkoutOrder.navigateToPaymentCardPage(), "Pay with card");
     }

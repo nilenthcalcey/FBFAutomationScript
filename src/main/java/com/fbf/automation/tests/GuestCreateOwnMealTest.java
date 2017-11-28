@@ -181,7 +181,7 @@ public class GuestCreateOwnMealTest {
 
     @Test(description = "Check the SubTotal from Your Order page and OrderSummery Page", priority = 18, dependsOnMethods = "navigateToOrderSummery")
     public void checkSubtotalValue() {
-        Assert.assertTrue(yourOrder.getTotal().equals(orderSummery.getOrderSummeryTotal()));
+        Assert.assertTrue(yourOrder.getTotal().equals(orderSummery.getOrderSummaryTotal()));
     }
 
     @Test(description = "Check the Email address added in the check out page and OrderSummery Page", priority = 19, dependsOnMethods = "checkSubtotalValue")
