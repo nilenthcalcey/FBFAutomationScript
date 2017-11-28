@@ -92,6 +92,7 @@ public class LoginTest {
 
     @Test(description = "Submit new password", priority = 9, dependsOnMethods = "navigatePwFixPage")
     public void submitNewPassword() throws InterruptedException {
+        //login.getRandomNumber();
         login.resetNewPassword();
         login.reLogin();
         Assert.assertEquals(login.getUsername(), "HI, FBF");

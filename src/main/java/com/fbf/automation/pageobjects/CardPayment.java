@@ -55,22 +55,22 @@ public class CardPayment extends PageBase {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        WebElement CardnumberTextBox = getDriver().findElement(cardnumberTextBox);
-        WebElement ExpiredateTextBox = getDriver().findElement(expirationdateTextBox);
-        WebElement CvvnumberTextBox = getDriver().findElement(cvvTextBox);
+        WebElement cardnumberTextBox1 = getDriver().findElement(cardnumberTextBox);
+        WebElement expiredateTextBox1 = getDriver().findElement(expirationdateTextBox);
+        WebElement cvvnumberTextBox1 = getDriver().findElement(cvvTextBox);
         Actions actions = new Actions(driver);
         //AddCardNumber
-        actions.moveToElement(CardnumberTextBox);
+        actions.moveToElement(cardnumberTextBox1);
         actions.click();
         actions.sendKeys(prop.getProperty("cardNumber"));
         actions.build().perform();
         //Add Expiredate
-        actions.moveToElement(ExpiredateTextBox);
+        actions.moveToElement(expiredateTextBox1);
         actions.click();
         actions.sendKeys(prop.getProperty("expireDate"));
         actions.build().perform();
         //Add CVV Number
-        actions.moveToElement(CvvnumberTextBox);
+        actions.moveToElement(cvvnumberTextBox1);
         actions.click();
         actions.sendKeys(prop.getProperty("cvvNumber"));
         actions.build().perform();
