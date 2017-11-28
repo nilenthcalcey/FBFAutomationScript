@@ -21,6 +21,7 @@ import java.util.Properties;
 public class CardPayment extends PageBase {
     WebDriver driver = null;
     WebDriverWait wait;
+    CheckoutOrder checkoutOrder;
 
     By cardnumberTextBox = By.xpath("//div[@class='braintree-sheet__content braintree-sheet__content--form']/div[1]//div[@class='braintree-form__field']");
     By expirationdateTextBox = By.xpath("//div[@class='braintree-sheet__content braintree-sheet__content--form']/div[2]//div[@class='braintree-form__hosted-field braintree-form-expiration']");
@@ -32,10 +33,12 @@ public class CardPayment extends PageBase {
         super(driver);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
-        this.wait = new WebDriverWait(driver,30);
+        this.wait = new WebDriverWait(driver, 30);
+        CheckoutOrder checkoutOrder = new CheckoutOrder(driver);
+        String guestuserName = checkoutOrder.userName;
     }
 
-    public  void addCardDetails(){
+    public void addCardDetails() {
         File file = new File("src\\main\\resources\\CardPayment.properties");
 
         FileInputStream fileInput = null;
@@ -57,41 +60,29 @@ public class CardPayment extends PageBase {
         WebElement CvvnumberTextBox = getDriver().findElement(cvvTextBox);
         Actions actions = new Actions(driver);
         //AddCardNumber
-        actions.moveToElement(CardnumberTextBox );
+        actions.moveToElement(CardnumberTextBox);
         actions.click();
         actions.sendKeys(prop.getProperty("cardNumber"));
         actions.build().perform();
         //Add Expiredate
-        actions.moveToElement(ExpiredateTextBox );
+        actions.moveToElement(ExpiredateTextBox);
         actions.click();
         actions.sendKeys(prop.getProperty("expireDate"));
         actions.build().perform();
         //Add CVV Number
-        actions.moveToElement(CvvnumberTextBox );
+        actions.moveToElement(CvvnumberTextBox);
         actions.click();
         actions.sendKeys(prop.getProperty("cvvNumber"));
         actions.build().perform();
-        /*wait.until(ExpectedConditions.visibilityOfElementLocated(cardnumberTextBox));
-        wait.until(ExpectedConditions.elementToBeClickable(cardnumberTextBox));
-        driver.findElement(cardnumberTextBox).clear();
-        driver.findElement(cardnumberTextBox).click();
-        driver.findElement(cardnumberTextBox).sendKeys(prop.getProperty("cardNumber"));*/
-//        driver.findElement(expirationdateTextBox).click();
-//        driver.findElement(expirationdateTextBox).sendKeys(prop.getProperty("expireDate"));
-//        driver.findElement(cvvTextBox).click();
-//        driver.findElement(cvvTextBox).sendKeys(prop.getProperty("cvvNumber"));
-//        driver.findElement(paymentproceedButton).click();
-
-
     }
 
-    public void clickPaymentProceedButton(){
+    public void clickPaymentProceedButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(paymentproceedButton));
         wait.until(ExpectedConditions.elementToBeClickable(paymentproceedButton));
         driver.findElement(paymentproceedButton).click();
     }
 
-    public String navigateToOrderSummeryPage(){
+    public String navigateToOrderSummeryPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(ordersummerynameLabel));
         return driver.findElement(ordersummerynameLabel).getText();
 

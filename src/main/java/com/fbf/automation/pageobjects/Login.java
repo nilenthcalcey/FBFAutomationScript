@@ -5,12 +5,8 @@ import org.openqa.selenium.*;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by iresh.n on 10/24/2017.
@@ -31,6 +27,9 @@ public class Login extends PageBase {
     Properties properties;
     CommonOperations commonOperations;
     CreateNewOrder createNewOrder;
+    OrderSummery orderSummery;
+    String guestEmailAddress = "";
+
 
     By menuBtn = By.xpath("//div[@class='header-col user-col']/a[@class='main-nav-btn']");
     By loginbtn = By.xpath("//div[@class ='main-toggle-menu-container active']//a[contains(.,'LOG IN')]");
@@ -60,16 +59,16 @@ public class Login extends PageBase {
     }
 
 
-    public void navigateToForgotPassword(){
+    public void navigateToForgotPassword() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(resetPassword));
         wait.until(ExpectedConditions.elementToBeClickable(resetPassword));
         WebElement element = driver.findElement(resetPassword);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //driver.findElement(resetPassword).click();
     }
 
-    public String getForgotPasswordHeader(){
+    public String getForgotPasswordHeader() {
         return driver.findElement(forgotPasswordHeader).getText();
     }
 
@@ -96,38 +95,20 @@ public class Login extends PageBase {
         //driver.findElement(emailTextBox).sendKeys("fbfauto@mailinator.com");
     }
 
-
-   /* public String getResetEmailValid(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(resetEmailValid));
-        wait.until(ExpectedConditions.elementToBeClickable(resetEmailValid));
-        return driver.findElement(resetEmailValid).getText();
-    }*/
-
     public void expandMenuScreenLogin() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         getDriver().findElement(menuBtn).click();
-
     }
-
-    /*public void InvalidExpandMenuScreenLogin() {
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(invalidmenuBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(invalidmenuBtn));
-        getDriver().findElement(invalidmenuBtn).click();
-    }*/
-
 
     public void navigateLoginPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginbtn));
         wait.until(ExpectedConditions.elementToBeClickable(loginbtn));
         WebElement element = driver.findElement(loginbtn);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //getDriver().findElement(loginbtn).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
-
-
     }
 
     public void login() {
@@ -138,26 +119,24 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("loginPassword"));
         getDriver().findElement(btn_SignIn).click();
-
     }
 
-    public String getusername() {
+    public String getUsername() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_userverify));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_username));
         return getDriver().findElement(lbl_username).getText();
     }
 
 
-    public void InvalidLogin() {
+    public void invalidLogin() {
         WebElement loginEmaElement = getDriver().findElement(txt_useremail);
         loginEmaElement.sendKeys(getProperties().getProperty("invalidloginEmail"));
         WebElement loginpassword = getDriver().findElement(txt_password);
         loginpassword.sendKeys(getProperties().getProperty("invalidloginPassword"));
         getDriver().findElement(btn_SignIn).click();
-
     }
 
-    public String getInvalidLognError() {
+    public String getInvalidLoginError() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_loginerror));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_loginerror));
         return getDriver().findElement(lbl_loginerror).getText();
@@ -169,41 +148,35 @@ public class Login extends PageBase {
         return getDriver().findElement(lbl_loginPageTitle).getText();
     }
 
-    public String getLoginText(){
+    public String getLoginText() {
         return driver.findElement(By.xpath("//li[@class ='user-details-container']//a")).getText();
     }
 
-   /* public String getLogoutText(){
-        return driver.findElement(logoutBtn).getText();
-    }*/
-
-
-
-    public void logoutUser(){
+    public void logoutUser() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(logoutBtn));
         wait.until(ExpectedConditions.elementToBeClickable(logoutBtn));
         WebElement element = driver.findElement(logoutBtn);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //driver.findElement(logoutBtn).click();
     }
 
-    public void testVerifyPopup() {
+    public String testVerifyPopup() {
         WebElement distxt = driver.findElement(resetEmailValid);
-        Assert.assertNull(distxt.getAttribute("testVerifyPopup"));
+        String distxtAttribute = distxt.getAttribute("testVerifyPopup");
+        return distxtAttribute;
     }
 
-    public void checkUserAvailability () {
+    public void checkUserAvailability() {
         String x = this.getLoginText();
-        if(x == "LOG IN"){
+        if (x == "LOG IN") {
             createNewOrder.closeCreateNewOrderMenu();
-        }else {
+        } else {
             logoutUser();
             expandMenuScreenLogin();
             navigateLoginPage();
         }
     }
-
 
     public String getPasswordFixTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFixTitle));
@@ -212,8 +185,6 @@ public class Login extends PageBase {
     }
 
     public void resetNewPassword() throws InterruptedException {
-        /*wait.until(ExpectedConditions.visibilityOfElementLocated(newPasswordTxt));
-        wait.until(ExpectedConditions.elementToBeClickable(newPasswordTxt));*/
         WebElement resetPwElement = getDriver().findElement(newPasswordTxt);
         resetPwElement.clear();
         resetPwElement.sendKeys(getProperties().getProperty("resetPassword"));
@@ -225,17 +196,6 @@ public class Login extends PageBase {
         getDriver().findElement(submitBtn).click();
     }
 
-  /*  public void checkPasswordChange () {
-        String x = this.getLoginText();
-        if(x == "LOG IN"){
-            createNewOrder.closeCreateNewOrderMenu();
-        }else {
-            logoutUser();
-            expandMenuScreenLogin();
-            navigateLoginPage();
-        }
-    }*/
-
     public void reLogin() {
         WebElement loginEmailElement = getDriver().findElement(txt_useremail);
         loginEmailElement.clear();
@@ -244,72 +204,14 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("resetPassword"));
         getDriver().findElement(btn_SignIn).click();
+    }
 
+    public void guestUserLogin() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
+        driver.findElement(txt_useremail).clear();
+        driver.findElement(txt_useremail).sendKeys(guestEmailAddress);
+        driver.findElement(txt_password).sendKeys(orderSummery.userPassword);
+        driver.findElement(btn_SignIn).click();
     }
 
 }
-
-
-
-
-   /*public void checkUserAvailability () {
-       //String x = "";
-       try {
-           String x = this.getLoginText();
-           navigateLoginPage();
-       } catch (Exception e) {
-           logoutUser();
-       }
-   }*/
-
-
-   /* public void checkUserAvailability () {
-        WebElement x = null;
-        x = (WebElement) loginbtn;
-        *//*WebElement y = null;
-        y = (WebElement) logoutBtn;*//*
-        *//*try {
-            x = (WebElement) loginbtn;
-        } catch (Exception e) {
-*//*
-        if (x !=null)
-        {
-            logoutUser();
-        } else {
-            navigateLoginPage();
-        }
-        }
-    }*/
-
-
-
-
-   /* public void checkUserAvailability () {
-        List<WebElement> button = driver.findElements(By.xpath("//div[@class='user-details']/div[2]/a[2]"));
-            if (!button.isEmpty()) {
-                button.get(0).click();
-            }
-                else {
-                    navigateLoginPage();
-                }
-
-            }
-    }*/
-
-   /* public void checkUserAvailability (){
-        if(driver.findElement(By.xpath("//div[@class='user-details']/div[2]/a[2]"))){
-
-            WebElement menuHoverLink = driver.findElement(By.id("reports"));
-            actions.moveToElement(menuHoverLink).perform();
-
-        }
-        else (){
-            system.out.println("element not present -- so it entered the else loop");
-
-        }
-    }
-*/
-
-
-
-

@@ -29,19 +29,14 @@ public class HomePage extends PageBase {
     By quizfactsPageHeader = By.xpath("//h2[@class='page-title logo-watermark-inner secondary-color']/div[@class='container']");
     By MenuLoginLabel = By.xpath("//a[contains(.,'LOG IN')]");
 
-
-
-    //By loginPageTitle = By.xpath("//h1[@class='page-title logo-watermark-inner']");
-    //By registrationBtn = By.xpath("//a[contains(.,'Register')]");
+    boolean bValue = false;
 
     public HomePage(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, 5);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
-        //driver.get("http://fbf.qa/orders");
     }
-    boolean bValue = false;
 
     public String getHomePageTitle() {
         return getDriver().getTitle();
@@ -51,11 +46,11 @@ public class HomePage extends PageBase {
         driver.findElement(loginBtn).click();
     }
 
-    public void expandMenuScreen(){
+    public void expandMenuScreen() {
         getDriver().findElement(menuBtn).click();
     }
 
-    public String getMenuScreenDetails(){
+    public String getMenuScreenDetails() {
         return getDriver().findElement(createneworderBtn).getText();
     }
 
@@ -80,27 +75,26 @@ public class HomePage extends PageBase {
     }
 
 
-
-    public void navigateToCreateNewOrderPage(){
+    public void navigateToCreateNewOrderPage() {
         getDriver().findElement(createneworderBtn).click();
     }
 
-    public String getCreateNewOrderPageHeader(){
+    public String getCreateNewOrderPageHeader() {
         return getDriver().findElement(selectFavouriteText).getText();
     }
 
-    public void navigateToPlayFirebrandQuiz(){
+    public void navigateToPlayFirebrandQuiz() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(playfirebrandquizBtn));
         wait.until(ExpectedConditions.elementToBeClickable(playfirebrandquizBtn));
         WebElement element = driver.findElement(playfirebrandquizBtn);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
         //getDriver().findElement(playfirebrandquizBtn).click();
     }
 
 
-    public String getFirebrandFreshQuizHeader(){
+    public String getFirebrandFreshQuizHeader() {
         return getDriver().findElement(firebrandLabel).getText();
     }
 
@@ -124,50 +118,24 @@ public class HomePage extends PageBase {
         return css;
     }
 
-
-    public void expandCreateNewOrderMenu(){
+    public void expandCreateNewOrderMenu() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();
     }
 
-   /* public void navigateToFirebrandQuiz(){
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(firebrandQuizMenuBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(firebrandQuizMenuBtn));
-        driver.findElement(firebrandQuizMenuBtn).click();
-    }
-
-    public String getFirebrandQuizPageHeader(){
-        return driver.findElement(firebrandQuizPageHeader).getText();
-    }*/
-
-
-    public void navigateToQuizFactsPage(){
+    public void navigateToQuizFactsPage() {
         wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
         driver.findElement(quizfactsMenuBtn).click();
     }
 
 
-    public String getQuizFactsPageHeader(){
+    public String getQuizFactsPageHeader() {
         return driver.findElement(quizfactsPageHeader).getText();
     }
 
-   /* public void navigateToAboutUsPage() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(MenuLoginLabel));
-        getDriver().findElement(aboutUsBtn).click();
-    }
-
-    public String getAboutUsPageHeader() {return driver.findElement(aboutUsPageHeader).getText();}
-*/
-
-
-
-//    public String getLoginPageHeader() {
-//        return getDriver().findElement(loginPageTitle).getText();
-//    }
-
-    public void navigateToRegistrationPage(){
+    public void navigateToRegistrationPage() {
         getDriver().findElement(loginBtn).click();
 
     }

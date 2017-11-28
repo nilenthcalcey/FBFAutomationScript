@@ -14,13 +14,11 @@ public class AddGuestName extends PageBase {
     WebDriver driver = null;
     WebDriverWait wait;
     String guestName = "AUTOMATION" + System.currentTimeMillis();
-    //String calprice = "£" + guestCreateOwnMeal.CalculatePrice();
 
-
-    By guestnameinputfield = By.xpath("//input[@class='form-control ng-untouched ng-pristine ng-valid']");
-    By savenamebutton = By.xpath("//button[@class='btn btn-primary btn-block']");
-    By yourheaderLabel = By.xpath("//div[@class='container']");
-    By gusetameLabel = By.xpath("//div[@class='item-info']//h3[1]");
+    By guestNameInputField = By.xpath("//input[@class='form-control ng-untouched ng-pristine ng-valid']");
+    By saveNameButton = By.xpath("//button[@class='btn btn-primary btn-block']");
+    By yourHeaderLabel = By.xpath("//div[@class='container']");
+    By guestNameLabel = By.xpath("//div[@class='item-info']//h3[1]");
 
 
     public AddGuestName(WebDriver driver) {
@@ -30,31 +28,31 @@ public class AddGuestName extends PageBase {
 
     }
 
-    public String TypeGuestName(){
+    public String typeGuestName() {
         Random rand = new Random(System.currentTimeMillis());
-        wait.until(ExpectedConditions.visibilityOfElementLocated(guestnameinputfield));
-        wait.until(ExpectedConditions.elementToBeClickable(guestnameinputfield));
-        driver.findElement(guestnameinputfield).clear();
-        driver.findElement(guestnameinputfield).sendKeys(guestName);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(guestNameInputField));
+        wait.until(ExpectedConditions.elementToBeClickable(guestNameInputField));
+        driver.findElement(guestNameInputField).clear();
+        driver.findElement(guestNameInputField).sendKeys(guestName);
         return guestName;
     }
 
-    public void ClickSaveNameButton(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(savenamebutton));
-        wait.until(ExpectedConditions.elementToBeClickable(savenamebutton));
-        driver.findElement(savenamebutton).click();
+    public void clickSaveNameButton() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(saveNameButton));
+        wait.until(ExpectedConditions.elementToBeClickable(saveNameButton));
+        driver.findElement(saveNameButton).click();
     }
 
-    public String navigateToYourOrderPage(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(gusetameLabel));
-        wait.until(ExpectedConditions.elementToBeClickable(gusetameLabel));
-        return driver.findElement(gusetameLabel).getText();
+    public String navigateToYourOrderPage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(guestNameLabel));
+        wait.until(ExpectedConditions.elementToBeClickable(guestNameLabel));
+        return driver.findElement(guestNameLabel).getText();
 
     }
-//get guest user name
+
+    //get guest user name
     public String getGuestName() {
         return this.guestName;
     }
-
 
 }

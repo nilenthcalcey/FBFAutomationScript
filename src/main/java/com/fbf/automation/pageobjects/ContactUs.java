@@ -28,22 +28,22 @@ public class ContactUs extends PageBase {
         this.driver = driver;
     }
 
-    public void exapandMenuScreenContUsScreen(){
+    public void expandMenuScreenContUsScreen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();
     }
 
-    public void navigateToTermsandConditionPage(){
+    public void navigateToTermsandConditionPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(termsandcondmenuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(termsandcondmenuBtn));
         WebElement element = driver.findElement(termsandcondmenuBtn);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //driver.findElement(termsandcondmenuBtn).click();
     }
 
-    public String getTermsandConditionPageLabel(){
+    public String getTermsandConditionPageLabel() {
         return driver.findElement(getTermsandcondpageLabel).getText();
     }
 
