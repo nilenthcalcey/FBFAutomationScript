@@ -46,7 +46,7 @@ public class CheckoutOrder extends PageBase {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.driver = driver;
-        guestEmail = "automation" + System.currentTimeMillis() + "@mailinator.com";
+        guestEmail = "auto" + System.currentTimeMillis() + "@mail.com";
     }
 
     public String getCartitemCount() {
