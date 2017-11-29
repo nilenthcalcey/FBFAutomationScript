@@ -53,7 +53,7 @@ public class GuestCreateOwnLargeMealTest {
     @Test(description = "Verify Navigate Create New Page", priority = 1)
     public void navigateToCreateOrderPage() {
         guestCreateOwnLargeMeal.navigateToCreateNewPage();
-        Assert.assertEquals(guestCreateOwnMeal.getCreateNewPageLabel(), "PROTEIN");
+        Assert.assertEquals(guestCreateOwnMeal.getCreateNewPageLabel(), "PROTEIN\nFOR MUSCLES AND NERVES");
     }
 
 
