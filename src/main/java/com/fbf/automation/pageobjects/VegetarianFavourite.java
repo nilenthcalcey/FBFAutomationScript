@@ -398,10 +398,4 @@ public class VegetarianFavourite extends PageBase {
         return Integer.toString(newTotal);
     }
 
-
-
-
-
-
-
 }
