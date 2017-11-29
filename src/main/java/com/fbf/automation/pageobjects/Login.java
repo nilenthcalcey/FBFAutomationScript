@@ -30,7 +30,6 @@ public class Login extends PageBase {
     OrderSummery orderSummery;
     CheckoutOrder checkoutOrder;
 
-
     String guestEmailAddress = "";
     String guestUserEmail = "";
 
@@ -50,13 +49,14 @@ public class Login extends PageBase {
     By newPasswordTxt = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input[@formcontrolname='password']");
     By confirmPasswordTxt = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div/input[@formcontrolname='confirmPassword']");
     By submitBtn = By.xpath("//div[@class='fbf-signup fbf-form']/div/form/div[3]/button");
+    String emailadded;
 
 
-    public Login(WebDriver driver) {
+    public Login(WebDriver driver, String email) {
         super(driver);
         this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
-
+        this.emailadded = email;
         this.driver = driver;
         createNewOrder = new CreateNewOrder(driver);
         orderSummery = new OrderSummery(driver);
@@ -105,7 +105,6 @@ public class Login extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         getDriver().findElement(menuBtn).click();
-
     }
 
     public void navigateLoginPage() {
@@ -129,14 +128,14 @@ public class Login extends PageBase {
 
     }
 
-    public String getusername() {
+    public String getUsername() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_userverify));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_username));
         return getDriver().findElement(lbl_username).getText();
     }
 
 
-    public void InvalidLogin() {
+    public void invalidLogin() {
         WebElement loginEmaElement = getDriver().findElement(txt_useremail);
         loginEmaElement.sendKeys(getProperties().getProperty("invalidloginEmail"));
         WebElement loginpassword = getDriver().findElement(txt_password);
@@ -145,7 +144,7 @@ public class Login extends PageBase {
 
     }
 
-    public String getInvalidLognError() {
+    public String getInvalidLoginError() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_loginerror));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_loginerror));
         return getDriver().findElement(lbl_loginerror).getText();
@@ -187,7 +186,6 @@ public class Login extends PageBase {
         }
     }
 
-
     public String getPasswordFixTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFixTitle));
         wait.until(ExpectedConditions.elementToBeClickable(passwordFixTitle));
@@ -214,19 +212,19 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("resetPassword"));
         getDriver().findElement(btn_SignIn).click();
-
     }
 
     public void guestUserLogin() {
         String userEmail = "";
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
         driver.findElement(txt_useremail).clear();
-        guestUserEmail = orderSummery.email.substring(0,23);
-        driver.findElement(txt_useremail).sendKeys(guestUserEmail+"@mailinator.com");
-        driver.findElement(txt_password).sendKeys(orderSummery.getUserPassword());
+        guestUserEmail = emailadded.substring(0, 23);
+     //   driver.findElement(txt_useremail).sendKeys(guestUserEmail+"@mailinator.com");
+        WebElement emailField = driver.findElement(txt_useremail);
+        JavascriptExecutor jse = ((JavascriptExecutor) driver);
+        jse.executeScript("document.getElementByXpath('//input[@name='email']').value='jasdjahdhsdjhsd'");
+       driver.findElement(txt_password).sendKeys(orderSummery.getUserPassword());
         driver.findElement(btn_SignIn).click();
-
-
     }
 
 

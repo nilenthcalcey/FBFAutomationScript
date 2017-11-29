@@ -28,7 +28,7 @@ public class LoginTest {
     @BeforeSuite
     public void setUp() {
         driver = DriverFactory.getDriver();
-        login = new Login(driver);
+        //login = new Login(driver);
         homepage = new HomePage(driver);
         mailClient = new MailClient(driver);
     }
@@ -43,13 +43,13 @@ public class LoginTest {
     @Test(description = "User login Sucessfully", priority = 2)
     public void successLogin() {
         login.login();
-        Assert.assertEquals(login.getusername(), "HI, FBF");
+        Assert.assertEquals(login.getUsername(), "HI, FBF");
     }
 
     @Test(description = "User login withInvalidEmail", priority = 1)
     public void invalidLoginTest() {
-        login.InvalidLogin();
-        Assert.assertEquals(login.getInvalidLognError(), "Username or password is incorrect");
+        login.invalidLogin();
+        Assert.assertEquals(login.getInvalidLoginError(), "Username or password is incorrect");
     }
 
     @Test(description = "Check User availability", priority = 3)
@@ -92,9 +92,10 @@ public class LoginTest {
 
     @Test(description = "Submit new password", priority = 9, dependsOnMethods = "navigatePwFixPage")
     public void submitNewPassword() throws InterruptedException {
+        //login.getRandomNumber();
         login.resetNewPassword();
         login.reLogin();
-        Assert.assertEquals(login.getusername(), "HI, FBF");
+        Assert.assertEquals(login.getUsername(), "HI, FBF");
     }
 
     @AfterSuite

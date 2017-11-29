@@ -15,39 +15,37 @@ public class OrderSummery extends PageBase {
     WebDriver driver = null;
     WebDriverWait wait;
 
-    By subtotalLabel = By.xpath("//tr[1]//td[@class='font-bold align-right']");
+    By subTotalLabel = By.xpath("//tr[1]//td[@class='font-bold align-right']");
     By emailAddressTextBox = By.xpath("//input[@name='email']");
     By passwordTextBox = By.xpath("//input[@formcontrolname='password']");
     By confirmPasswordTextBox = By.xpath("//input[@formcontrolname='confirmPassword']");
     By continueButton = By.xpath("//form[@class='ng-untouched ng-pristine ng-invalid']//div[5]");
     By successfulPageLabel = By.xpath("//div[@class='align-center padding-15']");
     By lbl_username = By.xpath("//table[@class='summary-table']/tbody/tr[1]/td[@class='font-bold']");
-
     String userPassword = getProperties().getProperty("userPassword");
     String email;
-
 
     public OrderSummery(WebDriver driver) {
         super(driver);
         this.driver = driver;
         this.commonOperations = new CommonOperations();
         this.wait = new WebDriverWait(driver, 30);
-
     }
 
-    public String getOrderSummeryTotal() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(subtotalLabel));
-        return driver.findElement(subtotalLabel).getText();
+    public String getOrderSummaryTotal() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(subTotalLabel));
+        return driver.findElement(subTotalLabel).getText();
     }
 
     public String getEmailAddress() {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailAddressTextBox));
-        email =  driver.findElement(emailAddressTextBox).getAttribute("value");
+         email = driver.findElement(emailAddressTextBox).getAttribute("value");
         return email;
     }
 
-    public String addPasswordDetailsContinue() {
+    public Login addPasswordDetailsContinue() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordTextBox));
         wait.until(ExpectedConditions.elementToBeClickable(passwordTextBox));
         driver.findElement(passwordTextBox).clear();
@@ -55,8 +53,7 @@ public class OrderSummery extends PageBase {
         driver.findElement(confirmPasswordTextBox).clear();
         driver.findElement(confirmPasswordTextBox).sendKeys(getProperties().getProperty("userConfirmPassword"));
         driver.findElement(confirmPasswordTextBox).sendKeys(Keys.ENTER);
-        return userPassword;
-
+        return new Login(driver,email);
     }
 
 
