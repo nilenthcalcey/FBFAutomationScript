@@ -98,9 +98,9 @@ public class GuestCreateOwnMeal extends PageBase {
 
 
     public String getCreateNewPageLabel() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(proteinLbl));
-        wait.until(ExpectedConditions.elementToBeClickable(proteinLbl));
-        return driver.findElement(proteinLbl).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(proteinBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(proteinBtn));
+        return driver.findElement(proteinBtn).getText();
     }
 
     public void navigateToProteinPage() {
