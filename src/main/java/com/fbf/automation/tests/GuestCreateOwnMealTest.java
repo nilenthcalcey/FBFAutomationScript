@@ -40,7 +40,7 @@ public class GuestCreateOwnMealTest {
 
 
     String pageTitle = "Firebrand Fresh";
-    String guestEmailAddress ="";
+    String guestEmailAddress = "";
     String userEmailAddress = "";
 
     @BeforeSuite
