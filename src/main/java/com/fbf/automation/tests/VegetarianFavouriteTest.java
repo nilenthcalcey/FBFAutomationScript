@@ -40,22 +40,22 @@ public class VegetarianFavouriteTest {
         Assert.assertEquals(vegetarianFavourite.getVegFavLabel(), "SPROUTED 9 BEAN BROTH | REGULAR");
     }
 
-    @Test(description = "Test Weather Protein is Selected", priority = 1 )
-    public void testProteinSelection()  {
-        Assert.assertEquals(vegetarianFavourite.getProteinSelection(),"order-item-box bordered-item full-width selected-item");
+    @Test(description = "Test whether Protein is Selected", priority = 1)
+    public void testProteinSelection() {
+        Assert.assertEquals(vegetarianFavourite.getProteinSelection(), "order-item-box bordered-item full-width selected-item");
     }
 
-    @Test(description = "Test Weather Carb is Selected", priority = 2 )
-    public void testCarbSelection()  {
-        Assert.assertEquals(vegetarianFavourite.getCarbSelection(),"order-item-box bordered-item selected-item");
+    @Test(description = "Test whether Carb is Selected", priority = 2)
+    public void testCarbSelection() {
+        Assert.assertEquals(vegetarianFavourite.getCarbSelection(), "order-item-box bordered-item selected-item");
     }
 
-    @Test(description = "Test Weather Ten A Day is Selected", priority = 3 )
-    public void testTenADaySelection()  {
-        Assert.assertEquals(vegetarianFavourite.getTenADaySelection(),"order-item-box bordered-item selected-item");
+    @Test(description = "Test whether Ten A Day is Selected", priority = 3)
+    public void testTenADaySelection() {
+        Assert.assertEquals(vegetarianFavourite.getTenADaySelection(), "order-item-box bordered-item selected-item");
     }
 
-    @Test(description = "Navigate to the Vegetable Favourite Page, Extract elements and Test Protein, Carb and Ten A Day Selection Windows Labels ", priority = 4 )
+    @Test(description = "Navigate to the Vegetable Favourite Page, Extract elements and Test Protein, Carb and Ten A Day Selection Windows Labels ", priority = 4)
     public void navigateToProteinSelectionPage() throws InterruptedException {
         String valNp = vegetarianFavourite.getVegProteinNameX();
         String valCp = vegetarianFavourite.getVegProteinCalX();
@@ -69,55 +69,55 @@ public class VegetarianFavouriteTest {
         vegetarianFavourite.navigateToProteinSelection();
         vegetarianFavourite.scrollToBottomofThePage();
         Assert.assertEquals(valNp, vegetarianFavourite.getVegProteinName());
-        Assert.assertEquals(valCp,vegetarianFavourite.getVegProteinCal()+" CAL");
+        Assert.assertEquals(valCp, vegetarianFavourite.getVegProteinCal() + " CAL");
         Assert.assertEquals(valPp, vegetarianFavourite.getVegProteinPrice());
         vegetarianFavourite.navigateBackToVegFav();
         vegetarianFavourite.navigateToCarbSelection();
         Assert.assertEquals(valNc, vegetarianFavourite.getVegCarbName());
-        Assert.assertEquals(valCc, vegetarianFavourite.getVegCarbCal()+" CAL");
+        Assert.assertEquals(valCc, vegetarianFavourite.getVegCarbCal() + " CAL");
         Assert.assertEquals(valPc, vegetarianFavourite.getVegCarbPrice());
         vegetarianFavourite.navigateBackToVegFav();
         vegetarianFavourite.navigateToTenADaySelection();
         Assert.assertEquals(valNt, vegetarianFavourite.getVegTenADayName());
-        Assert.assertEquals(valCt, vegetarianFavourite.getVegTenADayCal()+" CAL");
+        Assert.assertEquals(valCt, vegetarianFavourite.getVegTenADayCal() + " CAL");
         Assert.assertEquals(valPt, vegetarianFavourite.getVegTenADayPrice());
         vegetarianFavourite.navigateBackToVegFav();
     }
 
-    @Test(description = "Verify Default Total Price & Total Calorie Count",priority = 5 )
-    public void VerifyTotal(){
-        Assert.assertEquals(vegetarianFavourite.getPriceLbl(),"£" + vegetarianFavourite.calculatePrice());
+    @Test(description = "Verify Default Total Price & Total Calorie Count", priority = 5)
+    public void VerifyTotal() {
+        Assert.assertEquals(vegetarianFavourite.getPriceLbl(), "£" + vegetarianFavourite.calculatePrice());
         Assert.assertEquals(vegetarianFavourite.getCaloriesLbl(), vegetarianFavourite.calculateCalories());
     }
 
-    @Test(description = "Test Weather Drink is Selected", priority = 6 )
-    public void testDrinkSelection()  {
+    @Test(description = "Test whether Drink is Selected", priority = 6)
+    public void testDrinkSelection() {
         vegetarianFavourite.getDrinkSelection();
-        Assert.assertEquals(vegetarianFavourite.getDrinkSelection(),"order-item-box bordered-item");
+        Assert.assertEquals(vegetarianFavourite.getDrinkSelection(), "order-item-box bordered-item");
     }
 
-    @Test(description = "Test Weather item gets Selected and Added when user selects an item", priority = 7 )
-    public void testDrinkSelectionAdding()  {
+    @Test(description = "Test whether item gets Selected and Added when user selects an item", priority = 7)
+    public void testDrinkSelectionAdding() {
         vegetarianFavourite.navigateToDrinkSelection();
         vegetarianFavourite.getSelectDrinkAvo();
-        Assert.assertEquals(vegetarianFavourite.getDrinkSelection(),"order-item-box bordered-item selected-item");
+        Assert.assertEquals(vegetarianFavourite.getDrinkSelection(), "order-item-box bordered-item selected-item");
     }
 
-    @Test(description = "Test Weather item gets Selected and Data Added when user selects an item", priority = 8 )
-    public void testDrinkSelectionDataAdding()  {
+    @Test(description = "Test whether item gets Selected and Data Added when user selects an item", priority = 8)
+    public void testDrinkSelectionDataAdding() {
         String valNd = vegetarianFavourite.getVegDrinkNameX();
         String valCd = vegetarianFavourite.getVegDrinkCalX();
         String valPd = vegetarianFavourite.getVegDrinkPriceX();
         vegetarianFavourite.navigateToDrinkSelection();
         Assert.assertEquals(valNd, vegetarianFavourite.getVegDrinkName());
-        Assert.assertEquals(valCd, vegetarianFavourite.getVegDrinkCal()+" CAL");
+        Assert.assertEquals(valCd, vegetarianFavourite.getVegDrinkCal() + " CAL");
         Assert.assertEquals(valPd, vegetarianFavourite.getVegDrinkPrice());
         vegetarianFavourite.navigateBackToVegFav();
     }
 
-    @Test(description = "Verify New Total Price & Total Calorie Count",priority = 9 )
-    public void VerifyNewTotal(){
-        Assert.assertEquals(vegetarianFavourite.getPriceLbl(),"£" + vegetarianFavourite.newCalculatePrice());
+    @Test(description = "Verify New Total Price & Total Calorie Count", priority = 9)
+    public void VerifyNewTotal() {
+        Assert.assertEquals(vegetarianFavourite.getPriceLbl(), "£" + vegetarianFavourite.newCalculatePrice());
         Assert.assertEquals(vegetarianFavourite.getCaloriesLbl(), vegetarianFavourite.newCalculateCalories());
     }
 
