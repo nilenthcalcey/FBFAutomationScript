@@ -68,28 +68,19 @@ public class VegetarianFavouriteTest {
         String valPt = vegetarianFavourite.getVegTenADayPriceX();
         vegetarianFavourite.navigateToProteinSelection();
         vegetarianFavourite.scrollToBottomofThePage();
-        String valNxp = vegetarianFavourite.getVegProteinName();
-        Assert.assertEquals(valNp, valNxp);
-        String valCxp = vegetarianFavourite.getVegProteinCal();
-        Assert.assertEquals(valCp, valCxp+" CAL");
-        String valPxp = vegetarianFavourite.getVegProteinPrice();
-        Assert.assertEquals(valPp, valPxp);
+        Assert.assertEquals(valNp, vegetarianFavourite.getVegProteinName());
+        Assert.assertEquals(valCp,vegetarianFavourite.getVegProteinCal()+" CAL");
+        Assert.assertEquals(valPp, vegetarianFavourite.getVegProteinPrice());
         vegetarianFavourite.navigateBackToVegFav();
         vegetarianFavourite.navigateToCarbSelection();
-        String valNxc = vegetarianFavourite.getVegCarbName();
-        Assert.assertEquals(valNc, valNxc);
-        String valCxc = vegetarianFavourite.getVegCarbCal();
-        Assert.assertEquals(valCc, valCxc+" CAL");
-        String valPxc = vegetarianFavourite.getVegCarbPrice();
-        Assert.assertEquals(valPc, valPxc);
+        Assert.assertEquals(valNc, vegetarianFavourite.getVegCarbName());
+        Assert.assertEquals(valCc, vegetarianFavourite.getVegCarbCal()+" CAL");
+        Assert.assertEquals(valPc, vegetarianFavourite.getVegCarbPrice());
         vegetarianFavourite.navigateBackToVegFav();
         vegetarianFavourite.navigateToTenADaySelection();
-        String valNxt = vegetarianFavourite.getVegTenADayName();
-        Assert.assertEquals(valNt, valNxt);
-        String valCxt = vegetarianFavourite.getVegTenADayCal();
-        Assert.assertEquals(valCt, valCxt+" CAL");
-        String valPxt = vegetarianFavourite.getVegTenADayPrice();
-        Assert.assertEquals(valPt, valPxt);
+        Assert.assertEquals(valNt, vegetarianFavourite.getVegTenADayName());
+        Assert.assertEquals(valCt, vegetarianFavourite.getVegTenADayCal()+" CAL");
+        Assert.assertEquals(valPt, vegetarianFavourite.getVegTenADayPrice());
         vegetarianFavourite.navigateBackToVegFav();
     }
 
@@ -112,22 +103,19 @@ public class VegetarianFavouriteTest {
         Assert.assertEquals(vegetarianFavourite.getDrinkSelection(),"order-item-box bordered-item selected-item");
     }
 
-    @Test(description = "Test Weather item gets Selected and Data Added when user selects an item", priority = 7 )
+    @Test(description = "Test Weather item gets Selected and Data Added when user selects an item", priority = 8 )
     public void testDrinkSelectionDataAdding()  {
         String valNd = vegetarianFavourite.getVegDrinkNameX();
         String valCd = vegetarianFavourite.getVegDrinkCalX();
         String valPd = vegetarianFavourite.getVegDrinkPriceX();
         vegetarianFavourite.navigateToDrinkSelection();
-        String valNxd = vegetarianFavourite.getVegDrinkName();
-        Assert.assertEquals(valNd, valNxd);
-        String valCxd = vegetarianFavourite.getVegDrinkCal();
-        Assert.assertEquals(valCd, valCxd+" CAL");
-        String valPxd = vegetarianFavourite.getVegDrinkPrice();
-        Assert.assertEquals(valPd, valPxd);
+        Assert.assertEquals(valNd, vegetarianFavourite.getVegDrinkName());
+        Assert.assertEquals(valCd, vegetarianFavourite.getVegDrinkCal()+" CAL");
+        Assert.assertEquals(valPd, vegetarianFavourite.getVegDrinkPrice());
         vegetarianFavourite.navigateBackToVegFav();
     }
 
-    @Test(description = "Verify New Total Price & Total Calorie Count",priority = 5 )
+    @Test(description = "Verify New Total Price & Total Calorie Count",priority = 9 )
     public void VerifyNewTotal(){
         Assert.assertEquals(vegetarianFavourite.getPriceLbl(),"£" + vegetarianFavourite.newCalculatePrice());
         Assert.assertEquals(vegetarianFavourite.getCaloriesLbl(), vegetarianFavourite.newCalculateCalories());
