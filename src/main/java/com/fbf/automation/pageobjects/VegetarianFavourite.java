@@ -35,12 +35,12 @@ public class VegetarianFavourite extends PageBase {
     String carbcaloriesCount;
     String tenadayPrice;
     String tenadaycaloriesCount;
-    String drinkprice;
-    String drinkcaloriecount;
+    String drinkPrice;
+    String drinkcalorieCount;
     Integer proteinCalLength;
     Integer carbCalLength;
     Integer tenADayCalLength;
-
+    Integer drinkCalLength;
 
     CommonOperations commonOperations;
     CreateNewOrder createNewOrder;
@@ -54,21 +54,23 @@ public class VegetarianFavourite extends PageBase {
     By proteinItemLbl = By.xpath("//div[@class='fbf-small-container']//a[1]/div[@class='inner']/span[2]");
     By carbItemLbl = By.xpath("//div[@class='fbf-small-container']//a[2]/div[@class='inner']/span[2]");
     By tenADayItemLbl = By.xpath("//div[@class='fbf-small-container']//a[3]/div[@class='inner']/span[2]");
+    By drinkItemLbl = By.xpath("//div[@class='fbf-small-container']//a[4]/div[@class='inner']/span[2]");
 
     By proteinCaloriesLbl = By.xpath("//div[@class='fbf-small-container']//a[1]//span[@class='calories']");
     By carbCaloriesLbl = By.xpath("//div[@class='fbf-small-container']//a[2]//span[@class='calories']");
     By tenADayCaloriesLbl = By.xpath("//div[@class='fbf-small-container']//a[3]//span[@class='calories']");
+    By drinkCaloriesLbl = By.xpath("//div[@class='fbf-small-container']//a[4]//span[@class='calories']");
 
     By proteinPriceLbl = By.xpath("//div[@class='fbf-small-container']/div/a[1]/div/span[@class='price']");
     By carbPriceLbl = By.xpath("//div[@class='fbf-small-container']/div/a[2]/div/span[@class='price']");
     By tenADayPriceLbl = By.xpath("//div[@class='fbf-small-container']/div/a[3]/div/span[@class='price']");
+    By drinkPriceLbl = By.xpath("//div[@class='fbf-small-container']/div/a[4]/div/span[@class='price']");
 
     By caloriesLbl = By.xpath("//div[@class='fbf-small-container']//div[1]/span[@class='value']");
     By priceLbl = By.xpath("//div[@class='fbf-small-container']//div[2]/span[@class='value']");
 
-    By drinkBtn = By.xpath("//div[@class='fbf-small-container']//a[@class='order-item-box bordered-item']");
+    By drinkBtn = By.xpath("//div[@class='fbf-small-container']//a[4]");
     By selectDrinkAvo = By.xpath("//div[@class='fbf-tabs-container']/div/div/div/div/div/a[1]");
-    By selectDrinkAvoFinal = By.xpath("//div[@class='fbf-small-container']/div/a[4]");
 
     By vegProteinName = By.xpath("(//div[@class='item-info']/h3)[4]");
     By vegProteinPrice = By.xpath("(//div[@class='price-tag']//span)[4]");
@@ -76,15 +78,18 @@ public class VegetarianFavourite extends PageBase {
 
     By vegFavBackBtn = By.xpath("//div[@class='fbf-main-navogation']/div[1]/ul/li/a");
 
-    By vegCarbName = By.xpath("//div[@id='#dv']/div[1]//a[1]/div[@class='item-info']/h3");
-    By vegCarbPrice = By.xpath("html/body/app-root/div/app-select-product/div/div[2]/div/div/div/div[1]/div/div[1]/div/a[1]/div[1]/div/span");
-    By vegCarbCal = By.xpath("html/body/app-root/div/app-select-product/div/div[2]/div/div/div/div[1]/div/div[1]/div/a[1]/div[3]/ul/li[1]");
+    By vegCarbName = By.xpath("(//div[@class='item-info']/h3)[1]");
+    By vegCarbPrice = By.xpath("(//div[@class='price-tag']//span)[1]");
+    By vegCarbCal = By.xpath("(//li[@class='calories'])[1]");
     By BtnBean = By.xpath("//div[@class='price-tag']//span");
 
+    By vegTenADayName = By.xpath("(//div[@class='item-info']/h3)[2]");
+    By vegTenADayPrice = By.xpath("(//div[@class='price-tag']//span)[2]");
+    By vegTenADayCal = By.xpath("(//li[@class='calories'])[2]");
 
-    By vegTenADayName = By.xpath("//div[@class='fbf-tabs clearfix']/div[1]/div/div[2]/div/a[2]/div/h3");
-    By vegTenADayPrice = By.xpath("//div[@class='fbf-tabs clearfix']/div[1]/div/div[2]/div/a[2]/div/div/span");
-    By vegTenADayCal = By.xpath("//div[@class='fbf-tabs clearfix']/div[1]/div/div[2]/div/a[2]/div/ul/li[@class='calories']");
+    By vegDrinkName = By.xpath("(//div[@class='item-info']/h3)[1]");
+    By vegDrinkPrice = By.xpath("(//div[@class='price-tag']//span)[1]");
+    By vegDrinkCal = By.xpath("(//li[@class='calories'])[1]");
 
 
     public VegetarianFavourite(WebDriver driver) {
@@ -122,40 +127,10 @@ public class VegetarianFavourite extends PageBase {
         return atr;
     }
 
-
-    public String getProteinItemLbl() {
-        return driver.findElement(proteinItemLbl).getText();
-    }
-
-    public String getProteinCaloriesCount() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(proteinCaloriesLbl));
-        wait.until(ExpectedConditions.elementToBeClickable(proteinCaloriesLbl));
-        proteincaloriescount = driver.findElement(proteinCaloriesLbl).getText();
-        proteinCalLength = Integer.valueOf(driver.findElement(proteinCaloriesLbl).getText().length());
-        //System.out.println("#####################################"+proteinCalLength);
-        if (proteinCalLength == 5) {
-            proteinCal = Integer.valueOf(driver.findElement(proteinCaloriesLbl).getText().substring(0, 1));
-        } else if (proteinCalLength == 6) {
-            proteinCal = Integer.valueOf(driver.findElement(proteinCaloriesLbl).getText().substring(0, 2));
-        } else {
-            proteinCal = Integer.valueOf(driver.findElement(proteinCaloriesLbl).getText().substring(0, 3));
-        }
-        return proteincaloriescount;
-    }
-
-    public String getProteinPrice() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(proteinPriceLbl));
-        wait.until(ExpectedConditions.elementToBeClickable(proteinPriceLbl));
-        proteinPrice = driver.findElement(proteinPriceLbl).getText();
-        protein = Double.valueOf(driver.findElement(proteinPriceLbl).getText().substring(1));
-        return proteinPrice;
-    }
-
     public void scrollToBottomofThePage() throws InterruptedException {
         Thread.sleep(1000);
         jse = (JavascriptExecutor) driver;
         jse.executeScript("scroll(0, 125)");
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     public String getVegProteinNameX() {
@@ -167,13 +142,24 @@ public class VegetarianFavourite extends PageBase {
     public String getVegProteinPriceX() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(proteinPriceLbl));
         wait.until(ExpectedConditions.elementToBeClickable(proteinPriceLbl));
-        return driver.findElement(proteinPriceLbl).getText();
+        proteinPrice = driver.findElement(proteinPriceLbl).getText();
+        protein = Double.valueOf(driver.findElement(proteinPriceLbl).getText().substring(1));
+        return proteinPrice;
     }
 
     public String getVegProteinCalX() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(proteinCaloriesLbl));
         wait.until(ExpectedConditions.elementToBeClickable(proteinCaloriesLbl));
-        return driver.findElement(proteinCaloriesLbl).getText().substring(0, 3);
+        proteincaloriescount = driver.findElement(proteinCaloriesLbl).getText();
+        proteinCalLength = Integer.valueOf(driver.findElement(proteinCaloriesLbl).getText().length());
+        if (proteinCalLength == 5) {
+            proteinCal = Integer.valueOf(driver.findElement(proteinCaloriesLbl).getText().substring(0, 1));
+        } else if (proteinCalLength == 6) {
+            proteinCal = Integer.valueOf(driver.findElement(proteinCaloriesLbl).getText().substring(0, 2));
+        } else {
+            proteinCal = Integer.valueOf(driver.findElement(proteinCaloriesLbl).getText().substring(0, 3));
+        }
+        return proteincaloriescount;
     }
 
     public void navigateToProteinSelection() {
@@ -183,14 +169,12 @@ public class VegetarianFavourite extends PageBase {
 
     }
 
-    public String getVegProteinName() throws InterruptedException {
-     //    Thread.sleep(10000);
-        //  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    public String getVegProteinName() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(BtnBean));
         wait.until(ExpectedConditions.elementToBeClickable(BtnBean));
         String vegname = driver.findElement(vegProteinName).getText();
         return vegname;
- }
+    }
 
     public String getVegProteinCal() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(BtnBean));
@@ -219,13 +203,24 @@ public class VegetarianFavourite extends PageBase {
     public String getVegTenADayPriceX() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(tenADayPriceLbl));
         wait.until(ExpectedConditions.elementToBeClickable(tenADayPriceLbl));
-        return driver.findElement(tenADayPriceLbl).getText();
+        tenadayPrice = driver.findElement(tenADayPriceLbl).getText();
+        tenADay = Double.valueOf(driver.findElement(tenADayPriceLbl).getText().substring(1));
+        return tenadayPrice;
     }
 
     public String getVegTenADayCalX() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(tenADayCaloriesLbl));
         wait.until(ExpectedConditions.elementToBeClickable(tenADayCaloriesLbl));
-        return driver.findElement(tenADayCaloriesLbl).getText().substring(0, 2);
+        tenadaycaloriesCount = driver.findElement(tenADayCaloriesLbl).getText();
+        tenADayCalLength = Integer.valueOf(driver.findElement(tenADayCaloriesLbl).getText().length());
+        if (tenADayCalLength == 5) {
+            tenADayCal = Integer.valueOf(driver.findElement(tenADayCaloriesLbl).getText().substring(0, 1));
+        } else if (tenADayCalLength == 6) {
+            tenADayCal = Integer.valueOf(driver.findElement(tenADayCaloriesLbl).getText().substring(0, 2));
+        } else {
+            tenADayCal = Integer.valueOf(driver.findElement(tenADayCaloriesLbl).getText().substring(0, 3));
+        }
+        return tenadaycaloriesCount;
     }
 
     public void navigateToTenADaySelection() {
@@ -234,8 +229,7 @@ public class VegetarianFavourite extends PageBase {
         driver.findElement(tenADayBtn).click();
     }
 
-    public String getVegTenADayName() throws InterruptedException {
-        Thread.sleep(5000);
+    public String getVegTenADayName() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(vegTenADayName));
         wait.until(ExpectedConditions.elementToBeClickable(vegTenADayName));
         return driver.findElement(vegTenADayName).getText();
@@ -253,7 +247,6 @@ public class VegetarianFavourite extends PageBase {
         return driver.findElement(vegTenADayPrice).getText();
     }
 
-
     public String getVegCarbNameX() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(carbItemLbl));
         wait.until(ExpectedConditions.elementToBeClickable(carbItemLbl));
@@ -263,13 +256,24 @@ public class VegetarianFavourite extends PageBase {
     public String getVegCarbPriceX() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(carbPriceLbl));
         wait.until(ExpectedConditions.elementToBeClickable(carbPriceLbl));
-        return driver.findElement(carbPriceLbl).getText();
+        carbPrice = driver.findElement(carbPriceLbl).getText();
+        carb = Double.valueOf(driver.findElement(carbPriceLbl).getText().substring(1));
+        return carbPrice;
     }
 
     public String getVegCarbCalX() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(carbCaloriesLbl));
         wait.until(ExpectedConditions.elementToBeClickable(carbCaloriesLbl));
-        return driver.findElement(carbCaloriesLbl).getText().substring(0, 3);
+        carbcaloriesCount = driver.findElement(carbCaloriesLbl).getText();
+        carbCalLength = Integer.valueOf(driver.findElement(carbCaloriesLbl).getText().length());
+        if (carbCalLength == 5) {
+            carbCal = Integer.valueOf(driver.findElement(carbCaloriesLbl).getText().substring(0, 1));
+        } else if (carbCalLength == 6) {
+            carbCal = Integer.valueOf(driver.findElement(carbCaloriesLbl).getText().substring(0, 2));
+        } else {
+            carbCal = Integer.valueOf(driver.findElement(carbCaloriesLbl).getText().substring(0, 3));
+        }
+        return carbcaloriesCount;
     }
 
     public void navigateToCarbSelection() {
@@ -278,8 +282,7 @@ public class VegetarianFavourite extends PageBase {
         driver.findElement(carbBtn).click();
     }
 
-    public String getVegCarbName() throws InterruptedException {
-        Thread.sleep(5000);
+    public String getVegCarbName() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(vegCarbName));
         wait.until(ExpectedConditions.elementToBeClickable(vegCarbName));
         return driver.findElement(vegCarbName).getText();
@@ -297,99 +300,38 @@ public class VegetarianFavourite extends PageBase {
         return driver.findElement(vegCarbPrice).getText();
     }
 
-
-    public String getCarbItemLbl() {
-        return driver.findElement(carbItemLbl).getText();
-    }
-
-    public String getCarbCaloriesCount() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(carbCaloriesLbl));
-        wait.until(ExpectedConditions.elementToBeClickable(carbCaloriesLbl));
-        carbcaloriesCount = driver.findElement(carbCaloriesLbl).getText();
-        carbCalLength = Integer.valueOf(driver.findElement(carbCaloriesLbl).getText().length());
-        //System.out.println("#####################################"+carbCalLength);
-        if (carbCalLength == 5) {
-            carbCal = Integer.valueOf(driver.findElement(carbCaloriesLbl).getText().substring(0, 1));
-        } else if (carbCalLength == 6) {
-            carbCal = Integer.valueOf(driver.findElement(carbCaloriesLbl).getText().substring(0, 2));
-        } else {
-            carbCal = Integer.valueOf(driver.findElement(carbCaloriesLbl).getText().substring(0, 3));
-        }
-        return carbcaloriesCount;
-    }
-
-    public String getCarbPrice() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(carbPriceLbl));
-        wait.until(ExpectedConditions.elementToBeClickable(carbPriceLbl));
-        carbPrice = driver.findElement(carbPriceLbl).getText();
-        carb = Double.valueOf(driver.findElement(carbPriceLbl).getText().substring(1));
-        return carbPrice;
-    }
-
-    public String getTenADayItemLbl() {
-        return driver.findElement(tenADayItemLbl).getText();
-    }
-
-    public String getTenADayCaloriesCount() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(tenADayCaloriesLbl));
-        wait.until(ExpectedConditions.elementToBeClickable(tenADayCaloriesLbl));
-        tenadaycaloriesCount = driver.findElement(tenADayCaloriesLbl).getText();
-        tenADayCalLength = Integer.valueOf(driver.findElement(tenADayCaloriesLbl).getText().length());
-        //System.out.println("#####################################"+tenADayCalLength);
-        if (tenADayCalLength == 5) {
-            tenADayCal = Integer.valueOf(driver.findElement(tenADayCaloriesLbl).getText().substring(0, 1));
-        } else if (tenADayCalLength == 6) {
-            tenADayCal = Integer.valueOf(driver.findElement(tenADayCaloriesLbl).getText().substring(0, 2));
-        } else {
-            tenADayCal = Integer.valueOf(driver.findElement(tenADayCaloriesLbl).getText().substring(0, 3));
-        }
-        return tenadaycaloriesCount;
-    }
-
-    public String getTenADayPrice() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(tenADayPriceLbl));
-        wait.until(ExpectedConditions.elementToBeClickable(tenADayPriceLbl));
-        tenadayPrice = driver.findElement(tenADayPriceLbl).getText();
-        tenADay = Double.valueOf(driver.findElement(tenADayPriceLbl).getText().substring(1));
-        return tenadayPrice;
-
-    }
-
     public String getCaloriesLbl() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(caloriesLbl));
         wait.until(ExpectedConditions.elementToBeClickable(caloriesLbl));
         return driver.findElement(caloriesLbl).getText();
-
     }
 
     public String getPriceLbl() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(priceLbl));
         wait.until(ExpectedConditions.elementToBeClickable(priceLbl));
         return driver.findElement(priceLbl).getText();
-
     }
 
     public String calculatePrice() {
-        Double Total = carb + protein + tenADay;
-        String finalanswer = String.format("%.2f", Total);
+        Double total = carb + protein + tenADay;
+        String finalanswer = String.format("%.2f", total);
         return String.valueOf(finalanswer);
     }
 
     public String calculateCalories() {
-        int Total = carbCal + proteinCal + tenADayCal;
-        return Integer.toString(Total);
+        int total = carbCal + proteinCal + tenADayCal;
+        return Integer.toString(total);
     }
 
     public String getDrinkSelection() {
-        String atr = driver.findElement(tenADayBtn).getAttribute("class");
-        if (atr == "order-item-box bordered-item") {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(drinkBtn));
-            wait.until(ExpectedConditions.elementToBeClickable(drinkBtn));
-            driver.findElement(drinkBtn).click();
-        } else {
-            //**********************Calculation************************
-        }
+        String atr = driver.findElement(drinkBtn).getAttribute("class");
         return atr;
+    }
+
+    public void navigateToDrinkSelection() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(drinkBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(drinkBtn));
+        driver.findElement(drinkBtn).click();
     }
 
     public void getSelectDrinkAvo() {
@@ -398,10 +340,68 @@ public class VegetarianFavourite extends PageBase {
         driver.findElement(selectDrinkAvo).click();
     }
 
-    public String getDrinkSelectionFinal() {
-        String atr = driver.findElement(selectDrinkAvoFinal).getAttribute("class");
-        return atr;
+    public String getVegDrinkNameX() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(drinkItemLbl));
+        wait.until(ExpectedConditions.elementToBeClickable(drinkItemLbl));
+        return driver.findElement(drinkItemLbl).getText().substring(0, 17);
     }
+
+    public String getVegDrinkPriceX() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(drinkPriceLbl));
+        wait.until(ExpectedConditions.elementToBeClickable(drinkPriceLbl));
+        drinkPrice = driver.findElement(drinkPriceLbl).getText();
+        drink = Double.valueOf(driver.findElement(drinkPriceLbl).getText().substring(1));
+        return drinkPrice;
+    }
+
+    public String getVegDrinkCalX() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(drinkCaloriesLbl));
+        wait.until(ExpectedConditions.elementToBeClickable(drinkCaloriesLbl));
+        drinkcalorieCount = driver.findElement(drinkCaloriesLbl).getText();
+        drinkCalLength = Integer.valueOf(driver.findElement(drinkCaloriesLbl).getText().length());
+        if (drinkCalLength == 5) {
+            drinkCal = Integer.valueOf(driver.findElement(drinkCaloriesLbl).getText().substring(0, 1));
+        } else if (drinkCalLength == 6) {
+            drinkCal = Integer.valueOf(driver.findElement(drinkCaloriesLbl).getText().substring(0, 2));
+        } else {
+            drinkCal = Integer.valueOf(driver.findElement(drinkCaloriesLbl).getText().substring(0, 3));
+        }
+        return drinkcalorieCount;
+    }
+
+    public String getVegDrinkName()  {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(vegDrinkName));
+        wait.until(ExpectedConditions.elementToBeClickable(vegDrinkName));
+        return driver.findElement(vegDrinkName).getText();
+    }
+
+    public String getVegDrinkCal() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(vegDrinkCal));
+        wait.until(ExpectedConditions.elementToBeClickable(vegDrinkCal));
+        return driver.findElement(vegDrinkCal).getText().substring(9, 12);
+    }
+
+    public String getVegDrinkPrice() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(vegDrinkPrice));
+        wait.until(ExpectedConditions.elementToBeClickable(vegDrinkPrice));
+        return driver.findElement(vegDrinkPrice).getText();
+    }
+
+    public String newCalculatePrice() {
+        Double newTotal = carb + protein + tenADay + drink;
+        String newFinalAnswer = String.format("%.2f", newTotal);
+        return String.valueOf(newFinalAnswer);
+    }
+
+    public String newCalculateCalories() {
+        int newTotal = carbCal + proteinCal + tenADayCal + drinkCal;
+        return Integer.toString(newTotal);
+    }
+
+
+
+
+
 
 
 }
