@@ -144,8 +144,9 @@ public class GuestCreateOwnLargeMealTest {
     @Test(description = "Verify User enter delivery details", priority = 14)
     public void enterDeliveryDetails() {
         yourOrder.typePostalCard();
-        yourOrder.typeStreetAddress();
         yourOrder.getPostalCodeNotification();
+        yourOrder.typeStreetAddress();
+        //yourOrder.getPostalCodeNotification();
         //scroll down the page
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
         yourOrder.submitYourOrder();
@@ -155,8 +156,6 @@ public class GuestCreateOwnLargeMealTest {
 
     @Test(description = "Verify enter User details and redirect to the Card Page", priority = 15)
     public void enterUserDetails() {
-
-        checkoutOrder.selectDefaultSelectedDate();
         checkoutOrder.enterLargeUserDetails();
         Assert.assertEquals(checkoutOrder.navigateToPaymentCardPage(), "Pay with card");
     }

@@ -16,8 +16,8 @@ public class TermsandCond extends PageBase {
     WebDriverWait wait;
 
     By menuBtn = By.xpath("//a[@class='main-nav-btn']");
-    By createNewOrderMenuBtn = By.xpath("//div[@class = 'main-toggle-menu']//li[2]/a");
-    By createOrderPageLabel = By.xpath("//div[@class='ordertime-col']//span[contains(.,'Order For Later')]");
+    By createneworderMenuBtn = By.xpath("//div[@class = 'main-toggle-menu']//li[2]/a");
+    By createorderpageLabel = By.xpath("//div[@class='ordertime-col']//span[contains(.,'Order For Later')]");
 
     public TermsandCond(WebDriver driver) {
         super(driver);
@@ -29,18 +29,21 @@ public class TermsandCond extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         driver.findElement(menuBtn).click();
+
     }
 
     public void navigateToCreateNewOrderPage(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(createNewOrderMenuBtn));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(createNewOrderMenuBtn));
-        WebElement element = driver.findElement(createNewOrderMenuBtn);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(createneworderMenuBtn));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(createneworderMenuBtn));
+        WebElement element = driver.findElement(createneworderMenuBtn);
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("arguments[0].click()", element);
+        //driver.findElement(createneworderMenuBtn).click();
     }
 
     public String getCreateNewOrderPageLabel(){
-        return driver.findElement(createOrderPageLabel).getText();
+        return driver.findElement(createorderpageLabel).getText();
     }
+
 
 }

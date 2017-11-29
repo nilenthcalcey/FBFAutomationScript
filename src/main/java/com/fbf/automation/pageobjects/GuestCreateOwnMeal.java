@@ -33,7 +33,7 @@ public class GuestCreateOwnMeal extends PageBase {
 
 
     By createyourownmealBtn = By.xpath("//div[@class ='fbf-small-container']//a[@class ='order-item-box bordered-item']");
-    By proteinLbl = By.xpath("//div[@class='inner']//span[contains(.,'Protein')]");
+    By proteinLbl = By.xpath("//div[@class='inner']//span[contains(.,'Protein For muscles and nerves')]");
     By proteinBtn = By.xpath("//div[@class='inner']//span[contains(.,'Protein')]");
     By chickenregularpriceLabel = By.xpath("//div[@class='price-tag']//span");
     By selectchickenBtn = By.xpath("//div[contains(@class,'price-tag')]");
@@ -53,7 +53,7 @@ public class GuestCreateOwnMeal extends PageBase {
     By drinkLabel = By.xpath("//div[@class='order-item-grid create-order']//a[4]//span");
     By avacadomilshakepriceLabel = By.xpath("//div[@class='order-item-grid select-option']//a[1]//span[@class='price']");
     By avacadocalories = By.xpath("//div[@class='order-item-grid select-option']//a[1]//div[3]//li[@class='calories']");
-    By whoisthismealforLabel = By.xpath("//h3[contains(.,'WHO IS THIS MEAL FOR?')]");
+    By whoisthismealforLabel = By.xpath("//h3[contains(.,'ADDITIONAL MEAL DETAILS')]");
     By orderlaterradioButton = By.xpath("//div[@class='fbf-ordertime-container']/div[2]//i[@class='radio-placeholder']");
     By orderfornowradioButton = By.xpath("//div[@class='fbf-ordertime-container']/div[1]//i[@class='radio-placeholder']");
 
@@ -63,6 +63,7 @@ public class GuestCreateOwnMeal extends PageBase {
         this.wait = new WebDriverWait(driver, 30);
         this.commonOperations = new CommonOperations();
         this.driver = driver;
+
     }
 
 
@@ -83,8 +84,12 @@ public class GuestCreateOwnMeal extends PageBase {
             // If the first radio button is not selected by default, the first will be selected
             String later;
             System.out.println("Click the  order Later Button");
+            //driver.findElement(oderlaterradioButton).click();
             driver.findElement(createyourownmealBtn).click();
         }
+
+//        driver.findElement(oderlaterradioButton).click();
+//        driver.findElement(createyourownmealBtn).click();
     }
 
     public Boolean getOrderNowType() {
@@ -110,6 +115,7 @@ public class GuestCreateOwnMeal extends PageBase {
         proteinPrice = driver.findElement(chickenregularpriceLabel).getText();
         protein = Double.valueOf(driver.findElement(chickenregularpriceLabel).getText().substring(1));
         return proteinPrice;
+
     }
 
     //get the Chicken Calories
@@ -134,6 +140,7 @@ public class GuestCreateOwnMeal extends PageBase {
     }
 
     //Calories total count
+
     public String navigateToSelectedItemPageAndCaloriesCount() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(regularchickenLabel));
         wait.until(ExpectedConditions.elementToBeClickable(regularchickenLabel));
@@ -158,6 +165,7 @@ public class GuestCreateOwnMeal extends PageBase {
         carbPrice = driver.findElement(cassavaregularpriceLabel).getText();
         carb = Double.valueOf(driver.findElement(cassavaregularpriceLabel).getText().substring(1));
         return carbPrice;
+
     }
 
     //carb calories count is cassava
@@ -167,6 +175,7 @@ public class GuestCreateOwnMeal extends PageBase {
         carbcaloriesCount = driver.findElement(carbcaloriesLabel).getText();
         CarbCal = Integer.valueOf(driver.findElement(carbcaloriesLabel).getText().substring(9));
         return carbcaloriesCount;
+
     }
 
     public void selectRegularCarb() {
@@ -176,10 +185,12 @@ public class GuestCreateOwnMeal extends PageBase {
     }
 
     //click the Ten a Day Box
+
     public void navigateToTenADayPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(tenadayLabel));
         wait.until(ExpectedConditions.elementToBeClickable(tenadayLabel));
         driver.findElement(tenadayLabel).click();
+
     }
 
     public String getTenADayPriceLabel() {
@@ -206,6 +217,7 @@ public class GuestCreateOwnMeal extends PageBase {
     }
 
     //click Drink Box
+
     public void navigateToDrinkPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(drinkLabel));
         wait.until(ExpectedConditions.elementToBeClickable(drinkLabel));

@@ -14,7 +14,7 @@ public class YourOrder extends PageBase {
 
     String subtotal;
     String multiplierNumber;
-    String postalCode = "NW1 5QT";
+    String postalCode = "Pitman Tozer Architects, 209 Old Marylebone Road, London, NW1";
     String streetAddress = "Stewart House,32 Russell Square,London";
     CheckoutOrder checkoutOrder;
 
@@ -29,6 +29,7 @@ public class YourOrder extends PageBase {
     By enterStreetDetailsTextBox = By.xpath("//input[contains(@name,'streetDetails')]");
     By postalCodeNotificationLabel = By.xpath("//div[@class='form-group']/div/span");
     By brainTreeLabel = By.xpath("//div[@class='braintree-sheet__text']");
+    By mealDeliveredDropdown = By.xpath("//a[contains(.,'NW1')]");
 
     //String guestEmail="";
 
@@ -55,9 +56,10 @@ public class YourOrder extends PageBase {
     public String checkGuestNameSelector(Boolean getOrderNowType) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(continueGuestNameRadioButton));
         boolean bgvalue;
-        String guestEmail = "";
+        String guestEmail="";
         bgvalue = driver.findElement(continueGuestNameRadioButton).isSelected();
         if (bgvalue = true) {
+
             // This will select Second radio button, if the first radio button is selected by default
             driver.findElement(continueButton).click();
             //wait.until(ExpectedConditions.visibilityOfElementLocated(checkorderLabel));
@@ -70,11 +72,13 @@ public class YourOrder extends PageBase {
                 guestEmail = checkoutOrder.addGuestDetails();
             }
         } else {
+
             // If the first radio button is not selected by default, the first will be selected
             System.out.println("Selecting Wrong Radio button");
         }
         return guestEmail;
     }
+
 
 
     public void submitYourOrder() {
@@ -92,6 +96,10 @@ public class YourOrder extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(enterPostalCodeInputTextBox));
         wait.until(ExpectedConditions.elementToBeClickable(enterPostalCodeInputTextBox));
         driver.findElement(enterPostalCodeInputTextBox).sendKeys(postalCode);
+        driver.findElement(enterPostalCodeInputTextBox).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(mealDeliveredDropdown));
+        wait.until(ExpectedConditions.elementToBeClickable(mealDeliveredDropdown));
+        driver.findElement(mealDeliveredDropdown).click();
         return postalCode;
     }
 

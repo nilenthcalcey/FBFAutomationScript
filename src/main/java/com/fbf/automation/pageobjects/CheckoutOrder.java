@@ -116,5 +116,4 @@ public class CheckoutOrder extends PageBase {
         getDriver().findElement(proceedPaymentButton).click();
     }
 
-
 }

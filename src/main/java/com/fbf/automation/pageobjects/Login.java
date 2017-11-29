@@ -30,6 +30,7 @@ public class Login extends PageBase {
     OrderSummery orderSummery;
     CheckoutOrder checkoutOrder;
 
+
     String guestEmailAddress = "";
     String guestUserEmail = "";
 
@@ -104,6 +105,7 @@ public class Login extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(menuBtn));
         wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
         getDriver().findElement(menuBtn).click();
+
     }
 
     public void navigateLoginPage() {
@@ -127,14 +129,14 @@ public class Login extends PageBase {
 
     }
 
-    public String getUsername() {
+    public String getusername() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_userverify));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_username));
         return getDriver().findElement(lbl_username).getText();
     }
 
 
-    public void invalidLogin() {
+    public void InvalidLogin() {
         WebElement loginEmaElement = getDriver().findElement(txt_useremail);
         loginEmaElement.sendKeys(getProperties().getProperty("invalidloginEmail"));
         WebElement loginpassword = getDriver().findElement(txt_password);
@@ -143,7 +145,7 @@ public class Login extends PageBase {
 
     }
 
-    public String getInvalidLoginError() {
+    public String getInvalidLognError() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(lbl_loginerror));
         wait.until(ExpectedConditions.elementToBeClickable(lbl_loginerror));
         return getDriver().findElement(lbl_loginerror).getText();
@@ -185,6 +187,7 @@ public class Login extends PageBase {
         }
     }
 
+
     public String getPasswordFixTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFixTitle));
         wait.until(ExpectedConditions.elementToBeClickable(passwordFixTitle));
@@ -211,16 +214,19 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("resetPassword"));
         getDriver().findElement(btn_SignIn).click();
+
     }
 
     public void guestUserLogin() {
         String userEmail = "";
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
         driver.findElement(txt_useremail).clear();
-        guestUserEmail = checkoutOrder.getGuestEmail().substring(0, 23);
-        driver.findElement(txt_useremail).sendKeys(guestUserEmail + "@mailinator.com");
+        guestUserEmail = orderSummery.email.substring(0,23);
+        driver.findElement(txt_useremail).sendKeys(guestUserEmail+"@mailinator.com");
         driver.findElement(txt_password).sendKeys(orderSummery.getUserPassword());
         driver.findElement(btn_SignIn).click();
+
+
     }
 
 

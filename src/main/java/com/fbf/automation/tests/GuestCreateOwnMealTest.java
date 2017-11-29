@@ -43,6 +43,7 @@ public class GuestCreateOwnMealTest {
     String guestEmailAddress ="";
     String userEmailAddress = "";
 
+
     @BeforeSuite
     public void setUp() {
         driver = DriverFactory.getDriver();
@@ -66,7 +67,8 @@ public class GuestCreateOwnMealTest {
     @Test(description = "Navigate To the Create Your Own Meal Page", priority = 1, dependsOnMethods = "verifyPageElements")
     public void navigateToCreateOwnMeal() {
         guestCreateOwnMeal.navigateToCreateNewPage();
-        Assert.assertEquals(guestCreateOwnMeal.getCreateNewPageLabel(), "PROTEIN");
+        Assert.assertEquals(guestCreateOwnMeal.getCreateNewPageLabel(), "PROTEIN\n" +
+                "FOR MUSCLES AND NERVES");
     }
 
     @Test(description = "Navigate To the Regular Protein Page", priority = 2, dependsOnMethods = "navigateToCreateOwnMeal")
@@ -130,7 +132,7 @@ public class GuestCreateOwnMealTest {
         orderSubTotal = guestCreateOwnMeal.navigateToSelectedItemPageAndCheckTotal();
         guestCreateOwnMeal.scrollingToBottomofAPage();
         guestCreateOwnMeal.navigateToWhoIsThisMealForPage();
-        Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(), "WHO IS THIS MEAL FOR?");
+        Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(), "ADDITIONAL MEAL DETAILS");
     }
 
     @Test(description = "Add the GuestName and Click Save Button", priority = 11, dependsOnMethods = "navigateToWhoIstHisMeal")
@@ -181,7 +183,7 @@ public class GuestCreateOwnMealTest {
 
     @Test(description = "Check the SubTotal from Your Order page and OrderSummery Page", priority = 18, dependsOnMethods = "navigateToOrderSummery")
     public void checkSubtotalValue() {
-        Assert.assertTrue(yourOrder.getTotal().equals(orderSummery.getOrderSummaryTotal()));
+        Assert.assertTrue(yourOrder.getTotal().equals(orderSummery.getOrderSummeryTotal()));
     }
 
     @Test(description = "Check the Email address added in the check out page and OrderSummery Page", priority = 19, dependsOnMethods = "checkSubtotalValue")
@@ -204,12 +206,12 @@ public class GuestCreateOwnMealTest {
     }
 
 
-
-    @AfterSuite
-    public void tearDown() {
-        driver.close();
-        driver.quit();
-    }
+//
+//    @AfterSuite
+//    public void tearDown() {
+//        driver.close();
+//        driver.quit();
+//    }
 
 
 }
