@@ -28,7 +28,7 @@ public class CheckoutOrder extends PageBase {
 
     String userName = getProperties().getProperty("userName");
     String guestEmail = "";
-    String userEmail="";
+    String userEmail = "";
 
     By cartnumberLabel = By.xpath("//div[@class='mini-cart-outer']//a[@class='mini-cart']//span");
     By nameTextBox = By.xpath("//input[@id='nameFocus']");
@@ -40,7 +40,7 @@ public class CheckoutOrder extends PageBase {
     By calendarButton = By.xpath("//div[@class='mydp']//div[@class='selectiongroup']");
     By calendardefaultselectDate = By.xpath("//div[@class='datevalue currmonth highlight']");
     By checkoutLabel = By.xpath("//div[@class='fbf-form fbf-location-pick']/div[1]//label");
-    By timeTextBox= By.xpath("//div[@class='select-outer']/select[@name='selectedTime']");
+    By timeTextBox = By.xpath("//div[@class='select-outer']/select[@name='selectedTime']");
 
     public CheckoutOrder(WebDriver driver) {
         super(driver);
@@ -60,13 +60,11 @@ public class CheckoutOrder extends PageBase {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0,-250)", "");
         wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutLabel));
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(calendarButton));
         wait.until(ExpectedConditions.elementToBeClickable(calendarButton));
         driver.findElement(calendarButton).click();
         driver.findElement(calendardefaultselectDate).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(timeTextBox));
-
     }
 
     public String addGuestDetails() {
@@ -79,11 +77,10 @@ public class CheckoutOrder extends PageBase {
         driver.findElement(termsandconditionCheckBox).click();
         driver.findElement(proceedPaymentButton).click();
         return guestEmail;
-
     }
 
     public String getGuestEmail() {
-       userEmail = this.guestEmail;
+        userEmail = this.guestEmail;
         return userEmail;
     }
 

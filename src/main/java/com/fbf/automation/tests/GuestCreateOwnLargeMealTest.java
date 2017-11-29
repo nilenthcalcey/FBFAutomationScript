@@ -56,20 +56,17 @@ public class GuestCreateOwnLargeMealTest {
         Assert.assertEquals(guestCreateOwnMeal.getCreateNewPageLabel(), "PROTEIN\nFOR MUSCLES AND NERVES");
     }
 
-
     @Test(description = "Verify Navigate Create New Page", priority = 2)
     public void navigateToLargeProteinPage() {
         guestCreateOwnLargeMeal.NavigateToLargeProteinPage();
         Assert.assertEquals(guestCreateOwnLargeMeal.getProteinLabel().substring(6), "Large");
     }
 
-
     @Test(description = "Verify add a Large Protein Item into the Platter", priority = 3)
     public void selectLargeProtein() {
         guestCreateOwnLargeMeal.selectLargeProteinItem();
         guestCreateOwnLargeMeal.getLargeProteinCalories();
         Assert.assertEquals(guestCreateOwnLargeMeal.getChickenLabel(), "CHICKEN | LARGE");
-
     }
 
     @Test(description = "Verify Navigate to Large Carbs Page", priority = 4)
@@ -77,7 +74,6 @@ public class GuestCreateOwnLargeMealTest {
         guestCreateOwnLargeMeal.navigateToLargeCarb();
         Assert.assertEquals(guestCreateOwnLargeMeal.getCarbsLable().substring(6), "Large");
     }
-
 
     @Test(description = "Verify add to Large Carbs item for platter", priority = 5)
     public void selectLargeCarbItem() {
@@ -100,10 +96,8 @@ public class GuestCreateOwnLargeMealTest {
         Assert.assertEquals(guestCreateOwnLargeMeal.getTenADayText(), "KIWI, AVOCADO & CUCUMBER | LARGE");
     }
 
-
     @Test(description = "Verify Navigate to Large Drinks Items List", priority = 8)
     public void navigateLargeDrinks() {
-
         guestCreateOwnLargeMeal.navigateToLargeDrinks();
         Assert.assertEquals(guestCreateOwnLargeMeal.getDrinksLabel().substring(6), "250ml");
     }
@@ -119,7 +113,6 @@ public class GuestCreateOwnLargeMealTest {
     public void calculateTotalPrice() {
         guestCreateOwnLargeMeal.calculateTotalprice();
         Assert.assertEquals(guestCreateOwnLargeMeal.calculateTotalprice(), guestCreateOwnLargeMeal.getItemsTotal());
-
     }
 
     @Test(description = "Verify Total Calory value of platter", priority = 11)
@@ -146,20 +139,16 @@ public class GuestCreateOwnLargeMealTest {
         yourOrder.typePostalCard();
         yourOrder.getPostalCodeNotification();
         yourOrder.typeStreetAddress();
-        //yourOrder.getPostalCodeNotification();
-        //scroll down the page
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");        //scroll down the page
         yourOrder.submitYourOrder();
         Assert.assertEquals(yourOrder.navigatetoCheckOrderPage(), "Please let us know your name, email to send you an eco-friendly receipt, and mobile number, to let you know your order status");
     }
-
 
     @Test(description = "Verify enter User details and redirect to the Card Page", priority = 15)
     public void enterUserDetails() {
         checkoutOrder.enterLargeUserDetails();
         Assert.assertEquals(checkoutOrder.navigateToPaymentCardPage(), "Pay with card");
     }
-
 
     @Test(description = "Verify enter User Card details and redirect to the Order Confirmation Page", priority = 16)
     public void enterCardDetails() {
@@ -170,9 +159,7 @@ public class GuestCreateOwnLargeMealTest {
 
     @AfterSuite
     public void tearDown() {
-
         driver.close();
     }
-
 
 }

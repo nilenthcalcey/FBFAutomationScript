@@ -15,14 +15,12 @@ public class PageBase {
     CommonOperations commonOperations;
 
     By loadingSpinner = By.id("loading-bar-spinner");
-    String URL = "http://fbf.qa/create-order";
 
     public PageBase(WebDriver driver) {
         this.driver = driver;
         this.commonOperations = new CommonOperations();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-
         String propertiesPath = getClass().getSimpleName();
         InputStream input = HomePage.class.getClassLoader().getResourceAsStream(propertiesPath + ".properties");
         properties = new Properties();
@@ -46,11 +44,12 @@ public class PageBase {
         return commonOperations.waitUntilElementInvisible(getDriver(), loadingSpinner, 5);
     }
 
-//    //scroll down the page
-//    public void scrollingToBottomofAPage() {
-//        driver.navigate().to(URL);
-//        ((JavascriptExecutor) driver)
-//                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
-//    }
+    //scroll down the page
+    public void scrollingToBottomofAPage() {
+        String URL = getProperties().getProperty("appURL");
+        driver.navigate().to(URL);
+        ((JavascriptExecutor) driver)
+                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    }
 
 }
