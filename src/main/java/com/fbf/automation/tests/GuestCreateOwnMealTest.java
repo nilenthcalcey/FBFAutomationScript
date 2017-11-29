@@ -201,7 +201,7 @@ public class GuestCreateOwnMealTest {
         login.expandMenuScreenLogin();
         login.navigateLoginPage();
         login.guestUserLogin();
-        Assert.assertEquals(login.getUsername(), checkoutOrder.getUserName());
+        Assert.assertEquals(login.getUsername(),"HI, "+checkoutOrder.getUserName());
     }
 
 

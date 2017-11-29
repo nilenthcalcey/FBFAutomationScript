@@ -132,7 +132,7 @@ public class GuestCreateOwnLargeMealTest {
     public void navigateToSaveName() {
         guestCreateOwnMeal.scrollingToBottomofAPage();
         guestCreateOwnLargeMeal.navigateToSaveMealPage();
-        Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(), "WHO IS THIS MEAL FOR?");
+        Assert.assertEquals(guestCreateOwnMeal.getWhoIsThisMealForLabel(), "ADDITIONAL MEAL DETAILS");
     }
 
     @Test(description = "Verify Enter The Meal Name ", priority = 13)
