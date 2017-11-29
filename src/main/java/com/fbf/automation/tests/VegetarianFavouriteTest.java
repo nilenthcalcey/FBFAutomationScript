@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by gishan.n on 11/14/2017.
  */
-//public class FailureReport implements ITestListener {
 
 @Listeners(value = FailureReport.class)
 public class VegetarianFavouriteTest {
@@ -25,7 +24,6 @@ public class VegetarianFavouriteTest {
     WebDriver driver = null;
     VegetarianFavourite vegetarianFavourite;
     GuestCreateOwnMeal guestCreateOwnMeal;
-
 
     @BeforeSuite
     public void SetUp() {
@@ -126,5 +124,4 @@ public class VegetarianFavouriteTest {
         driver.close();
         driver.quit();
     }
-
 }

@@ -215,14 +215,9 @@ public class Login extends PageBase {
     }
 
     public void guestUserLogin() {
-        String userEmail = "";
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
         driver.findElement(txt_useremail).clear();
-        guestUserEmail = emailadded.substring(0, 23);
-     //   driver.findElement(txt_useremail).sendKeys(guestUserEmail+"@mailinator.com");
-        WebElement emailField = driver.findElement(txt_useremail);
-        JavascriptExecutor jse = ((JavascriptExecutor) driver);
-        jse.executeScript("document.getElementByXpath('//input[@name='email']').value='jasdjahdhsdjhsd'");
+        driver.findElement(txt_useremail).sendKeys(emailadded);
        driver.findElement(txt_password).sendKeys(orderSummery.getUserPassword());
         driver.findElement(btn_SignIn).click();
     }

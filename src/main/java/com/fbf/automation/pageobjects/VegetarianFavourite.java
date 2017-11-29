@@ -99,7 +99,6 @@ public class VegetarianFavourite extends PageBase {
 
         this.driver = driver;
         createNewOrder = new CreateNewOrder(driver);
-        //driver.get("http://fbf.qa/orders");
     }
 
     public void navigateToVegFav() {
