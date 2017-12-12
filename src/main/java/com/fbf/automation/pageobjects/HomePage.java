@@ -22,7 +22,7 @@ public class HomePage extends PageBase {
     By menuBtn = By.xpath("//a[@class='main-nav-btn']");
     By createneworderBtn = By.xpath("//a[contains(.,'Create new Order')]");
     By selectFavouriteText = By.xpath("//div[@class='fbf-main-content']//h3");
-    By playfirebrandquizBtn = By.xpath("//a[contains(.,'Play Firebrand quiz')]");
+    By playfirebrandquizBtn = By.xpath("//div[@class='main-toggle-menu']/ul/li[3]/a");
     By playnowBtn = By.xpath("//a[contains(.,'Play Now')]");
     By firebrandLabel = By.xpath("//div[@class = 'container']//h2/span");
     By quizfactsMenuBtn = By.xpath("//a[contains(.,'Quiz Facts')]");

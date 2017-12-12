@@ -28,7 +28,7 @@ public class HomePageTest {
     FaqPage faqPage;
 
 
-    String pageTitle = "Firebrand Fresh";
+    String pageTitle = "Firebrand Fresh - Fabulous flame roasted food";
 
     @BeforeSuite
     public void setUp() {

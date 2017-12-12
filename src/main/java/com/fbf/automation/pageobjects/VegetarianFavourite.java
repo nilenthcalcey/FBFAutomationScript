@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 
 /**
- * Created by gishan.n on 11/14/2017.
+ * Created by gishan on 11/14/2017.
  */
 
 public class VegetarianFavourite extends PageBase {
