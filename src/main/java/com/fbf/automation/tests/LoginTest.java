@@ -28,7 +28,7 @@ public class LoginTest {
     @BeforeSuite
     public void setUp() {
         driver = DriverFactory.getDriver();
-        //login = new Login(driver);
+        login = new Login(driver,null);
         homepage = new HomePage(driver);
         mailClient = new MailClient(driver);
     }
