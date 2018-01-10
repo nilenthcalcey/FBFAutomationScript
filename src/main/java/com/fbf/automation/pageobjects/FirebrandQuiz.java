@@ -36,7 +36,6 @@ public class FirebrandQuiz extends PageBase {
     }
 
     public void navigateToAboutUsPage(){
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(aboutUsBtn));
         wait.until(ExpectedConditions.elementToBeClickable(aboutUsBtn));
         WebElement element = driver.findElement(aboutUsBtn);

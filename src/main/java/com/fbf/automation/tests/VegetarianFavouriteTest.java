@@ -2,15 +2,16 @@ package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
 import com.fbf.automation.pageobjects.*;
+import com.fbf.automation.utils.CommonOperations;
 import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.*;
 import org.testng.ITestListener;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,17 +20,23 @@ import java.util.concurrent.TimeUnit;
 
 @Listeners(value = FailureReport.class)
 public class VegetarianFavouriteTest {
-
-
-    WebDriver driver = null;
+    static WebDriver driver = null;
+    CommonOperations common;
     VegetarianFavourite vegetarianFavourite;
     GuestCreateOwnMeal guestCreateOwnMeal;
+    PageBase pageBase;
+
 
     @BeforeSuite
     public void SetUp() {
         driver = DriverFactory.getDriver();
         vegetarianFavourite = new VegetarianFavourite(driver);
         guestCreateOwnMeal = new GuestCreateOwnMeal(driver);
+        common = new CommonOperations();
+    }
+
+    public static WebDriver getDriverDetails() {
+        return driver;
     }
 
     @Test(description = "Verify Navigate To Vegetarian Favourite Selection Page", priority = 0)

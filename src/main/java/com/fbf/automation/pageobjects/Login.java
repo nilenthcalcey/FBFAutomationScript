@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.util.Properties;
 
@@ -32,6 +33,7 @@ public class Login extends PageBase {
 
     String guestEmailAddress = "";
     String guestUserEmail = "";
+    String passwordFixTitleText = "";
 
 
     By menuBtn = By.xpath("//div[@class='header-col user-col']/a[@class='main-nav-btn']");
@@ -64,7 +66,6 @@ public class Login extends PageBase {
         //driver.get("http://fbf.qa/orders");
     }
 
-
     public void navigateToForgotPassword() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(resetPassword));
         wait.until(ExpectedConditions.elementToBeClickable(resetPassword));
@@ -72,6 +73,7 @@ public class Login extends PageBase {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
         //driver.findElement(resetPassword).click();
+        Assert.assertEquals(getForgotPasswordHeader(), "FORGOT PASSWORD");
     }
 
     public String getForgotPasswordHeader() {
@@ -89,6 +91,7 @@ public class Login extends PageBase {
         driver.findElement(emailSubmitBtn).click();
         getDriver().switchTo().defaultContent();
         //driver.findElement(emailTextBox).sendKeys("fbfauto@mailinator.com");
+        Assert.assertEquals(getForgotPasswordHeader(), "FORGOT PASSWORD");
     }
 
     public void sendResetEmail() throws InterruptedException {
@@ -98,7 +101,7 @@ public class Login extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailSubmitBtn));
         wait.until(ExpectedConditions.elementToBeClickable(emailSubmitBtn));
         driver.findElement(emailSubmitBtn).click();
-        //driver.findElement(emailTextBox).sendKeys("fbfauto@mailinator.com");
+        Assert.assertNull(testVerifyPopup());
     }
 
     public void expandMenuScreenLogin() {
@@ -115,6 +118,7 @@ public class Login extends PageBase {
         js.executeScript("arguments[0].click()", element);
         //getDriver().findElement(loginbtn).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
+        Assert.assertEquals(getLoginPageTitle(), "LOG IN");
     }
 
     public void login() {
@@ -125,6 +129,7 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("loginPassword"));
         getDriver().findElement(btn_SignIn).click();
+        Assert.assertEquals(getUsername(), "HI, FBF");
 
     }
 
@@ -141,6 +146,7 @@ public class Login extends PageBase {
         WebElement loginpassword = getDriver().findElement(txt_password);
         loginpassword.sendKeys(getProperties().getProperty("invalidloginPassword"));
         getDriver().findElement(btn_SignIn).click();
+        Assert.assertEquals(getInvalidLoginError(), "Username or password is incorrect");
 
     }
 
@@ -166,7 +172,6 @@ public class Login extends PageBase {
         WebElement element = driver.findElement(logoutBtn);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", element);
-        //driver.findElement(logoutBtn).click();
     }
 
     public String testVerifyPopup() {
@@ -186,10 +191,11 @@ public class Login extends PageBase {
         }
     }
 
-    public String getPasswordFixTitle() {
+    public void getPasswordFixTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFixTitle));
         wait.until(ExpectedConditions.elementToBeClickable(passwordFixTitle));
-        return getDriver().findElement(passwordFixTitle).getText();
+        passwordFixTitleText = getDriver().findElement(passwordFixTitle).getText();
+        Assert.assertEquals(passwordFixTitleText, "RESET YOUR PASSWORD");
     }
 
     public void resetNewPassword() throws InterruptedException {
@@ -212,13 +218,14 @@ public class Login extends PageBase {
         loginpassword.clear();
         loginpassword.sendKeys(getProperties().getProperty("resetPassword"));
         getDriver().findElement(btn_SignIn).click();
+        Assert.assertEquals(getUsername(), "HI, FBF");
     }
 
     public void guestUserLogin() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(txt_useremail));
         driver.findElement(txt_useremail).clear();
         driver.findElement(txt_useremail).sendKeys(emailadded);
-       driver.findElement(txt_password).sendKeys(orderSummery.getUserPassword());
+        driver.findElement(txt_password).sendKeys(orderSummery.getUserPassword());
         driver.findElement(btn_SignIn).click();
     }
 

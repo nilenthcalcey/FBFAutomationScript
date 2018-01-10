@@ -2,6 +2,7 @@ package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
 import com.fbf.automation.pageobjects.*;
+import com.fbf.automation.utils.CommonOperations;
 import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +19,7 @@ import org.testng.annotations.Test;
 @Listeners(value = FailureReport.class)
 public class GuestCreateOwnLargeMealTest {
 
-    WebDriver driver = null;
+    static WebDriver driver = null;
     GuestCreateOwnLargeMeal guestCreateOwnLargeMeal;
     HomePage homepage;
     GuestCreateOwnMeal guestCreateOwnMeal;
@@ -27,6 +28,7 @@ public class GuestCreateOwnLargeMealTest {
     CheckoutOrder checkoutOrder;
     CardPayment cardPayment;
     OrderSummery orderSummery;
+    CommonOperations common;
 
     String pageTitle = "Firebrand Fresh";
 
@@ -42,6 +44,10 @@ public class GuestCreateOwnLargeMealTest {
         checkoutOrder = new CheckoutOrder(driver);
         cardPayment = new CardPayment(driver);
         orderSummery = new OrderSummery(driver);
+    }
+
+    public static WebDriver getDriverDetails() {
+        return driver;
     }
 
     @Test(description = "Verify Home page loaded", priority = 0)

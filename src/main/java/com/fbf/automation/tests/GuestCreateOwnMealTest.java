@@ -2,6 +2,7 @@ package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
 import com.fbf.automation.pageobjects.*;
+import com.fbf.automation.utils.CommonOperations;
 import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,12 +12,6 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by lahiru.k on 10/21/2017.
@@ -24,7 +19,7 @@ import java.util.Set;
 
 @Listeners(value = FailureReport.class)
 public class GuestCreateOwnMealTest {
-    WebDriver driver = null;
+    static WebDriver driver = null;
     GuestCreateOwnMeal guestCreateOwnMeal;
     HomePage homepage;
     PageBase pagebase;
@@ -37,9 +32,10 @@ public class GuestCreateOwnMealTest {
     CardPayment cardPayment;
     OrderSummery orderSummery;
     Login login;
+    CommonOperations common;
 
 
-    String pageTitle = "Firebrand Fresh";
+    String pageTitle = "Firebrand Fresh - Fabulous Flame Roasted Food";
     String guestEmailAddress = "";
     String userEmailAddress = "";
 
@@ -54,7 +50,11 @@ public class GuestCreateOwnMealTest {
         checkoutOrder = new CheckoutOrder(driver);
         cardPayment = new CardPayment(driver);
         orderSummery = new OrderSummery(driver);
-       // login = new Login(driver);
+        common = new CommonOperations();
+    }
+
+    public static WebDriver getDriverDetails() {
+        return driver;
     }
 
     @Test(description = "Verify Home page loaded", priority = 0)
@@ -67,7 +67,7 @@ public class GuestCreateOwnMealTest {
     public void navigateToCreateOwnMeal() {
         guestCreateOwnMeal.navigateToCreateNewPage();
         Assert.assertEquals(guestCreateOwnMeal.getCreateNewPageLabel(), "PROTEIN\n" +
-                "FOR MUSCLES AND NERVES");
+                "FOR MUSCLE AND NERVOUS TISSUE");
     }
 
     @Test(description = "Navigate To the Regular Protein Page", priority = 2, dependsOnMethods = "navigateToCreateOwnMeal")
@@ -201,15 +201,13 @@ public class GuestCreateOwnMealTest {
         login.expandMenuScreenLogin();
         login.navigateLoginPage();
         login.guestUserLogin();
-        Assert.assertEquals(login.getUsername(),"HI, "+checkoutOrder.getUserName());
+        Assert.assertEquals(login.getUsername(), "HI, " + checkoutOrder.getUserName());
     }
-
 
     @AfterSuite
     public void tearDown() {
         driver.close();
         driver.quit();
     }
-
 
 }

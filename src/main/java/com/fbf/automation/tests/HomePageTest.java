@@ -2,13 +2,14 @@ package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
 import com.fbf.automation.pageobjects.*;
+import com.fbf.automation.utils.CommonOperations;
 import com.fbf.automation.utils.FailureReport;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 
 /**
@@ -17,7 +18,7 @@ import org.testng.annotations.Test;
 
 @Listeners(value = FailureReport.class)
 public class HomePageTest {
-    WebDriver driver = null;
+    static WebDriver driver = null;
     HomePage homePage;
     FirebrandQuiz firebrandQuiz;
     QuizFacts quizFacts;
@@ -26,6 +27,7 @@ public class HomePageTest {
     CreateNewOrder createNewOrder;
     AboutUs aboutUs;
     FaqPage faqPage;
+    CommonOperations common;
 
     String pageTitle = "Firebrand Fresh - Fabulous Flame Roasted Food";
 
@@ -40,8 +42,12 @@ public class HomePageTest {
         createNewOrder = new CreateNewOrder(driver);
         aboutUs = new AboutUs(driver);
         faqPage = new FaqPage(driver);
+        common = new CommonOperations();
     }
 
+    public static WebDriver getDriverDetails() {
+        return driver;
+    }
 
     @Test(description = "Verify Home page loaded", priority = 0)
     public void verifyPageElements() {
@@ -51,13 +57,21 @@ public class HomePageTest {
 
     @Test(description = "Expand the Menu Screen", priority = 1)
     public void expandTheMenuScreen() {
-        homePage.expandMenuScreen();
-        Assert.assertEquals(homePage.getMenuScreenDetails(), "CREATE NEW ORDER");
+        try {
+            homePage.expandMenuScreen();
+            Assert.assertEquals(homePage.getMenuScreenDetails(), "CREATE NEW ORDER");
+        } catch (Exception e) {
+            common.takeScreenShotOnFailure("expandTheMenuScreen" + "_" + System.currentTimeMillis());
+        }
     }
 
     @Test(description = "Test Create New Order Select Text Color", priority = 2)
     public void testCreateNewOrderSelectTextColor() {
-        Assert.assertEquals(homePage.getCreateNewOrderSelectTextColor(), "rgba(5, 97, 65, 1)");
+        try {
+            Assert.assertEquals(homePage.getCreateNewOrderSelectTextColor(), "rgba(5, 97, 65, 1)");
+        } catch (Exception e) {
+            common.takeScreenShotOnFailure("testCreateNewOrderSelectTextColor" + "_" + System.currentTimeMillis());
+        }
     }
 
     @Test(description = "Test Create New Order Select Background Color", priority = 3)
@@ -91,7 +105,6 @@ public class HomePageTest {
     public void testFbQuizSelectBackColor() {
         Assert.assertEquals(homePage.getFbQuizSelectBackColor(), "rgba(239, 239, 239, 1)");
     }
-
 
     @Test(description = "Navigate to the About Us Page", priority = 9)
     public void navigateToAboutUsPage() {
@@ -232,7 +245,6 @@ public class HomePageTest {
     public void testTermsandCondSelectBackColor() {
         Assert.assertEquals(contactUs.getTermsandCondSelectBackColor(), "rgba(239, 239, 239, 1)");
     }
-
 
     @Test(description = "Naviate to the Create New Order Page", priority = 34)
     public void navigateToCreatenewOrder() {

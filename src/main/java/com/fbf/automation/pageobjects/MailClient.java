@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -68,6 +69,7 @@ public class MailClient extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(fbfPwResetMail));
         wait.until(ExpectedConditions.elementToBeClickable(fbfPwResetMail));
         getDriver().findElement(fbfPwResetMail).click();
+        Assert.assertEquals(getResetEmailTitle(), "Reset Password");
     }
 
     public String getResetEmailTitle() {
@@ -85,7 +87,7 @@ public class MailClient extends PageBase {
         driver.switchTo().window(tabs.get(1));
     }
 
-    public void navigateToConfirmationMailList(){
+    public void navigateToConfirmationMailList() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(mailText));
         wait.until(ExpectedConditions.elementToBeClickable(mailText));
         driver.findElement(mailText).sendKeys(checkoutOrder.guestEmail);
