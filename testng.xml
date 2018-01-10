@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="TestSuite" parallel="false">
-
-   <test name="HomePageTest">
+    <listeners>
+        <listener class-name="com.fbf.automation.listeners.LocalScreenshot"></listener>
+    </listeners>
+   <!--<test name="HomePageTest">
         <classes>
             <class name="com.fbf.automation.tests.HomePageTest"></class>
         </classes>
-    </test>
+    </test>-->
     <test name="LoginTest">
         <classes>
             <class name="com.fbf.automation.tests.LoginTest"></class>
         </classes>
     </test>
-  <test name="GuestCreateOwnMealTest">
+ <!-- <test name="GuestCreateOwnMealTest">
         <classes>
             <class name="com.fbf.automation.tests.GuestCreateOwnMealTest"></class>
         </classes>
-    </test>
-     <test name="GuestCreateLargeOwnMealTest">
-         <classes>
-             <class name="com.fbf.automation.tests.GuestCreateOwnLargeMealTest"></class>
-         </classes>
-     </test>
-    <test name="VegetarianFavouriteTest">
+    </test>-->
+    <!--<test name="GuestCreateLargeOwnMealTest">
+        <classes>
+            <class name="com.fbf.automation.tests.GuestCreateOwnLargeMealTest"></class>
+        </classes>
+    </test>-->
+  <!--  <test name="VegetarianFavouriteTest">
         <classes>
             <class name="com.fbf.automation.tests.VegetarianFavouriteTest"></class>
         </classes>
-    </test>
+    </test>-->
 </suite>

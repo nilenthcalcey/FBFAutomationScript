@@ -1,12 +1,12 @@
 package com.fbf.automation.utils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -16,7 +16,7 @@ import java.util.Random;
  */
 public class CommonOperations {
     int sleepTime;
-
+    private WebDriver driver;
     public CommonOperations() {
         this.sleepTime = 1000;
     }
@@ -98,6 +98,17 @@ public class CommonOperations {
     public boolean waitUntilElementInvisible(WebDriver driver, By elementLocator, int delay) {
         WebDriverWait wait = new WebDriverWait(driver, delay);
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(elementLocator));
+    }
+
+    public void takeScreenShotOnFailure(String methodName) {
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String path = System.getProperty("user.dir") + File.separator + "screenShots" + File.separator;
+        System.out.println("Take screen shot to '" + path + "'.");
+        try {
+            FileUtils.copyFile(scrFile, new File(path + methodName + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
