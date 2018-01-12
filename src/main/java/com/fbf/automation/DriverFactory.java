@@ -62,7 +62,7 @@ public class DriverFactory {
             driver.navigate().to(properties.getProperty("appURL"));
             return driver;
         }
-
         return driver;
     }
+
 }

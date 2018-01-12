@@ -88,8 +88,6 @@ public class CommonOperations {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-
-
     public WebElement waitUntilElementVisible(WebDriver driver, By elementLocator, int delay) {
         WebDriverWait wait = new WebDriverWait(driver, delay);
         return wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));

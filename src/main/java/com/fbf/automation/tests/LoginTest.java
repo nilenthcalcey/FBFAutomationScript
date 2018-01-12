@@ -5,37 +5,24 @@ import com.fbf.automation.pageobjects.*;
 import com.fbf.automation.utils.CommonOperations;
 import com.fbf.automation.utils.FailureReport;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import com.fbf.automation.pageobjects.HomePage;
 
 /**
  * Created by iresh.n on 10/24/2017.
  */
-//public class FailureReport implements ITestListener {
 @Listeners(value = FailureReport.class)
-public class LoginTest {
+public class LoginTest extends TestBase {
 
-    WebDriver driver = null;
     Login login;
     MailClient mailClient;
-    HomePage homepage;
-    HomePageTest homepageTest;
-    CommonOperations common;
 
-    @BeforeSuite
-    public void setUp() {
-        driver = DriverFactory.getDriver();
-        login = new Login(driver, null);
-        homepage = new HomePage(driver);
-        mailClient = new MailClient(driver);
-        common = new CommonOperations();
-    }
-
-    public WebDriver getDriverDetails() {
-        return driver;
+    @BeforeClass(alwaysRun = true)
+    public void SetUp() throws Exception {
+        login = new Login(getDriver(), null);
+        mailClient = new MailClient(getDriver());
     }
 
     @Test(description = "Verify Expand the Menu", priority = 0)
@@ -92,12 +79,6 @@ public class LoginTest {
     public void submitNewPassword() throws InterruptedException {
         login.resetNewPassword();
         login.reLogin();
-    }
-
-    @AfterSuite
-    public void tearDown() {
-        driver.close();
-        driver.quit();
     }
 }
 

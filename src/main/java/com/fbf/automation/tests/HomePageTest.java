@@ -1,6 +1,7 @@
 package com.fbf.automation.tests;
 
 import com.fbf.automation.DriverFactory;
+import com.fbf.automation.listeners.LocalScreenshot;
 import com.fbf.automation.pageobjects.*;
 import com.fbf.automation.utils.CommonOperations;
 import com.fbf.automation.utils.FailureReport;
@@ -9,7 +10,12 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
+
+import java.io.File;
+
+import static com.fbf.automation.DriverFactory.getDriver;
 
 
 /**
@@ -17,8 +23,7 @@ import org.testng.annotations.*;
  */
 
 @Listeners(value = FailureReport.class)
-public class HomePageTest {
-    static WebDriver driver = null;
+public class HomePageTest extends TestBase {
     HomePage homePage;
     FirebrandQuiz firebrandQuiz;
     QuizFacts quizFacts;
@@ -31,22 +36,18 @@ public class HomePageTest {
 
     String pageTitle = "Firebrand Fresh - Fabulous Flame Roasted Food";
 
-    @BeforeSuite
-    public void setUp() {
-        driver = DriverFactory.getDriver();
-        homePage = new HomePage(driver);
-        firebrandQuiz = new FirebrandQuiz(driver);
-        contactUs = new ContactUs(driver);
-        quizFacts = new QuizFacts(driver);
-        termsandCond = new TermsandCond(driver);
-        createNewOrder = new CreateNewOrder(driver);
-        aboutUs = new AboutUs(driver);
-        faqPage = new FaqPage(driver);
+    @BeforeClass(alwaysRun = true)
+    public void SetUp() throws Exception {
+        homePage = new HomePage(getDriver());
+        homePage = new HomePage(getDriver());
+        firebrandQuiz = new FirebrandQuiz(getDriver());
+        contactUs = new ContactUs(getDriver());
+        quizFacts = new QuizFacts(getDriver());
+        termsandCond = new TermsandCond(getDriver());
+        createNewOrder = new CreateNewOrder(getDriver());
+        aboutUs = new AboutUs(getDriver());
+        faqPage = new FaqPage(getDriver());
         common = new CommonOperations();
-    }
-
-    public static WebDriver getDriverDetails() {
-        return driver;
     }
 
     @Test(description = "Verify Home page loaded", priority = 0)
@@ -191,8 +192,6 @@ public class HomePageTest {
 
     @Test(description = "Navigate to the Contact Us Page", priority = 24)
     public void navigateToContactUs() {
-
-        //quizFacts.expandMenuScreenQuizFactsPage();
         quizFacts.navigateToContactUsPage();
         Assert.assertEquals(quizFacts.getContactUsPageHeader(), "CONTACT US");
     }
@@ -217,7 +216,6 @@ public class HomePageTest {
     public void testContactUsSelectBackColor() {
         Assert.assertEquals(quizFacts.getContactUsSelectBackColor(), "rgba(239, 239, 239, 1)");
     }
-
 
     @Test(description = "Navigate to the Terms & Condition Page", priority = 29)
     public void navigateToTermsandCondition() {
@@ -270,13 +268,8 @@ public class HomePageTest {
         Assert.assertEquals(createNewOrder.getCreateNewOrderLabel(), "Order For Later");
     }
 
-    @AfterSuite
-    public void tearDown() {
-        driver.close();
-        driver.quit();
-    }
-
 }
+
 
 
 
